@@ -7,9 +7,11 @@ export const Component3 = () => {
     <div className="flex flex-col items-center  my-20 p-[20px] min-[590px]:p-[40px]">
       <div className="flex flex-col-reverse min-[590px]:flex-row content-center items-center min-[590px]:justify-center gap-x-20 min-[1100px]:gap-x-[7rem]  my-[5.7rem] ">
         <div className="w-[370px] ">
-          <h1 className="mt-6">ESTD. 2004</h1>
+          <h1 className="mt-6 text-black text-[1.05rem] font-light tracking-widest">
+            ESTD. 2004
+          </h1>
           <h3 className="text-[30px] font-extrabold">Downtown Philly</h3>
-          <p className="mt-4 text-gray-800 text-[1.1rem]">
+          <p className="mt-4 text-[1.05rem] font-light text-black">
             Our first expansion. You'll find our core product line here in a
             restored 1800's tile factory warehouse in downtown Philadelphia.
           </p>

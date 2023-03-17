@@ -41,9 +41,9 @@ export default function Index() {
   }, []);
   return (
     <>
-      {/* <Component2 />
-      <Component3 /> */}
-      {/* <Form /> */}
+      <Component2 />
+      <Component3 />
+      <Form />
       <Productgrid />
       <Footer />
     </>

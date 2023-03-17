@@ -6,7 +6,7 @@ export const Component2 = () => {
   return (
     <div className="flex flex-col items-center  my-20 p-[20px] min-[590px]:p-[40px]">
       <div className="flex flex-wrap text-center max-w-[58rem] mx-10">
-        <p className="text-[16px] text-gray-900 min-[590px]:text-[22px] leading-9 tracking-wide">
+        <p className="text-[16px] text-gray-900 min-[590px]:text-[22px] leading-9 tracking-widee">
           When we set out to create eight pieces that would bring out the best
           of both Chaco and United By Blue, we knew there were a couple things
           we had to bring to the table: Every piece had to be both land and
@@ -24,9 +24,11 @@ export const Component2 = () => {
           />
         </div>
         <div className="w-[370px] ">
-          <h1 className="mt-6">ESTD. 2002</h1>
+          <h1 className="mt-6 text-black text-[1.05rem] font-light tracking-widest">
+            ESTD. 2002
+          </h1>
           <h3 className="text-[30px] font-extrabold">Our Brooklyn store</h3>
-          <p className="mt-4 text-gray-800">
+          <p className="mt-4 text-[1.05rem] font-light text-black">
             Where it all started. You'll find all the brands we carry here in a
             restored 1800's tile factory warehouse in downtown Williamsburg.
           </p>

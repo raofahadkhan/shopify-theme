@@ -3,11 +3,11 @@ import React from "react";
 export default function Form() {
   return (
     <div>
-      <div className="flex justify-center text-3xl font-extrabold w-[960px]">
-        <p className="text-left">Questions? Get in touch.</p>
-      </div>
-      <div className="flex content-center justify-center lg:p-[40px]">
-        <form className="mt-3 flex flex-col gap-3 p-[20px] w-[960px]">
+      <div className="flex content-center justify-center  p-[20px] lg:p-[40px]">
+        <form className="mt-3 flex flex-col gap-3 w-[960px]">
+          <p className="text-left text-[30px] font-extrabold">
+            Questions? Get in touch.
+          </p>
           <div className="flex flex-wrap gap-2">
             <div className="flex flex-1 flex-col gap-3 mt-5">
               <label htmlFor="userName">Name</label>

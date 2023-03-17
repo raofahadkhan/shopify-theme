@@ -89,3 +89,7 @@
     transform: scale(1);
   }
 }
+
+.tracking-widee {
+  letter-spacing: 0.04em;
+}
