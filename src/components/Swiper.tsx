@@ -37,6 +37,8 @@ export default function App() {
             <h1>{elem.city}</h1>
           </SwiperSlide>
         ))}
+          <div className="swiper-pagination"></div>
+
       </Swiper>
     </div>
   );

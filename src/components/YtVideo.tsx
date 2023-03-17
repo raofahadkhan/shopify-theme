@@ -15,12 +15,12 @@ export default function YtVideo() {
                         title="Keyboard Cat"
                     /> */}
                     <object
-                        className='amx-w-[820px] w-[60%] h-[461.25px] float: none; clear: both; margin: m-auto'
+                        className=' w-[60%] h-[461.25px] float: none; clear: both; margin: m-auto'
                         data="https://www.youtube.com/embed/L08ar8JHqQY">
                     </object>
                     {/* <iframe className='' src="https://www.youtube.com/embed/L08ar8JHqQY" width={800} height={475} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> */}
                 </div>
-                <h3 className='text-gray-700 text-center my-10'>View more guides on our <span className='text'>YouTube channel</span></h3>
+                <h3 className='text-gray-700 text-center my-10 after:block'>View more guides on our <span className='text'>YouTube channel</span></h3>
         </div>
     )
 }
