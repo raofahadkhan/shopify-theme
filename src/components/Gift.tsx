@@ -19,11 +19,11 @@ export default function Gift() {
                 <h2 className=' text-[17px] tracking-widest text-gray-700'>{giftData.subTitle}</h2>
                 <h1 className=' text-[30px] font-bold leading-[35px] mt-[5px]'>{giftData.title}</h1>
                 <p className=' text-[16px] text-gray-700 mt-[20px]'>{giftData.desc}</p>
-                <button className='group text-white flex bg-[#111111] font-bold pl-[20px] py-[12px] mt-[20px] transition-all delay-300 duration-1000'>
+                <button className='group overflow-hidden text-white flex bg-[#111111] font-bold pl-[20px] py-[12px] mt-[20px] transition-all delay-300 duration-1000'>
                     <span className="transition-all duration-300 group-hover:pr-[35px]">
                     {giftData.btn}
                     </span>
-                    <FaLongArrowAltRight className="relative -z-10 group-hover:z-0 -right-20 text-2xl text-white transition-all duration-300 group-hover:right-5" />
+                    <FaLongArrowAltRight className="relative -right-20 text-2xl text-white transition-all duration-300 group-hover:right-5" />
                 </button>
             </div>
 

@@ -105,3 +105,14 @@ span.swiper-pagination-bullet {
   @apply ml:translate-y-[0%]
 }
 
+
+
+.text:after {
+  display:block;
+  content: '';
+  border-bottom: solid 3px #019fb6;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+
+.text:after{  transform-origin:  0% 50%; }
