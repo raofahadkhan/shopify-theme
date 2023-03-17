@@ -6,6 +6,7 @@ export default function Navbar() {
         <section className="max-h-screen w-full">
             <nav className="z-50">
                 <NavbarView navItem={NavbarItems} />
+                {/* The navbar of layout or app */}
             </nav>
         </section>
     )
