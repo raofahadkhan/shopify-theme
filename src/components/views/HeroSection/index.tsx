@@ -47,7 +47,6 @@ export default function HeroSection() {
     }
     return (
         <div className='h-screen overflow-hidden'>
-            <Navbar />
             <div className="absolute top-0 -z-10">
                 <HeroChild />
             </div>
