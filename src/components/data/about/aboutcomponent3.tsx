@@ -14,9 +14,9 @@ export const Component3 = () => {
   const { imagesrc, heading, date, details, buttontext }: aboutdata2 =
     aboutdata2;
   return (
-    <div className="flex flex-col items-center  my-20 p-[20px] min-[590px]:p-[40px]">
-      <div className="flex flex-col-reverse min-[590px]:flex-row content-center items-center min-[590px]:justify-center gap-x-20 min-[1100px]:gap-x-[7rem]  my-[5.7rem] ">
-        <div className="w-[370px] ">
+    <div className="flex flex-col items-center  p-[20px] min-[590px]:p-[40px]">
+      <div className="flex flex-col-reverse min-[590px]:flex-row content-center items-start min-[590px]:items-center min-[590px]:justify-center gap-x-20 min-[1100px]:gap-x-[7rem]  my-[5.7rem] ">
+        <div className="w-[370px] min-[590px]:p-0 p-5">
           <h1 className="mt-6 text-black text-[1.05rem] font-light tracking-widest">
             {date}
           </h1>

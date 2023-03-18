@@ -1,11 +1,11 @@
 "use client";
-import { bg1, bg2, bg3 } from "./assets/images";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Hero1, Hero2, Hero3 } from "@/components/assets";
 
 export default function HeroSection() {
   const [isScale, setScale] = useState(false);
-  let ArrayOfImages = [bg1, bg2, bg3];
+  let ArrayOfImages = [Hero1, Hero2, Hero3];
   let [active, setActive] = useState(0);
 
   let loop = true;
@@ -36,6 +36,7 @@ export default function HeroSection() {
       let autoSlider = setInterval(setNextImage, 7100);
       return () => clearInterval(autoSlider);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 
   return (

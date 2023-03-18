@@ -1,6 +1,13 @@
 import Image from "next/image";
 import { product } from "./data/prodata";
 
+type product = {
+  name: string;
+  details: string;
+  ImageURL: string;
+  button: string;
+};
+
 export default function Productgrid() {
   return (
     <section className="flex  items-center justify-center">

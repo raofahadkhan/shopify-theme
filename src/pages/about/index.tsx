@@ -1,14 +1,15 @@
 import { Footer } from "@/components/Footer";
 import Productgrid from "@/components/Productgrid";
 import { Component2 } from "@/components/data/about/aboutcomponent2";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Component3 } from "../../components/data/about/aboutcomponent3";
 import Form from "../../components/data/about/form";
-
+import HeroChild from "@/components/data/heroSection";
 export default function Index() {
   useEffect(() => {
     const elements = document.querySelectorAll(".animation_triggering_class");
     // Create an intersection observer
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -41,6 +42,7 @@ export default function Index() {
   }, []);
   return (
     <>
+      <HeroChild />
       <Component2 />
       <Component3 />
       <Form />

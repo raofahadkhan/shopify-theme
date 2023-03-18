@@ -1,6 +1,9 @@
 import React from "react";
 import { svgdata } from "./data/svgriddata";
-
+type svgdata = {
+  svgpath: string;
+  caption: string;
+};
 function Svggrid() {
   return (
     <div className=" my-20  grid  justify-center gap-y-10 min-[590px]:mx-10 min-[590px]:grid-cols-3">

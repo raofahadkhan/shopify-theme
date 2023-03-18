@@ -15,8 +15,8 @@ export default function Form() {
   const { header, input1, input2, input3, input4, buttontext }: formdata =
     formdata;
   return (
-    <div>
-      <div className="flex content-center justify-center  p-[20px] lg:p-[40px]">
+    <div className="pb-14 border-b mb-14">
+      <div className="flex content-center justify-center  p-[20px] lg:p-[40px] ">
         <form className="mt-3 flex flex-col gap-3 w-[960px]">
           <p className="text-left text-[30px] font-extrabold">{header}</p>
           <div className="flex flex-wrap gap-2">
@@ -61,6 +61,10 @@ export default function Form() {
             </span>
             <FaLongArrowAltRight className="relative -z-10 group-hover:z-0 -right-20 text-2xl text-white transition-all duration-300 group-hover:right-5" />
           </button>
+          <h1 className="mt-6 text-[0.9rem] font-light ">
+            This site is protected by reCAPTCHA and the Google Privacy Policy
+            and Terms of Service apply.
+          </h1>
         </form>
       </div>
     </div>

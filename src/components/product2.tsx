@@ -1,6 +1,10 @@
 import Image from "next/image";
 import React from "react";
-
+type product1 = {
+  name: string;
+  details: string;
+  ImageURL: string;
+};
 import { product1 } from "./data/prodata2";
 const Product1 = () => {
   return (
