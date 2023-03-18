@@ -2,16 +2,16 @@ import { SpringSummer2021, Backinbusiness, AloneWoman, background } from "@/comp
 
 export interface everysubMenuContentType {
     label?: string,
-    href?:string,
+    href?: string,
     dropdown: boolean,
-    underLineWidth?:string,
+    underLineWidth?: string,
     image?: any,
 }
 
 export interface everysubMenuType {
     heading?: string,
-    href?:string,
-    underLineWidth?:string,
+    href?: string,
+    underLineWidth?: string,
     content?: Array<everysubMenuContentType>,
 }
 
@@ -35,15 +35,15 @@ export interface NavbarItemType {
 export const NavbarItems: Array<NavbarItemType> = [
     {
         label: "Men",
-        href:"/allmens/mens",
+        href: "/allmens/mens",
         dropdown: true,
         child: [
             {
                 firstMenu: [
                     {
                         heading: "All men",
-                        href:"/allmens/mens",
-                        underLineWidth:"4.5rem",
+                        href: "/allmens/mens",
+                        underLineWidth: "4.5rem",
                         content: [
                             {
                                 label: "Third level test",
@@ -63,31 +63,31 @@ export const NavbarItems: Array<NavbarItemType> = [
                                 label: "Shirts",
                                 href: "/allmens/mens",
                                 dropdown: false,
-                                underLineWidth:"3.4rem",
+                                underLineWidth: "3.4rem",
                             },
                             {
                                 label: "Shorts",
                                 href: "/allmens/mens",
                                 dropdown: false,
-                                underLineWidth:"3.4rem",
+                                underLineWidth: "3.4rem",
                             },
                             {
                                 label: "Boardshorts",
                                 href: "/allmens/mens",
                                 dropdown: false,
-                                underLineWidth:"6.6rem",
+                                underLineWidth: "6.6rem",
                             },
                             {
                                 label: "Jackets",
                                 href: "/allmens/mens",
                                 dropdown: false,
-                                underLineWidth:"3.7rem",
+                                underLineWidth: "3.7rem",
                             },
                             {
                                 label: "Sale",
                                 href: "/allmens/mens",
                                 dropdown: false,
-                                underLineWidth:"2.4rem",
+                                underLineWidth: "2.4rem",
                             },
                         ]
                     }
@@ -127,7 +127,7 @@ export const NavbarItems: Array<NavbarItemType> = [
     },
     {
         label: "Women",
-        href:"/allmens/allwomens",
+        href: "/allmens/allwomens",
         dropdown: true,
         child: [
             {
@@ -136,28 +136,33 @@ export const NavbarItems: Array<NavbarItemType> = [
                         content: [
                             {
                                 label: "All women",
+                                href: "http://localhost:3000/allmens/allwomens",
                                 dropdown: false,
-                                underLineWidth:"6.6rem",
+                                underLineWidth: "6.6rem",
                             },
                             {
                                 label: "Dresses",
+                                href: "http://localhost:3000/allmens/allwomens",
                                 dropdown: false,
-                                underLineWidth:"3.7rem",
+                                underLineWidth: "3.7rem",
                             },
                             {
                                 label: "Jackets",
+                                href: "http://localhost:3000/allmens/allwomens",
                                 dropdown: false,
-                                underLineWidth:"3.7rem",
+                                underLineWidth: "3.7rem",
                             },
                             {
                                 label: "Shirts",
+                                href: "http://localhost:3000/allmens/allwomens",
                                 dropdown: false,
-                                underLineWidth:"3.4rem",
+                                underLineWidth: "3.4rem",
                             },
                             {
                                 label: "Pants",
+                                href: "http://localhost:3000/allmens/allwomens",
                                 dropdown: false,
-                                underLineWidth:"3.4rem",
+                                underLineWidth: "3.4rem",
                             },
                         ]
                     }
@@ -227,5 +232,5 @@ export const NavbarItems: Array<NavbarItemType> = [
         dropdown: false,
         heightToDisplay: 0,
     },
-    
+
 ] 

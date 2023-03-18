@@ -21,9 +21,11 @@ export default function Expand({ items, sidebar, setSidebar }: any) {
 
     return (
         <div className={`rounded-sm border-b-2 w-full ${isdropdown ? `${items.heightToDisplay === 60 ? "h-[60rem]" : items.heightToDisplay === 52 ? "h-[52rem]" : items.heightToDisplay === 12 ? "h-[12rem]" : "0"}` : "h-16"} transition-all duration-700`}>
-            <div onClick={() => { setrotate(!isrotate); setDropdown(!isdropdown); setTimeout(() => {
-                setExpandAnimation(!expandAnimation)
-            }, 300); }} className="p-4 w-full cursor-pointer flex justify-between bg-white hover:bg-white active:bg-gray-200">
+            <div onClick={() => {
+                setrotate(!isrotate); setDropdown(!isdropdown); setTimeout(() => {
+                    setExpandAnimation(!expandAnimation)
+                }, 300);
+            }} className="p-4 w-full cursor-pointer flex justify-between bg-white hover:bg-white active:bg-gray-200">
                 <h4 className={`${inter.className}`}>{items.label}</h4>
                 {items.dropdown ? <div className={`rotate-0 ${isrotate ? "rotate-180" : "rotate-0"} duration-300`}><RiArrowDropDownLine size={30} /></div> : ""}
             </div>
@@ -59,7 +61,9 @@ export default function Expand({ items, sidebar, setSidebar }: any) {
                                     {subitem.content.map((data: any, index: number) => (
                                         <div key={index + 1000}>
                                             <h4>
-                                                {data.label}
+                                                <a href={data.href}>
+                                                    {data.label}
+                                                </a>
                                             </h4>
                                         </div>
                                     ))}

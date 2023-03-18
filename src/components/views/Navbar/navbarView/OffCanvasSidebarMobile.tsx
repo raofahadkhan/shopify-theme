@@ -19,7 +19,6 @@ export default function OffCanvasSidebarMobile({ data, sidebar, setSidebar }: an
             {data.map((item: NavbarItemType, index: number) =>
               <li key={index}>
                 <Expand items={item} sidebar={sidebar} setSidebar={setSidebar} />
-                {/* <Expand label={item.label} dropdown={item.dropdown} child={item.child}/> */}
               </li>
             )}
           </ul>

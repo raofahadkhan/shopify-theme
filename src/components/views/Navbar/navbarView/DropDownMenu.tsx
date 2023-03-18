@@ -72,7 +72,3 @@ export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: any
         </div>
     )
 }
-
-
-
-{/* <div key={index + 100} className={`max-w-6xl border-2 border-transparent ${item.label == "About" ? "max-w-[20.70rem] md:max-w-[20.85rem] 2xl:max-w-[20.95rem] lg:max-w-[21.15rem] relative":"w-11/12"} text-black flex justify-between  mx-auto  ${item.label == "About" ? "py-1" : "py-14 "} space-x-7`}> */ }
