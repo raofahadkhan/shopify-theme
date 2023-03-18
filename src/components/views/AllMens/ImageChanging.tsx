@@ -8,7 +8,7 @@ export default function ImageChanging({ item ,index }: any) {
     const onMouseLeave = () => setIsHovered(false);
     return (
 
-        <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} key={index + 435} className="group relative flex flex-col space-y-2 w-[23%]">
+        <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} key={index + 435} className="group relative flex flex-col space-y-2 w-6/12 sm:w-[23%]">
             {isHovering ? (
                 <Image className="h-3/4 object-cover" width={500} height={500} src={item.imageUrl2} alt={item.imageAlt} />
             ) : (

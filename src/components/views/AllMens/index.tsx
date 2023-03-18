@@ -29,9 +29,9 @@ export default function AllMens({ particularDatas }: any) {
           </div>
         </div>
         <div className={`${inter.className} py-16 w-full bg-white px-5`}>
-          <div className="gap-6 max-w-[77rem] justify-center mx-auto flex flex-wrap ">
+          <div className="gap-2 sm:gap-6 max-w-[77rem] justify-center mx-auto flex flex-wrap ">
           {/* <div className="gap-6 flex max-w-[77rem] justify-center mx-auto flex-wrap "> */}
-            <div className="w-3/12 h-[32rem]">
+            <div className="w-5/12 sm:w-3/12 h-[32rem]">
               <ul className="space-y-4">
                 <li onClick={() => { filterDataCatogry1(particularDatas.NavigationData.catogryToShow) }} className="text-xl font-semibold cursor-pointer">{particularDatas.NavigationData.catogry}</li>
                 {particularDatas.NavigationData.labels && particularDatas.NavigationData.labels.map((item: any, index: number) =>
