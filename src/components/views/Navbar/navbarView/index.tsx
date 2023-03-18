@@ -13,6 +13,8 @@ import { useEffect, useState } from "react"
 import DropDownMenu from "./DropDownMenu";
 import OffCanvasSidebarMobile from "./OffCanvasSidebarMobile";
 import { subMenuType } from "@/components/typesandArrays/NavbarItems";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const inter = Jost({ subsets: ['latin'] })
 
@@ -21,6 +23,7 @@ interface typeofNavItems {
 }
 
 export default function NavbarView({ navItem }: typeofNavItems) {
+  const { reload, query } = useRouter();
   const [sidebar, setSidebar] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [navbarcolor, setNavbarcolor] = useState(false);
@@ -59,25 +62,26 @@ export default function NavbarView({ navItem }: typeofNavItems) {
     })
   }
 
-
   return (
-    <main className={`w-full py-4 bg-transparent ${navbarcolor ? `top-0 duration-500  bg-white fixed shadow-sm h-20 opacity-${opacityForScroll} z-50` : "bg-transparent "}`}>
+    <main className={`w-full py-4 bg-transparent ${navbarcolor ? `top-0 duration-500 bg-white fixed shadow-sm h-20 opacity-${opacityForScroll} z-50` : "bg-transparent absolute z-50"}`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
         <div className={` cursor-pointer`}>
-          {navbarcolor ? <Image src={logo2} alt="motion" /> :
-            <Image src={logo} alt="motion" />
-          }
+          <Link href="/">
+            {navbarcolor ? <Image src={logo2} alt="motion" /> :
+              <Image src={logo} alt="motion" />
+            }
+          </Link>
         </div>
         <ul className={`hidden md:flex flex-wrap space-x-10 text-gray-100 ${navbarcolor ? "text-gray-900" : ""}`}>
-          {navItem && navItem.map((item: { label: string, dropdown: boolean, child?: Array<subMenuType> }, index: number) => (
+          {navItem && navItem.map((item: { label: string, href?: string, dropdown: boolean, child?: Array<subMenuType> }, index: number) => (
             <div key={index + 700} className={`${item.label == "About" ? "relative" : ""} hover:border-b-0  border-white flex items-center cursor-pointer group ${item.child ? "hover:bg-white hover:text-black" : ""} pt-3 px-4 `}>
               <h4 className={`group-hover:border-b-[1px] pb-2 h-full ${item.label == "Theme features" ? "border-transparent" : " "} ${inter.className} `}>
-                {item.label}
+                <a  href={item.href ? item.href : ""}>{item.label}</a>
               </h4>
               <div className="-mt-1">
                 {item.dropdown ? <RiArrowDropDownLine size={25} /> : ""}
               </div>
-              <div >
+              <div className="z-50" >
                 {/* <div className={` invisible ${item.child ? " " : "invisible"}  `}> */}
                 <DropDownMenu item={item} navbarcolors={navbarcolor} />
               </div>

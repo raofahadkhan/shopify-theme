@@ -9,6 +9,7 @@ export interface everysubMenuContentType {
 
 export interface everysubMenuType {
     heading?: string,
+    href?:string,
     underLineWidth?:string,
     content?: Array<everysubMenuContentType>,
 }
@@ -33,12 +34,14 @@ export interface NavbarItemType {
 export const NavbarItems: Array<NavbarItemType> = [
     {
         label: "Men",
+        href:"/allmens/mens",
         dropdown: true,
         child: [
             {
                 firstMenu: [
                     {
                         heading: "All men",
+                        href:"/allmens/mens",
                         underLineWidth:"4.5rem",
                         content: [
                             {
@@ -118,6 +121,7 @@ export const NavbarItems: Array<NavbarItemType> = [
     },
     {
         label: "Women",
+        href:"/allmens/allwomens",
         dropdown: true,
         child: [
             {
@@ -205,7 +209,7 @@ export const NavbarItems: Array<NavbarItemType> = [
                                 label: "FAQ",
                                 dropdown: false,
                             },
-                        ]
+                        ],
                     }
                 ],
             }
@@ -217,4 +221,5 @@ export const NavbarItems: Array<NavbarItemType> = [
         dropdown: false,
         heightToDisplay: 0,
     },
+    
 ] 
