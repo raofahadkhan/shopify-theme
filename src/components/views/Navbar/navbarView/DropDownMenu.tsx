@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { subMenuType, everysubMenuType, everysubMenuContentType } from "@/components/typesandArrays/NavbarItems";
 
-export default function DropDownMenu({ navbarcolors, item }: { navbarcolors:any, item: { label: string, dropdown: boolean, child?: Array<subMenuType> } }) {
+export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: any, item: { label: string, dropdown: boolean, child?: Array<subMenuType> } }) {
 
     let underLineWidth: any;
 
@@ -29,8 +29,10 @@ export default function DropDownMenu({ navbarcolors, item }: { navbarcolors:any,
                                 underLineWidth = (subsubsubItem.underLineWidth === "3.4rem" ? 'hover:after:w-15' : subsubsubItem.underLineWidth === "6.6rem" ? "hover:after:w-18" : subsubsubItem.underLineWidth === "3.7rem" ? "hover:after:w-17" : subsubsubItem.underLineWidth === "2.4rem" ? "hover:after:w-13" : "");
                                 return (
                                     <h3 key={index + 400} className={`leading-10 relative after:bg-black after:h-[2px] after:w-[0%] after:left-0 after:bottom-1 after:absolute after:rounded-3xl after:duration-300 ${underLineWidth}`}>
-                                        <div className="">
-                                            {subsubsubItem.label}
+                                        <div >
+                                            <a href={subsubsubItem.href}>
+                                                {subsubsubItem.label}
+                                            </a>
                                         </div>
                                     </h3>
                                 )

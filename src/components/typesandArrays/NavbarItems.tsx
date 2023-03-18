@@ -2,6 +2,7 @@ import { SpringSummer2021, Backinbusiness, AloneWoman, background } from "@/comp
 
 export interface everysubMenuContentType {
     label?: string,
+    href?:string,
     dropdown: boolean,
     underLineWidth?:string,
     image?: any,
@@ -60,26 +61,31 @@ export const NavbarItems: Array<NavbarItemType> = [
                         content: [
                             {
                                 label: "Shirts",
+                                href: "/allmens/mens",
                                 dropdown: false,
                                 underLineWidth:"3.4rem",
                             },
                             {
                                 label: "Shorts",
+                                href: "/allmens/mens",
                                 dropdown: false,
                                 underLineWidth:"3.4rem",
                             },
                             {
                                 label: "Boardshorts",
+                                href: "/allmens/mens",
                                 dropdown: false,
                                 underLineWidth:"6.6rem",
                             },
                             {
                                 label: "Jackets",
+                                href: "/allmens/mens",
                                 dropdown: false,
                                 underLineWidth:"3.7rem",
                             },
                             {
                                 label: "Sale",
+                                href: "/allmens/mens",
                                 dropdown: false,
                                 underLineWidth:"2.4rem",
                             },

@@ -25,11 +25,12 @@ export default function AllMens({ particularDatas }: any) {
         </div>
         <div>
           <div className="relative max-w-[77rem] mx-auto h-[28rem]">
-            <h2 className="absolute bottom-10 text-6xl">{particularDatas.homeAltText}</h2>
+            <h2 className="absolute bottom-10 text-4xl md:text-6xl ml-8 lg:ml-0">{particularDatas.homeAltText}</h2>
           </div>
         </div>
-        <div className={`${inter.className} py-16 w-full bg-white`}>
-          <div className="gap-6 flex max-w-[77rem] mx-auto flex-wrap ">
+        <div className={`${inter.className} py-16 w-full bg-white px-5`}>
+          <div className="gap-6 max-w-[77rem] justify-center mx-auto flex flex-wrap ">
+          {/* <div className="gap-6 flex max-w-[77rem] justify-center mx-auto flex-wrap "> */}
             <div className="w-3/12 h-[32rem]">
               <ul className="space-y-4">
                 <li onClick={() => { filterDataCatogry1(particularDatas.NavigationData.catogryToShow) }} className="text-xl font-semibold cursor-pointer">{particularDatas.NavigationData.catogry}</li>
@@ -39,7 +40,7 @@ export default function AllMens({ particularDatas }: any) {
               </ul>
             </div>
             {particularProductData && particularProductData.map((item: any, index: number) =>
-              <ImageChanging item={item} index={index} />
+                <ImageChanging key={index+98758231} item={item} index={index} />
             )}
           </div>
         </div>
