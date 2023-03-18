@@ -1,9 +1,9 @@
 import { Footer } from "@/components/Footer";
 import Productgrid from "@/components/Productgrid";
-import { Component2 } from "@/components/component2";
+import { Component2 } from "@/components/data/about/aboutcomponent2";
 import React, { useEffect } from "react";
-import { Component3 } from "../../components/component3";
-import Form from "../../components/form";
+import { Component3 } from "../../components/data/about/aboutcomponent3";
+import Form from "../../components/data/about/form";
 
 export default function Index() {
   useEffect(() => {

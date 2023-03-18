@@ -4,7 +4,10 @@ import { Footerdata, footsub, powername } from "./data/footerdata";
 import { IoIosArrowDown } from "react-icons/io";
 import { Dropup } from "./currencydropup";
 import Image from "next/image";
-
+type Footerdata = {
+  header: string;
+  list: string[];
+};
 export const Footer = () => {
   const dataHeaderZero = Footerdata[0].header;
   const dataListZero = Footerdata[0].list;

@@ -1,8 +1,3 @@
-interface Footerdata {
-  header: string;
-  list: string[];
-}
-
 export const Footerdata = [
   {
     header: "MEN",

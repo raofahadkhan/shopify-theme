@@ -1,16 +1,27 @@
 import React from "react";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { formdata } from "./data/data";
+
+type formdata = {
+  header: string;
+  input1: string;
+  input2: string;
+  input3: string;
+  input4: string;
+  buttontext: string;
+};
 
 export default function Form() {
+  const { header, input1, input2, input3, input4, buttontext }: formdata =
+    formdata;
   return (
     <div>
       <div className="flex content-center justify-center  p-[20px] lg:p-[40px]">
         <form className="mt-3 flex flex-col gap-3 w-[960px]">
-          <p className="text-left text-[30px] font-extrabold">
-            Questions? Get in touch.
-          </p>
+          <p className="text-left text-[30px] font-extrabold">{header}</p>
           <div className="flex flex-wrap gap-2">
             <div className="flex flex-1 flex-col gap-3 mt-5">
-              <label htmlFor="userName">Name</label>
+              <label htmlFor="userName">{input1}</label>
               <input
                 id="userName"
                 type="text"
@@ -18,7 +29,7 @@ export default function Form() {
               />
             </div>
             <div className="flex flex-1 flex-col gap-3 mt-5">
-              <label htmlFor="userEmail">Email</label>
+              <label htmlFor="userEmail">{input2}</label>
               <input
                 id="userEmail"
                 type="email"
@@ -28,7 +39,7 @@ export default function Form() {
           </div>
 
           <label className="mt-5" htmlFor="userMessage">
-            Phone number
+            {input3}
           </label>
           <textarea
             id="userMessage"
@@ -36,7 +47,7 @@ export default function Form() {
             className="border p-2 outline-none focus:border-gray-900"
           />
           <label className="mt-5" htmlFor="userMessage">
-            Message
+            {input4}
           </label>
           <textarea
             id="userMessage"
@@ -44,11 +55,11 @@ export default function Form() {
             className="border p-2 outline-none focus:border-gray-900"
           />
 
-          <button
-            className="my-6 h-11 w-28  bg-gray-900 px-8 text-lg font-bold text-gray-100"
-            type="submit"
-          >
-            Send
+          <button className="group text-white flex bg-[#111111] font-bold pl-[20px] w-fit py-[12px] mt-[20px] transition-all delay-300 duration-1000">
+            <span className="transition-all duration-300 group-hover:pr-[35px]">
+              {buttontext}
+            </span>
+            <FaLongArrowAltRight className="relative -z-10 group-hover:z-0 -right-20 text-2xl text-white transition-all duration-300 group-hover:right-5" />
           </button>
         </form>
       </div>

@@ -1,7 +1,12 @@
 import React from "react";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import subdata from "./data/subscribedata";
+type subdata = {
+  head: string;
+  detail: string;
+};
 export const Subscribe = () => {
+  const { head, detail }: subdata = subdata;
   return (
     <>
       <div className="flex h-96 flex-col items-center bg-gray-50">
@@ -21,11 +26,9 @@ export const Subscribe = () => {
             <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />{" "}
           </svg>
         </div>
-        <h2 className=".myfont text-[29px] font-bold text-[#1C1D1D]">
-          {subdata.head}
-        </h2>
+        <h2 className=".myfont text-[29px] font-bold text-[#1C1D1D]">{head}</h2>
         <h1 className="my-8 flex justify-center px-3 text-center text-lg text-gray-600">
-          {subdata.detail}
+          {detail}
         </h1>
         <div className="my-4">
           <form className="container flex w-auto">
