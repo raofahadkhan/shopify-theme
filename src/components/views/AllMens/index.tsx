@@ -2,11 +2,15 @@ import { useState } from "react"
 import Image from "next/image";
 import { Jost } from 'next/font/google'
 import ImageChanging from "./ImageChanging";
+import { NavigationDataLabelType ,ProductDataType } from "@/components/typesandArrays/AllMensData";
 
 const inter = Jost({ subsets: ['latin'] })
 
 export default function AllMens({ particularDatas }: any) {
+
   const [particularProductData, setParticularProductData] = useState(particularDatas.productData);
+
+  // For filtering Data of shorts broads mens and so on
   function filterData(labelToMatch: string) {
     let updatedData = particularDatas.productData.filter((item: any) => item.catogry2 == labelToMatch)
     setParticularProductData(updatedData);
@@ -29,17 +33,17 @@ export default function AllMens({ particularDatas }: any) {
           </div>
         </div>
         <div className={`${inter.className} py-16 w-full bg-white px-5`}>
-          <div className="gap-2 sm:gap-6 max-w-[77rem] justify-center sm:justify-start mx-auto flex flex-wrap ">
+          <div className="gap-4 sm:gap-6 max-w-[77rem] justify-center sm:justify-start mx-auto flex flex-wrap ">
             <div className="w-5/12 md:sm:w-2/12 lg:w-3/12 h-[32rem]">
               <ul className="space-y-4">
-                <li onClick={() => { filterDataCatogry1(particularDatas.NavigationData.catogryToShow) }} className="text-xl font-semibold cursor-pointer">{particularDatas.NavigationData.catogry}</li>
-                {particularDatas.NavigationData.labels && particularDatas.NavigationData.labels.map((item: any, index: number) =>
-                  <li key={index + 768} onClick={() => { filterData(item.catogry); }} className="hover:ml-2 duration-500 cursor-pointer text-xl text-gray-800">{item.label}</li>
+                <li onClick={() => { filterDataCatogry1(particularDatas.NavigationData.catogryToShow) }} className="text-xl cursor-pointer focus:font-semibold" tabIndex={0}>{particularDatas.NavigationData.catogry}</li>
+                {particularDatas.NavigationData.labels && particularDatas.NavigationData.labels.map((item: NavigationDataLabelType, index: number) =>
+                    <li key={index + 768} onClick={() => { filterData(item.catogry); }} className="hover:ml-2 duration-500 cursor-pointer text-xl text-gray-800 focus:font-semibold" tabIndex={0}>{item.label}</li>
                 )}
               </ul>
             </div>
-            {particularProductData && particularProductData.map((item: any, index: number) =>
-                <ImageChanging key={index+98758231} item={item} index={index} />
+            {particularProductData && particularProductData.map((item: ProductDataType, index: number) =>
+              <ImageChanging key={index + 98758231} item={item} index={index} />
             )}
           </div>
         </div>

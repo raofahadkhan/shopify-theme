@@ -1,6 +1,6 @@
 import { reviews } from "@/components/assets";
 
-interface NavigationDataLabelType {
+export interface NavigationDataLabelType {
     label: string,
     catogry: string,
 }
@@ -9,7 +9,7 @@ interface NavigationDataType {
     catogryToShow: string,
     labels: Array<NavigationDataLabelType>,
 }
-interface ProductDataType {
+export interface ProductDataType {
     imageUrl: string,
     imageUrl2: string,
     name: string,
