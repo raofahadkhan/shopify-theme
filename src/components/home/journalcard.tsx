@@ -35,7 +35,7 @@ const Product1 = () => {
                   </div>
                 </a>
                 <div>
-                  <h3 className="mt-5 text-gray-600 text-[16px] min-[590px]:text-[17px]">
+                  <h3 className="mt-5 text-gray-600 text-[14px] min-[590px]:text-[17px]">
                     {item.name}
                   </h3>
                 </div>
