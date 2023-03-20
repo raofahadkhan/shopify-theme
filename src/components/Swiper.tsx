@@ -1,10 +1,10 @@
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+import "swiper/css/navigation";
 import { testimonial } from "./Databse";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { AiTwotoneStar } from 'react-icons/ai'
-import { EffectCoverflow, Pagination } from "swiper";
+import { EffectCoverflow, Navigation } from "swiper";
 
 export default function App() {
   return (
@@ -14,8 +14,9 @@ export default function App() {
         grabCursor={true}
         centeredSlides={true}
         centeredSlidesBounds={true}
-        centerInsufficientSlides={true}
+        // centerInsufficientSlides={true}
         slidesPerView={"auto"}
+        navigation={true}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
@@ -23,9 +24,8 @@ export default function App() {
           modifier: 1,
           slideShadows: false,
         }}
-        pagination={{ clickable: true, bulletActiveClass: "swiper-pagination-bullet-active", bulletClass: "swiper-pagination-bullet" }}
         loop={true}
-        modules={[EffectCoverflow, Pagination]}
+        modules={[EffectCoverflow, Navigation]}
         className="swiper"
       >
         {testimonial.map((elem) => (

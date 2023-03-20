@@ -25,6 +25,9 @@ span.swiper-pagination-bullet {
   @apply bg-transparent border-2 border-black opacity-100 w-2 h-2
 }
 
+div.swiper-button-prev, div.swiper-button-next {
+ @apply text-black
+}
 
 /* .swiper-slide-prev, .swiper-slide-next {
  @apply p-5;
