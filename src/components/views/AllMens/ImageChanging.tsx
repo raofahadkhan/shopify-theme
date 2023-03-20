@@ -23,7 +23,7 @@ export default function ImageChanging({ item, index }: any) {
                 <p className="text-xs">{item.reviewPerson}</p>
             </div>
             <div className="flex space-x-2">
-                {item.availableColours && item.availableColours.map((item: any, index: number) =>
+                {item.availableColours && item.availableColours.map((item: string[], index: number) =>
                     <div key={index + 956} className={`w-4 h-4 ${item}`}></div>
                 )}
             </div>
