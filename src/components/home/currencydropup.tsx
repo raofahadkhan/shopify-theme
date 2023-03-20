@@ -5,6 +5,7 @@ import { countries } from "../data/currencydata";
 type currencydatatype = {
   name: string;
   flag: string;
+  alt: string;
 };
 
 export const Dropup = () => {
@@ -22,10 +23,9 @@ export const Dropup = () => {
       >
         <Image
           src={countries[0].flag}
-          alt=""
+          alt={countries[0].alt}
           height={25}
           width={25}
-          className=""
         />
         <h1 className="text-base">{countries[0].name} </h1>
         <svg
@@ -49,7 +49,7 @@ export const Dropup = () => {
               <div className="hover flex cursor-pointer py-2 hover:underline">
                 <Image
                   src={item.flag}
-                  alt=""
+                  alt={item.alt}
                   height={25}
                   width={25}
                   className="ml-2"

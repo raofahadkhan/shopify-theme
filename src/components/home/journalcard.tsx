@@ -5,37 +5,48 @@ type journaltype = {
   name: string;
   details: string;
   ImageURL: string;
+  alt: string;
 };
 const Product1 = () => {
   return (
     <>
-      <div className=" mx-[4.2rem] mt-9 flex justify-between">
-        <h4 className="text-3xl font-bold ">From the journal</h4>
-        <h1 className="text-gray-600">View all</h1>
-      </div>
-      <section className="flex  items-center justify-center">
-        <div className="mx-6 mt-12 flex cursor-pointer flex-col items-center gap-8  min-[590px]:flex-row">
-          {product1.map((item: journaltype) => (
-            <div className="  w-full flex-1" key={item.name}>
-              <a href={item.name} className={``}>
-                <div className="animation_triggering_class h-auto w-auto cursor-pointer justify-center overflow-hidden">
-                  <Image
-                    className="hover scale_triggering_class overflow-hidden duration-[3000ms] ease-in-out hover:scale-110 hover:brightness-75 lg:h-[12.5rem] lg:w-[24rem]"
-                    width={384}
-                    height={200}
-                    src={item.ImageURL}
-                    alt="product"
-                  />
+      <section className="flex flex-col items-center ">
+        <div>
+          <div className="px-5 mt-9 flex justify-between">
+            <h4 className="min-[590px]:text-3xl text-2xl font-bold ">
+              From the journal
+            </h4>
+            <h1 className="text-gray-600 min-[590px]:inline hidden">
+              View all
+            </h1>
+          </div>
+          <div className="mx-6 mt-12 flex cursor-pointer flex-col items-center gap-8  min-[590px]:flex-row">
+            {product1.map((item: journaltype) => (
+              <div className="  w-full flex-1" key={item.name}>
+                <a href={item.name}>
+                  <div className="animation_triggering_class h-auto w-auto cursor-pointer justify-center overflow-hidden">
+                    <Image
+                      className="hover scale_triggering_class overflow-hidden duration-[3000ms] ease-in-out hover:scale-110 hover:brightness-75 lg:h-[12.5rem] lg:w-[24rem]"
+                      width={384}
+                      height={200}
+                      src={item.ImageURL}
+                      alt={item.alt}
+                    />
+                  </div>
+                </a>
+                <div>
+                  <h3 className="mt-5 text-gray-600 text-[16px] min-[590px]:text-[17px]">
+                    {item.name}
+                  </h3>
                 </div>
-              </a>
-              <div>
-                <h3 className="mt-5 text-gray-600">{item.name}</h3>
+                <div className="max-w-xs">
+                  <p className="text-[19px] min-[590px]:text-[23px]  text-gray-700">
+                    {item.details}
+                  </p>
+                </div>
               </div>
-              <div className="max-w-xs">
-                <p className=" text-[23px]  text-gray-700">{item.details}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
     </>

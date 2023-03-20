@@ -6,11 +6,12 @@ type Cardstype = {
   details: string;
   ImageURL: string;
   button: string;
+  alt: string;
 };
 
 export default function Productgrid() {
   return (
-    <section className="flex  items-center justify-center">
+    <section className="flex  items-center justify-center mb-20">
       <div className="mx-6 mt-12 flex cursor-pointer flex-col items-center gap-8  min-[590px]:flex-row">
         {product.map((item: Cardstype) => (
           <div className=" h-[100vh] w-full flex-1" key={item.name}>
@@ -21,15 +22,17 @@ export default function Productgrid() {
                   width={384}
                   height={200}
                   src={item.ImageURL}
-                  alt="product"
+                  alt={item.alt}
                 />
               </div>
             </a>
             <div>
-              <h3 className="my-4 text-xl font-bold">{item.name}</h3>
+              <h3 className="my-4 text-[17.4px] font-bold">{item.name}</h3>
             </div>
             <div className="max-w-xs">
-              <p className="my-4 text-[17px]  text-gray-600">{item.details}</p>
+              <p className="my-4  min-[590px]:text-[15px]  text-gray-600">
+                {item.details}
+              </p>
             </div>
             <button className="border px-[14px] py-2 text-[14px] font-bold ">
               {item.button}
