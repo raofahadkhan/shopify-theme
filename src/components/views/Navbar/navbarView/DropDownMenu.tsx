@@ -11,10 +11,10 @@ export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: any
                 <div key={index + 100} className={`max-w-6xl  ${item.label == "About" ? "absolute -top-5" : "w-11/12"} text-black flex justify-between  mx-auto  ${item.label == "About" ? "py-1" : "py-14 "} space-x-7`}>
                     {subItem.firstMenu && subItem.firstMenu.map((subsubItem: everysubMenuType, index: number) => (
                         <div key={index + 200} className="translate-y-3 group-hover:translate-y-0 duration-200 space-y-3 ">
-                            <h3 className={`relative after:bg-black after:content-[' '] after:h-[2px] after:w-[0%] after:left-0 after:-bottom-1 after:absolute after:rounded-3xl after:duration-300 hover:after:w-[${subsubItem.underLineWidth}] `}><a href={subsubItem.href}>{subsubItem.heading}</a></h3>
+                            <h3 className={`text-xl font-normal font-sans relative after:bg-black after:content-[' '] after:h-[2px] after:w-[0%] after:left-0 after:-bottom-1 after:absolute after:rounded-3xl after:duration-300 hover:after:w-[${subsubItem.underLineWidth}] `}><a href={subsubItem.href}>{subsubItem.heading}</a></h3>
                             <div className="w-40">
                                 {subsubItem.content && subsubItem.content.map((subsubsubItem: everysubMenuContentType, index: number) => (
-                                    <h4 key={index} className="leading-10 hover:ml-2 duration-200">
+                                    <h4 key={index} className="text-lg leading-10 hover:ml-2 duration-200">
                                         {subsubsubItem.label}
                                     </h4>
                                 )
@@ -24,11 +24,11 @@ export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: any
                     ))}
                     {subItem.secondMenu && subItem.secondMenu.map((subsubItem: everysubMenuType, index: number) => (
                         <div key={index + 300} className={`translate-y-10 group-hover:translate-y-0 duration-300`}>
-                            <h3>{subsubItem.heading}</h3>
+                            <h3 className="text-xl font-normal font-sans">{subsubItem.heading}</h3>
                             {subsubItem.content && subsubItem.content.map((subsubsubItem: everysubMenuContentType, index: number) => {
                                 underLineWidth = (subsubsubItem.underLineWidth === "3.4rem" ? 'hover:after:w-15' : subsubsubItem.underLineWidth === "6.6rem" ? "hover:after:w-18" : subsubsubItem.underLineWidth === "3.7rem" ? "hover:after:w-17" : subsubsubItem.underLineWidth === "2.4rem" ? "hover:after:w-13" : "");
                                 return (
-                                    <h3 key={index + 400} className={`leading-10 relative after:bg-black after:h-[2px] after:w-[0%] after:left-0 after:bottom-1 after:absolute after:rounded-3xl after:duration-300 ${underLineWidth}`}>
+                                    <h3 key={index + 400} className={`text-xl font-normal font-sans leading-10 relative after:bg-black after:h-[2px] after:w-[0%] after:left-0 after:bottom-1 after:absolute after:rounded-3xl after:duration-300 ${underLineWidth}`}>
                                         <div >
                                             <a href={subsubsubItem.href}>
                                                 {subsubsubItem.label}
@@ -42,10 +42,10 @@ export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: any
                     {subItem.fourthMenu && subItem.fourthMenu.map((subsubItem: everysubMenuType, index: number) => (
                         <div key={index + 200} className="shadow-md" >
                             {/* <div key={index + 200} className="absolute top-0 right-0"> */}
-                            <h3 className="relative after:bg-black after:content-[' '] after:h-[2px] after:w-[0%] after:left-0 after:-bottom-1 after:absolute after:rounded-3xl after:duration-300 hover:after:w-[4.5rem] ">{subsubItem.heading}</h3>
+                            <h3 className="text-xl font-normal font-sans relative after:bg-black after:content-[' '] after:h-[2px] after:w-[0%] after:left-0 after:-bottom-1 after:absolute after:rounded-3xl after:duration-300 hover:after:w-[4.5rem] ">{subsubItem.heading}</h3>
                             <div className="w-40 bg-white px-4 py-1">
                                 {subsubItem.content && subsubItem.content.map((subsubsubItem: everysubMenuContentType, index: number) => (
-                                    <h4 key={index} className="translate-y-3 group-hover:translate-y-0 duration-200 leading-10 hover:ml-2">
+                                    <h4 key={index} className="text-lg translate-y-3 group-hover:translate-y-0 duration-200 leading-10 hover:ml-2">
                                         {subsubsubItem.label}
                                     </h4>
                                 )
@@ -59,11 +59,11 @@ export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: any
                                 {subsubItem.content && subsubItem.content.map((subsubsubItem: everysubMenuContentType, index: number) => (
                                     <div className="py-2" key={index + 600}>
                                         {subsubsubItem.image ? <Image src={subsubsubItem.image} alt="Come" /> : ""}
-                                        <h3>{subsubsubItem.label}</h3>
+                                        <h3 className="text-xl font-normal font-sans">{subsubsubItem.label}</h3>
                                     </div>
                                 )
                                 )}
-                                <h5>{subsubItem.heading}</h5>
+                                <h5 className="text-base">{subsubItem.heading}</h5>
                             </div>
                         ))}
                     </div>

@@ -79,7 +79,7 @@ export default function NavbarView({ navItem }: typeofNavItems) {
           <ul className={`hidden md:flex flex-wrap space-x-10 text-gray-100 ${navbarcolor ? "text-gray-900" : ""}`}>
             {navItem && navItem.map((item: { label: string, href?: string, dropdown: boolean, child?: Array<subMenuType> }, index: number) => (
               <div key={index + 700} className={`${item.label == "About" ? "relative" : ""} hover:border-b-0  border-white flex items-center cursor-pointer group ${item.child ? "hover:bg-white hover:text-black" : ""} pt-3 px-4 `}>
-                <h4 className={`group-hover:border-b-[1px] pb-2 h-full ${item.label == "Theme features" ? "border-transparent" : " "} ${inter.className} `}>
+                <h4 className={`text-lg group-hover:border-b-[1px] pb-2 h-full ${item.label == "Theme features" ? "border-transparent" : " "} ${inter.className} `}>
                   <a href={item.href ? item.href : ""}>{item.label}</a>
                 </h4>
                 <div className="-mt-1">

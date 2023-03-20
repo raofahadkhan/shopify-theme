@@ -26,7 +26,7 @@ export default function Expand({ items, sidebar, setSidebar }: any) {
                     setExpandAnimation(!expandAnimation)
                 }, 300);
             }} className="p-4 w-full cursor-pointer flex justify-between bg-white hover:bg-white active:bg-gray-200">
-                <h4 className={`${inter.className}`}>{items.label}</h4>
+                <h4 className={`text-lg ${inter.className}`}>{items.label}</h4>
                 {items.dropdown ? <div className={`rotate-0 ${isrotate ? "rotate-180" : "rotate-0"} duration-300`}><RiArrowDropDownLine size={30} /></div> : ""}
             </div>
             <div className={`${inter.className} ${expandAnimation ? "visible" : "hidden"} pl-5`}>
@@ -36,7 +36,7 @@ export default function Expand({ items, sidebar, setSidebar }: any) {
                         <div className={`${sidebar ? "visible" : "invisible"}`}>
                             {item.firstMenu && item.firstMenu.map((subitem: any, index: number) => (
                                 <div key={index + 900} className="space-y-3">
-                                    <h4 className='flex '>
+                                    <h4 className='flex text-lg'>
                                         {subitem.heading}
                                         <div className='mt-2' onClick={() => { setPlusItems(!plusItems) }}>
                                             {
@@ -48,7 +48,7 @@ export default function Expand({ items, sidebar, setSidebar }: any) {
                                     </h4>
                                     {subitem.content.map((data: any, index: number) => (
                                         <div key={index + 1000}>
-                                            <h4 className={`ml-6  ${plusItems ? "visible" : "hidden"}`}>
+                                            <h4 className={`text-lg ml-6  ${plusItems ? "visible" : "hidden"}`}>
                                                 {data.label}
                                             </h4>
                                         </div>
@@ -57,10 +57,10 @@ export default function Expand({ items, sidebar, setSidebar }: any) {
                             ))}
                             {item.secondMenu && item.secondMenu.map((subitem: any, index: number) => (
                                 <div key={index + 900} className="space-y-3">
-                                    <h4>{subitem.heading}</h4>
+                                    <h4 className='text-lg'>{subitem.heading}</h4>
                                     {subitem.content.map((data: any, index: number) => (
                                         <div key={index + 1000}>
-                                            <h4>
+                                            <h4 className='text-lg'>
                                                 <a href={data.href}>
                                                     {data.label}
                                                 </a>
@@ -76,11 +76,11 @@ export default function Expand({ items, sidebar, setSidebar }: any) {
                                     {subitem.content && subitem.content.map((subsubsubItem: any, index: number) => (
                                         <div className="py-2" key={index + 600}>
                                             {subsubsubItem.image ? <Image src={subsubsubItem.image} alt="Come" /> : ""}
-                                            <h3>{subsubsubItem.label}</h3>
+                                            <h3 className='text-xl font-normal font-sans'>{subsubsubItem.label}</h3>
                                         </div>
                                     )
                                     )}
-                                    <h5>{subitem.heading}</h5>
+                                    <h5 className='text-base'>{subitem.heading}</h5>
                                 </div>
                             ))}
                             {item.fourthMenu && item.fourthMenu.map((subitem: any, index: number) => (
@@ -91,7 +91,7 @@ export default function Expand({ items, sidebar, setSidebar }: any) {
                                         </div>
                                     )
                                     )}
-                                    <h5>{subitem.heading}</h5>
+                                    <h5 className='text-base'>{subitem.heading}</h5>
                                 </div>
                             ))}
                         </div>

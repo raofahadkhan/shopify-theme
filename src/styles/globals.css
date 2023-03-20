@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 
+/* removeable if not neccessory */
+/* 
 @layer base {
     
     h2 {
@@ -20,7 +22,7 @@
     h4 {
         @apply text-lg
     }
-}
+} */
 
 @layer components {
     .underlineEffect {
