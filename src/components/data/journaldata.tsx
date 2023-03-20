@@ -1,10 +1,5 @@
 import React from "react";
 
-type product1 = {
-  name: string;
-  details: string;
-  ImageURL: string;
-};
 export const product1 = [
   {
     name: "Jul 16, 2017",

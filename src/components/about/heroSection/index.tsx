@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import HeroSection from "../about/herosection";
+import HeroSection from ".";
 
 export default function HeroChild() {
   const arrayOfText = ["Who are dedicated", "We believe in", "Founded in 2022"];
@@ -33,7 +34,7 @@ export default function HeroChild() {
       let autoText = setInterval(setNextText, 3000);
       return () => clearInterval(autoText);
     }
-  }, [activeText]);
+  }, [activeText, setNextText]);
 
   function transitionOpacityAnimationText() {
     setTransitionOfText("-translate-y-28");
@@ -54,19 +55,19 @@ export default function HeroChild() {
         <HeroSection />
       </div>
 
-      <div className="-z-10 h-full flex justify-start items-end absolute inset-0 w-full bg-transparent pb-[7rem] pl-5">
+      <div className="-z-10 h-full flex justify-start items-end absolute inset-0 w-full bg-transparent md:pb-[7rem] pl-5">
         <div className="h-28 overflow-hidden py-4 px-14 ">
           <h1
-            className={`${transitionOfText} ${opacityItemsText} text-center duration-300 text-3xl sm:text-5xl text-white `}
+            className={`${transitionOfText} ${opacityItemsText} text-center duration-300 text-3xl md:text-5xl text-white `}
           >
             {arrayOfText[activeText]}
           </h1>
         </div>
       </div>
-      <div className="-z-10 h-full flex justify-start items-end absolute inset-0 w-full bg-transparent pb-5 pl-5">
+      <div className="-z-10 h-full flex justify-start items-end absolute inset-0 w-full bg-transparent md:pb-5 pl-5">
         <div className="h-28 overflow-hidden py-4 px-14 ">
           <h1
-            className={`${transitionOfText} ${opacityItemsText} text-center duration-300 text-3xl sm:text-5xl text-white `}
+            className={`${transitionOfText} ${opacityItemsText} text-center duration-300 text-3xl md:text-5xl text-white `}
           >
             {arrayOfText2[activeText]}
           </h1>

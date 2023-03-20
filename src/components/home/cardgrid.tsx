@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { product } from "./data/prodata";
+import { product } from "../data/cardgriddata";
 
-type product = {
+type Cardstype = {
   name: string;
   details: string;
   ImageURL: string;
@@ -12,7 +12,7 @@ export default function Productgrid() {
   return (
     <section className="flex  items-center justify-center">
       <div className="mx-6 mt-12 flex cursor-pointer flex-col items-center gap-8  min-[590px]:flex-row">
-        {product.map((item) => (
+        {product.map((item: Cardstype) => (
           <div className=" h-[100vh] w-full flex-1" key={item.name}>
             <a href={item.name} className={``}>
               <div className="animation_triggering_class h-auto w-auto cursor-pointer justify-center overflow-hidden">
@@ -37,8 +37,6 @@ export default function Productgrid() {
           </div>
         ))}
       </div>
-
-      <div className="h-screen"></div>
     </section>
   );
 }

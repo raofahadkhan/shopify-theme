@@ -2,11 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import Product1 from "@/components/product2";
-import Svggrid from "@/components/Svggrid";
-import { Subscribe } from "@/components/Subscribe";
-import Productgrid from "@/components/Productgrid";
-import { Footer } from "@/components/Footer";
+import Product1 from "@/components/home/journalcard";
+import Svggrid from "@/components/home/Svggrid";
+import { Subscribe } from "@/components/home/signupcomponent";
+import Productgrid from "@/components/home/cardgrid";
+import { Footer } from "@/components/home/Footer";
 import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });

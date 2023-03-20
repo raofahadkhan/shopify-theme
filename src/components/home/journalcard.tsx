@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-type product1 = {
+import { product1 } from "../data/journaldata";
+type journaltype = {
   name: string;
   details: string;
   ImageURL: string;
 };
-import { product1 } from "./data/prodata2";
 const Product1 = () => {
   return (
     <>
@@ -15,7 +15,7 @@ const Product1 = () => {
       </div>
       <section className="flex  items-center justify-center">
         <div className="mx-6 mt-12 flex cursor-pointer flex-col items-center gap-8  min-[590px]:flex-row">
-          {product1.map((item) => (
+          {product1.map((item: journaltype) => (
             <div className="  w-full flex-1" key={item.name}>
               <a href={item.name} className={``}>
                 <div className="animation_triggering_class h-auto w-auto cursor-pointer justify-center overflow-hidden">
@@ -37,8 +37,6 @@ const Product1 = () => {
             </div>
           ))}
         </div>
-
-        <div className=""></div>
       </section>
     </>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { svgdata } from "./data/svgriddata";
+import { svgdata } from "../data/svggriddata";
 type svgdata = {
   svgpath: string;
   caption: string;
@@ -7,7 +7,7 @@ type svgdata = {
 function Svggrid() {
   return (
     <div className=" my-20  grid  justify-center gap-y-10 min-[590px]:mx-10 min-[590px]:grid-cols-3">
-      {svgdata.map((item) => (
+      {svgdata.map((item: svgdata) => (
         <div className="flex flex-col items-center px-6" key={item.svgpath}>
           <svg viewBox="0 0 100 100" className="h-[70px] ">
             <path

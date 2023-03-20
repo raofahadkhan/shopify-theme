@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { Footerdata, footsub, powername } from "./data/footerdata";
+import { Footerdata, footsub, powername } from "../data/footerdata";
 import { IoIosArrowDown } from "react-icons/io";
 import { Dropup } from "./currencydropup";
 import Image from "next/image";
-type Footerdata = {
+type Footerdatatype = {
   header: string;
   list: string[];
 };

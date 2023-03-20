@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { useState } from "react";
-import { countries } from "./data/countries";
+import { countries } from "../data/currencydata";
+
+type currencydatatype = {
+  name: string;
+  flag: string;
+};
 
 export const Dropup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +44,7 @@ export const Dropup = () => {
 
       {isOpen && (
         <div className="absolute bottom-[2.71rem] h-[22rem] w-[270px] overflow-hidden  overflow-y-scroll bg-white text-black shadow-lg min-[500px]:-left-16 min-[500px]:w-[26rem] min-[590px]:left-0 md:w-[28rem]">
-          {countries.map((item: any, i: any) => (
+          {countries.map((item: currencydatatype) => (
             <div className="flex  flex-col-reverse  " key={item.name}>
               <div className="hover flex cursor-pointer py-2 hover:underline">
                 <Image

@@ -1,7 +1,3 @@
-type svgdata = {
-  svgpath: string;
-  caption: string;
-};
 export const svgdata = [
   {
     svgpath:

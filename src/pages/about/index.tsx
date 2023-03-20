@@ -1,10 +1,10 @@
-import { Footer } from "@/components/Footer";
-import Productgrid from "@/components/Productgrid";
-import { Component2 } from "@/components/data/about/aboutcomponent2";
+import { Footer } from "@/components/home/Footer";
+import Productgrid from "@/components/home/cardgrid";
+import { Component2 } from "@/components/about/aboutcomponent2";
 import React, { useEffect, useState } from "react";
-import { Component3 } from "../../components/data/about/aboutcomponent3";
-import Form from "../../components/data/about/form";
-import HeroChild from "@/components/data/heroSection";
+import { Component3 } from "../../components/about/aboutcomponent3";
+import Form from "../../components/about/inputform";
+import HeroChild from "@/components/about/heroSection/index";
 export default function Index() {
   useEffect(() => {
     const elements = document.querySelectorAll(".animation_triggering_class");
