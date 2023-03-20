@@ -14,7 +14,7 @@ export default function Productgrid() {
     <section className="flex  items-center justify-center mb-20">
       <div className="mx-6 mt-12 flex cursor-pointer flex-col items-center gap-8  min-[590px]:flex-row">
         {product.map((item: Cardstype) => (
-          <div className=" h-[100vh] w-full flex-1" key={item.name}>
+          <div className=" w-full flex-1" key={item.name}>
             <a href={item.name} className={``}>
               <div className="animation_triggering_class h-auto w-auto cursor-pointer justify-center overflow-hidden">
                 <Image
