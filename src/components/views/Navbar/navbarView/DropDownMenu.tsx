@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { subMenuType, everysubMenuType, everysubMenuContentType } from "@/components/typesandArrays/NavbarItems";
 
-export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: any, item: { label: string, dropdown: boolean, child?: Array<subMenuType> } }) {
+export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: boolean, item: { label: string, dropdown: boolean, child?: Array<subMenuType> } }) {
 
-    let underLineWidth: any;
+    let underLineWidth: string;
 
     return (
         <div className={`invisible group-hover:visible hover:visible group-hover:translate-y-0 group-hover:opacity-100 opacity-0 -translate-y-3 group-hover:duration-300 ease-out absolute ${navbarcolors ? "top-[4.06rem]" : `${item.label == "About" ? "top-[4.06rem]" : "top-[4.06rem]"}`} left-0 right-0  ${item.label == "About" ? "bg-transparent" : " bg-white"} shadow-lg `}>
@@ -41,7 +41,6 @@ export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: any
                     ))}
                     {subItem.fourthMenu && subItem.fourthMenu.map((subsubItem: everysubMenuType, index: number) => (
                         <div key={index + 200} className="shadow-md" >
-                            {/* <div key={index + 200} className="absolute top-0 right-0"> */}
                             <h3 className="text-xl font-normal font-sans relative after:bg-black after:content-[' '] after:h-[2px] after:w-[0%] after:left-0 after:-bottom-1 after:absolute after:rounded-3xl after:duration-300 hover:after:w-[4.5rem] ">{subsubItem.heading}</h3>
                             <div className="w-40 bg-white px-4 py-1">
                                 {subsubItem.content && subsubItem.content.map((subsubsubItem: everysubMenuContentType, index: number) => (

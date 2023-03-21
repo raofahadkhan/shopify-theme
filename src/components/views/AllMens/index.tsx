@@ -10,7 +10,6 @@ export default function AllMens({ particularDatas }: any) {
 
   const [particularProductData, setParticularProductData] = useState(particularDatas.productData);
 
-  // For filtering Data of shorts broads mens and so on
   function filterData(labelToMatch: string) {
     let updatedData = particularDatas.productData.filter((item: any) => item.catogry2 == labelToMatch)
     setParticularProductData(updatedData);

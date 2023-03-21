@@ -119,4 +119,3 @@ export default function NavbarView({ navItem }: typeofNavItems) {
     </div>
   )
 }
-// whitespace-nowrap

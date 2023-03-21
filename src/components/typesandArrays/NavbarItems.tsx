@@ -20,7 +20,6 @@ export interface subMenuType {
     secondMenu?: Array<everysubMenuType>,
     thirdMenu?: Array<everysubMenuType>,
     fourthMenu?: Array<everysubMenuType>,
-    // [i: string]:Array<everysubMenuType>;             This can also be used to code in one line
 }
 
 export interface NavbarItemType {

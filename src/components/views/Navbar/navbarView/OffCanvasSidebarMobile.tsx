@@ -4,7 +4,7 @@ import { FaTwitter } from 'react-icons/fa';
 import Expand from './Expand';
 import { NavbarItemType } from '@/components/typesandArrays/NavbarItems';
 
-export default function OffCanvasSidebarMobile({ data, sidebar, setSidebar }: any) {
+export default function OffCanvasSidebarMobile({ data, sidebar, setSidebar }: { data: Array<NavbarItemType>, sidebar: boolean, setSidebar:any}) {
   return (
     <>
       <div onClick={() => { setSidebar(false) }} className={`${sidebar ? "flex" : "hidden"} flex w-full h-screen bg-black opacity-50 absolute inset-0 `}></div>

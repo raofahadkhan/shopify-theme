@@ -22,7 +22,6 @@ export default function ImageHoverEffect() {
     return (
         <div className="w-full px-5 py-6 sm:p-12">
             <div className="mx-auto max-w-7xl grid grid-cols-2 sm:grid-cols-4 overflow-hidden">
-                {/* This is dynamic */}
                 {ImageData.map((item: ImageDataType, index: number) =>
                     <div key={index + 2} className={`${item.colSpan} ${item.TabColStart} ${item.TabColSpanEnd} overflow-hidden cursor-pointer relative group w-full`}>
                         <Image src={item.imageUrl} className={`${item.maxHeight ? "max-h-80 object-cover" : "image-prop"} ${scalingAnimation} duration-1000`} width={1000} height={1000} alt="image" />
