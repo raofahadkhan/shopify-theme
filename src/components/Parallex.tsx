@@ -49,33 +49,3 @@ export default function Parallex() {
         </ParallaxBanner>
     )
 }
-
-
-
-
-
-
-
-// import { useState } from "react";
-
-
-// export default function Parallex() {
-//     const [transform, setTranform] = useState("translate-y-32");
-
-//     window.addEventListener('scroll', () => {
-//         if (scrollY >= 120) {
-//             setTranform("translate-y-0");
-//         } else {
-//             setTranform("translate-y-32");
-//         }
-//     }
-//     );
-
-//     return (
-//         <div className='w-full h-screen bg-yellow-600 pt-32'>
-//             <div className="w-20 overflow-hidden h-32 bg-gray-500 mx-auto ">
-//                 <h2 className={`${transform} duration-700`}>This is Navbar</h2>
-//             </div>
-//         </div>
-//     )
-// }
