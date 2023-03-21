@@ -13,7 +13,7 @@ export default function Hero() {
 
     return (
         <div className=' relative flex items-center justify-center overflow-hidden'>
-            <div className='z-30 relative text-center ml:py-[6.5cm] py-[4cm]'>
+            <div className='z-30 relative text-center md:h-[650px] h-[350px] items-center place-content-center flex flex-col'>
                 <div className='overflow-hidden'>
                     <h1 className=' text-white md:text-7xl text-4xl font-bold fadeUp '>{heroData.title}</h1>
                 </div>
