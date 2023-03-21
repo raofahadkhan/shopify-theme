@@ -20,15 +20,15 @@ const FeatureData: topFeatureType = topFeature;
 export default function Features() {
     return (
         <>
-            <div className=' mt-10'>
-                <h1 className=' mx-5 text-3xl tracking-widest text-center'>{FeatureData.title}</h1>
+            <div className=' mt-[55px]'>
+                <h1 className=' mx-5 text-[31px] tracking-[0.15em] text-center'>{FeatureData.title}</h1>
             </div>
-            <Image src={FeatureData .src} alt="" width={200} height={200} className=' m-auto mt-4'/>
-            <div className="grid px-10 md:grid-cols-3 grid-cols-1 text-center max-w-[1300px] m-auto md:mt-24 mt-12 md:gap-y-28 gap-y-12 gap-x-16">
+            <Image src={FeatureData .src} alt="" width={230} height={200} className=' m-auto mt-4'/>
+            <div className="grid px-20 md:grid-cols-3 grid-cols-1 text-center max-w-[1330px] m-auto md:mt-28 mt-12 md:gap-y-28 gap-y-12 gap-x-16">
               {Feature.map((elem:featureType) => (
                 <div className="" key={elem.id}>
-                    <Image src={elem.src} alt="" width={90} height={200} className='m-auto'/>
-                    <h1 className=" text-2xl font-extrabold mt-5">{elem.title}</h1>
+                    <Image src={elem.src} alt="" width={100} height={200} className='m-auto'/>
+                    <h1 className=" text-[27px] font-bold mt-5">{elem.title}</h1>
                     <p className="mt-2 font-medium text-gray-700">{elem.desc}</p>
                 </div>
                 ))}
