@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 
-
 div.swiper {
   @apply w-full py-10
 }
@@ -28,11 +27,6 @@ span.swiper-pagination-bullet {
 div.swiper-button-prev, div.swiper-button-next {
  @apply text-black
 }
-
-/* .swiper-slide-prev, .swiper-slide-next {
- @apply p-5;
-} */
-
 
 
 
@@ -106,4 +100,18 @@ div.swiper-button-prev, div.swiper-button-next {
 }
 .topActive {
   @apply ml:translate-y-[0%]
+}
+
+@layer components {
+    .underlineEffect {
+        @apply relative after:bg-gray-700 after:h-[1.7px] after:w-0 after:left-0 after:-bottom-[0.07rem] after:absolute after:rounded-3xl after:duration-300 hover:after:w-full
+    }
+
+    .image-prop {
+        @apply h-full object-cover
+    }
+
+    .dullness {
+        @apply absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-30
+    }
 }
