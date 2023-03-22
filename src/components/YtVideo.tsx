@@ -14,11 +14,11 @@ export default function YtVideo() {
             <h3 className=' text-xl font-bold text-center my-10'>{YtData.title}</h3>
             <div className=''>
                 <object
-                    className=' md:w-[60%] w-[90%] h-[461.25px] float: none; clear: both; margin: m-auto'
+                    className='object-cover md:w-[60%] w-[70%] md:h-[461.25px] float: none; clear: both; margin: m-auto'
                     data={YtData.YtVideo}>
                 </object>
             </div>
-            <h3 className='text-gray-700 text-center my-10 after:block'>{YtData.desc}</h3>
+            <h3 className='text-gray-700 text-center my-10 after:block mx-9'>{YtData.desc}</h3>
         </div>
     )
 }
