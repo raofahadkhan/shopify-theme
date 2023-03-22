@@ -4,6 +4,7 @@ import { Footerdata, footsub, powername } from "../data/footerdata";
 import { IoIosArrowDown } from "react-icons/io";
 import { Dropup } from "./currencydropup";
 import Image from "next/image";
+import { FaBaby } from "react-icons/fa";
 type Footerdatatype = {
   header: string;
   list: string[];
@@ -56,97 +57,39 @@ export const Footer = () => {
               />
             </div>
             <div className="flex flex-row gap-4 min-[590px]:py-6 ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="27px"
-                height="27px"
-                fill="currentColor"
-                className="bi bi-facebook"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
-                  fill="white"
-                ></path>
-              </svg>
-              <svg
-                className="color: rgb(255, 255, 255);"
-                xmlns="http://www.w3.org/2000/svg"
-                width="28px"
-                height="28px"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"
-                  fill="#ffffff"
-                ></path>
-              </svg>
+              <Image src="fb.svg" alt="motion" height={27} width={27} />
+              <Image src="twitter.svg" alt="motion" height={28} width={28} />
             </div>
           </div>
           <br />
         </div>
-        <div className="hidden min-[590px]:inline">
-          <li className=" flex flex-col">
-            <>
-              <h2 className="font-bold tracking-widest">{dataHeaderZero}</h2>
-              <ul className="py-5">
-                {dataListZero.map((item: any) => {
-                  return (
-                    <li
-                      className=" flex flex-col py-[0.4rem]  text-white"
-                      key={item}
-                    >
-                      {item}
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          </li>
-        </div>
-        <div className="hidden min-[590px]:inline">
-          <li className=" flex flex-col">
-            <>
-              <h2 className="font-bold tracking-widest">{dataHeaderOne}</h2>
-              <ul className="py-5">
-                {dataListOne.map((item: any) => {
-                  return (
-                    <li
-                      className=" flex flex-col py-[0.4rem]  text-white"
-                      key={item}
-                    >
-                      {item}
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          </li>
-        </div>
-        <div className="hidden min-[590px]:inline">
-          <li className=" flex flex-col">
-            <>
-              <h2 className="font-bold tracking-widest ">{dataHeaderTwo}</h2>
-              <ul className="py-5">
-                {dataListTwo.map((item: any) => {
-                  return (
-                    <li
-                      className=" flex flex-col py-[0.4rem]  text-white"
-                      key={item}
-                    >
-                      {item}
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          </li>
-        </div>
+        {Footerdata.map((item: any) => {
+          return (
+            <div className="hidden min-[590px]:inline" key={item.header}>
+              <li className=" flex flex-col">
+                <>
+                  <h2 className="font-bold tracking-widest">{item.header}</h2>
+                  <ul className="py-5">
+                    {item.list.map((item: any) => {
+                      return (
+                        <li
+                          className=" flex flex-col py-[0.4rem]  text-white"
+                          key={item}
+                        >
+                          {item}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              </li>
+            </div>
+          );
+        })}
         {/*   
         For
         mobile screen 
  */}
-
         <div
           className={`w-full border-b border-b-gray-800 transition-all duration-[900ms] min-[590px]:hidden ${
             isOpen ? "h-[17rem]" : "h-16"
@@ -180,10 +123,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* 
-
-
-
+        {/*
          */}
 
         <div
