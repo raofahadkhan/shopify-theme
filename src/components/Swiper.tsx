@@ -6,6 +6,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { AiTwotoneStar } from 'react-icons/ai'
 import { EffectCoverflow, Navigation } from "swiper";
 
+interface swiperType {
+  id: number,
+  desc: string,
+  src: string,
+  alt: string,
+  name: string,
+  city: string
+}
+
 export default function App() {
   return (
     <div className=" bg-[#F9F9F9] px-5">
@@ -28,16 +37,18 @@ export default function App() {
         modules={[EffectCoverflow, Navigation]}
         className="swiper"
       >
-        {testimonial.map((elem) => (
+        {testimonial.map((elem: swiperType) => (
           <SwiperSlide key={elem.id}>
             <div className="flex justify-center space-x-1"><AiTwotoneStar /><AiTwotoneStar /><AiTwotoneStar /><AiTwotoneStar /><AiTwotoneStar /></div>
             <h1>{elem.desc}</h1>
-            <div className=" w-14 mx-auto"><img src="/img.avif" alt="" className=" rounded-full" /></div>
+            <div className=" w-14 mx-auto">
+              <img src={elem.src} alt={elem.alt} className=" rounded-full" />
+            </div>
             <h1 className=" text-lg font-bold">{elem.name}</h1>
             <h1>{elem.city}</h1>
           </SwiperSlide>
         ))}
-          <div className="swiper-pagination"></div>
+        <div className="swiper-pagination"></div>
 
       </Swiper>
     </div>

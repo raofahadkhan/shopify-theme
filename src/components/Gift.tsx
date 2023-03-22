@@ -5,9 +5,11 @@ interface giftType {
     subTitle: string,
     title: string,
     desc: string,
-    btn:string,
+    btn: string,
     imgLeft: string,
+    altLeft: string,
     imgRight: string
+    altRight: string,
 }
 
 const giftData: giftType = data;
@@ -21,7 +23,7 @@ export default function Gift() {
                 <p className=' text-[16px] text-gray-700 mt-[20px]'>{giftData.desc}</p>
                 <button className='group overflow-hidden text-white flex bg-[#111111] font-bold pl-[20px] py-[12px] mt-[20px] transition-all delay-300 duration-1000'>
                     <span className="transition-all duration-300 group-hover:pr-[35px]">
-                    {giftData.btn}
+                        {giftData.btn}
                     </span>
                     <FaLongArrowAltRight className="relative -right-20 text-2xl text-white transition-all duration-300 group-hover:right-5" />
                 </button>
@@ -29,10 +31,10 @@ export default function Gift() {
 
             <div className='flex'>
                 <div className=' m-auto'>
-                    <img src={giftData.imgLeft} alt="" className=' ml:translate-x-[3rem] translate-x-[2rem] ml:translate-y-12 translate-y-9' />
+                    <img src={giftData.imgLeft} alt={giftData.altLeft} className=' ml:translate-x-[3rem] translate-x-[2rem] ml:translate-y-12 translate-y-9' />
                 </div>
                 <div>
-                    <img src={giftData.imgRight} alt="" />
+                    <img src={giftData.imgRight} alt={giftData.altRight} />
                 </div>
             </div>
         </div>

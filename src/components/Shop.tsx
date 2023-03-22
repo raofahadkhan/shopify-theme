@@ -5,10 +5,15 @@ interface gridType {
     title: string,
     desc: string,
     img1: string,
+    alt1: string,
     img2: string,
+    alt2: string,
     img3: string,
+    alt3: string,
     img4: string,
+    alt4: string,
     img5: string,
+    alt5: string,
     btn1: string,
     btn2: string
 }
@@ -17,70 +22,70 @@ interface gridType {
 const isBrowser = (): boolean => typeof window !== "undefined";
 
 if (isBrowser()) {
-window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
 
-    var topLeft = document.querySelectorAll('.topLeft');
-    var topRight = document.querySelectorAll('.topRight');
-    var botLeft = document.querySelectorAll('.botLeft');
-    var botRight = document.querySelectorAll('.botRight');
+        let topLeft = document.querySelectorAll('.topLeft');
+        let topRight = document.querySelectorAll('.topRight');
+        let botLeft = document.querySelectorAll('.botLeft');
+        let botRight = document.querySelectorAll('.botRight');
 
-    // ####LeftAnim
-    for (var i = 0; i < topLeft.length; i++) {
-        var windowheight = window.innerHeight;
-        var revealtop = topLeft[i].getBoundingClientRect().top;
-        var revealpoint = 150;
+        // ####LeftAnim
+        for (let i = 0; i < topLeft.length; i++) {
+            let windowheight = window.innerHeight;
+            let revealtop = topLeft[i].getBoundingClientRect().top;
+            let revealpoint = 150;
 
-        if (revealtop < windowheight - revealpoint) {
-            topLeft[i].classList.add('topLeftActive');
+            if (revealtop < windowheight - revealpoint) {
+                topLeft[i].classList.add('topLeftActive');
+            }
+            else {
+                topLeft[i].classList.remove('topLeftActive');
+            }
         }
-        else {
-            topLeft[i].classList.remove('topLeftActive');
-        }
-    }
 
 
-    // ####RightAnim
-    for (var i = 0; i < topRight.length; i++) {
-        var windowheight = window.innerHeight;
-        var revealtop = topRight[i].getBoundingClientRect().top;
-        var revealpoint = 150;
+        // ####RightAnim
+        for (let i = 0; i < topRight.length; i++) {
+            let windowheight = window.innerHeight;
+            let revealtop = topRight[i].getBoundingClientRect().top;
+            let revealpoint = 150;
 
-        if (revealtop < windowheight - revealpoint) {
-            topRight[i].classList.add('topRightActive');
+            if (revealtop < windowheight - revealpoint) {
+                topRight[i].classList.add('topRightActive');
+            }
+            else {
+                topRight[i].classList.remove('topRightActive');
+            }
         }
-        else {
-            topRight[i].classList.remove('topRightActive');
-        }
-    }
 
-    // ####botLeft
-    for (var i = 0; i < botLeft.length; i++) {
-        var windowheight = window.innerHeight;
-        var revealtop = botLeft[i].getBoundingClientRect().top;
-        var revealpoint = 150;
+        // ####botLeft
+        for (let i = 0; i < botLeft.length; i++) {
+            let windowheight = window.innerHeight;
+            let revealtop = botLeft[i].getBoundingClientRect().top;
+            let revealpoint = 150;
 
-        if (revealtop < windowheight - revealpoint) {
-            botLeft[i].classList.add('botLeftActive');
+            if (revealtop < windowheight - revealpoint) {
+                botLeft[i].classList.add('botLeftActive');
+            }
+            else {
+                botLeft[i].classList.remove('botLeftActive');
+            }
         }
-        else {
-            botLeft[i].classList.remove('botLeftActive');
-        }
-    }
 
-    // ####botRight
-    for (var i = 0; i < botRight.length; i++) {
-        var windowheight = window.innerHeight;
-        var revealtop = botRight[i].getBoundingClientRect().top;
-        var revealpoint = 150;
+        // ####botRight
+        for (let i = 0; i < botRight.length; i++) {
+            let windowheight = window.innerHeight;
+            let revealtop = botRight[i].getBoundingClientRect().top;
+            let revealpoint = 150;
 
-        if (revealtop < windowheight - revealpoint) {
-            botRight[i].classList.add('botRightActive');
+            if (revealtop < windowheight - revealpoint) {
+                botRight[i].classList.add('botRightActive');
+            }
+            else {
+                botRight[i].classList.remove('botRightActive');
+            }
         }
-        else {
-            botRight[i].classList.remove('botRightActive');
-        }
-    }
-});
+    });
 }
 
 const gridData: gridType = grid;
@@ -92,11 +97,11 @@ export default function Shop() {
                 <div className='lg:mx-[6%] mx-[3%] flex justify-between md:flex-row flex-col'>
                     <div className='md:w-[60%] w-full flex relative'>
                         <div className='flex my-[20px] min-[560px]:w-[450px] w-[210px] m-auto items-center relative '>
-                            <img src={gridData.img1} alt="" className='center min-[560px]:max-w-[280px] max-w-[140px] m-auto min-[560px]:my-[40px] my-[40px] z-20 relative' />
-                            <img src={gridData.img3} alt="" className='topLeft min-[560px]:max-w-[180px] max-w-[90px] absolute top-0 left-0' />
-                            <img src={gridData.img5} alt="" className='topRight min-[560px]:max-w-[100px] max-w-[50px] absolute top-0 right-0' />
-                            <img src={gridData.img2} alt="" className='botLeft min-[560px]:max-w-[200px] max-w-[100px] absolute bottom-0 left-0' />
-                            <img src={gridData.img4} alt="" className='botRight min-[560px]:max-w-[160px] max-w-[80px] absolute bottom-0 right-0' />
+                            <img src={gridData.img1} alt={gridData.img1} className='center min-[560px]:max-w-[280px] max-w-[140px] m-auto min-[560px]:my-[40px] my-[40px] z-20 relative' />
+                            <img src={gridData.img3} alt={gridData.img3} className='topLeft min-[560px]:max-w-[180px] max-w-[90px] absolute top-0 left-0' />
+                            <img src={gridData.img5} alt={gridData.img5} className='topRight min-[560px]:max-w-[100px] max-w-[50px] absolute top-0 right-0' />
+                            <img src={gridData.img2} alt={gridData.img2} className='botLeft min-[560px]:max-w-[200px] max-w-[100px] absolute bottom-0 left-0' />
+                            <img src={gridData.img4} alt={gridData.img4} className='botRight min-[560px]:max-w-[160px] max-w-[80px] absolute bottom-0 right-0' />
                         </div>
                     </div>
                     <div className='md:w-[40%] md:m-auto md:ml-14'>

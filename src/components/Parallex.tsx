@@ -13,12 +13,12 @@ const isBrowser = (): boolean => typeof window !== "undefined";
 if (isBrowser()) {
 window.addEventListener('scroll', () => {
 
-    var top = document.querySelectorAll('.top');
+    let top = document.querySelectorAll('.top');
 
-    for (var i = 0; i < top.length; i++) {
-        var windowheight = window.innerHeight;
-        var revealtop = top[i].getBoundingClientRect().top;
-        var revealpoint = -150;
+    for (let i = 0; i < top.length; i++) {
+        let windowheight = window.innerHeight;
+        let revealtop = top[i].getBoundingClientRect().top;
+        let revealpoint = -150;
 
         if (revealtop < windowheight - revealpoint) {
             top[i].classList.add('topActive');
@@ -36,7 +36,7 @@ const parallexData: parallexType = parallex;
 export default function Parallex() {
     return (
         <ParallaxBanner
-            layers={[{ image: '/parallex.webp', speed: -25 }]}
+            layers={[{ image: '/images/parallex.webp', speed: -25 }]}
             className=" h-[100%] ml:min-h-[650px] min-h-[500px]"
         >
             <div className='ml:overflow-y-hidden absolute ml:bottom-auto bottom-0 ml:m-6 md:m-12 m-2 h-[19rem] w-[95%] ml:w-[390px]'>
