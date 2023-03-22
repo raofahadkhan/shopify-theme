@@ -210,11 +210,6 @@ export const desFeature = [
         desc: 'Our Fading Image Hero section lets you create a unique animated slideshow that combines beautiful imagery and bold statements.'
     },
     {
-        id: 10,
-        subTitle: "Animated callouts",
-        desc: 'Our Fading Image Hero section lets you create a unique animated slideshow that combines beautiful imagery and bold statements.'
-    },
-    {
         id: 11,
         title: 'Video features',
     },
