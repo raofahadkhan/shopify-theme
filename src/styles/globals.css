@@ -3,26 +3,104 @@
 @tailwind utilities;
 
 
-/* removeable if not neccessory */
-/* 
-@layer base {
-    
-    h2 {
-        @apply font-bold text-xl sm:text-2xl text-white group-hover:mb-3 duration-500 relative after:bg-white after:h-[2px] after:w-0 after:left-0 after:bottom-0 after:absolute after:rounded-3xl after:duration-300 group-hover:after:w-full
-    }
+div.swiper {
+  @apply w-full py-10
+}
 
-    h5 {
-        @apply text-base
-    }
+div.swiper-slide {
+  @apply flex flex-col justify-center bg-white text-center gap-5 p-7
+   md:min-w-[230px] md:w-[37%] min-w-[320px] h-[380px]
+}
 
-    h3 {
-        @apply text-xl font-normal font-sans
-    }
+div.swiper-slide-active {
+  @apply shadow-[0_10px_25px_rgb(0,0,0,0.1)]
+}
 
-    h4 {
-        @apply text-lg
-    }
-} */
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply bg-black
+}
+
+span.swiper-pagination-bullet {
+  @apply bg-transparent border-2 border-black opacity-100 w-2 h-2
+}
+
+div.swiper-button-prev, div.swiper-button-next {
+ @apply text-black
+}
+
+
+
+
+
+@keyframes fadeUp {
+  from {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+  }
+  to {
+      opacity: 1;
+      transform: none;
+  }
+}
+
+.fadeUp {
+  animation: fadeUp 1.7s;
+}
+
+
+/* ####center */
+.center {
+  @apply shadow-2xl
+}
+
+
+/* ####topLeft */
+.topLeft {
+  @apply  md:translate-x-44 translate-x-16 translate-y-20 transition-all duration-[2s] ease-out
+
+}
+.topLeftActive {
+  @apply md:-translate-x-11 -translate-x-8 md:-translate-y-1 translate-y-3
+}
+
+
+/* ####topRight */
+.topRight {
+  @apply md:-translate-x-44 -translate-x-20 translate-y-32 transition-all duration-[2s] ease-out
+
+}
+.topRightActive {
+  @apply md:-translate-x-1 translate-x-1 md:translate-y-20 translate-y-14
+}
+
+
+/* ####botLeft */
+.botLeft {
+  @apply md:translate-x-32 translate-x-16 -translate-y-24 transition-all duration-[2s] ease-out
+
+}
+.botLeftActive {
+  @apply -translate-x-4 md:translate-y-9 -translate-y-0
+}
+
+
+/* ####botLeft */
+.botRight {
+  @apply md:-translate-x-36 -translate-x-16 md:-translate-y-32 -translate-y-24 transition-all duration-[2s] ease-out
+
+}
+.botRightActive {
+  @apply md:translate-x-10 translate-x-7 md:-translate-y-3 -translate-y-6
+}
+
+
+.top {
+  @apply transition-all duration-[1s] ease-out ml:translate-y-[120%]
+
+}
+.topActive {
+  @apply ml:translate-y-[0%]
+}
 
 @layer components {
     .underlineEffect {
