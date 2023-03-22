@@ -14,7 +14,7 @@ export default function YtVideo() {
             <h3 className=' text-xl font-bold text-center my-10'>{YtData.title}</h3>
             <div className=''>
                 <object
-                    className=' w-[60%] h-[461.25px] float: none; clear: both; margin: m-auto'
+                    className=' md:w-[60%] w-[90%] h-[461.25px] float: none; clear: both; margin: m-auto'
                     data={YtData.YtVideo}>
                 </object>
             </div>
