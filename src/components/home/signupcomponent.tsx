@@ -34,7 +34,7 @@ export const Subscribe = () => {
             <div>
               <input
                 type="email"
-                className=" text-md border border-gray-200 bg-white py-[10px] pl-[10px] placeholder:text-gray-900 min-[360px]:w-[278px]"
+                className=" text-md border border-gray-200 bg-white py-[10px] pl-[10px] placeholder:text-gray-900 min-[378px]:w-[278px]  w-[215px]"
                 placeholder="Enter your email"
                 required
               />
