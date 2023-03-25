@@ -88,7 +88,7 @@ export const Footer = () => {
 
                 {Footerdata.map((item: any) => {
           return (
-            <FooterChild item={item}/>
+            <FooterChild item={item} key={item.header}/>
         
                 )
                 })}
