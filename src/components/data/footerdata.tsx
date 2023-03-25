@@ -14,7 +14,7 @@ export const Footerdata = [
 ];
 
 export const footsub = {
-  logosrc: "/logo.webp",
+  logosrc: "/images/logo.webp",
   head: "Subscribe",
   detail:
     "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.",

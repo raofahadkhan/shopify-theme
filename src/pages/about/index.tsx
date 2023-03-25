@@ -42,7 +42,7 @@ export default function Index() {
   }, []);
   return (
     <>
-      <HeroChild />
+      {/* <HeroChild /> */}
       <Component2 />
       <Component3 />
       <Form />

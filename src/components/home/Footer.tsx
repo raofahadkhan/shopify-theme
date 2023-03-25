@@ -5,6 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Dropup } from "./currencydropup";
 import Image from "next/image";
 import { FaBaby } from "react-icons/fa";
+import FooterChild from "./footerChild";
 type Footerdatatype = {
   header: string;
   list: string[];
@@ -18,10 +19,8 @@ export const Footer = () => {
   const dataListTwo = Footerdata[2].list;
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [dropDown1, setDropDown1] = useState(false);
-  const [dropDown2, setDropDown2] = useState(false);
 
   function setTimeOutForDropdown() {
     setTimeout(() => {
@@ -37,11 +36,7 @@ export const Footer = () => {
       setDropDown1(!dropDown1);
     }, 300);
   }
-  function setTimeOutForDropdown2() {
-    setTimeout(() => {
-      setDropDown2(!dropDown2);
-    }, 400);
-  }
+ 
 
   return (
     <div className="w-full bg-[#111111] pt-20 pb-14 text-[14.88px]  text-white">
@@ -90,106 +85,13 @@ export const Footer = () => {
         For
         mobile screen 
  */}
-        <div
-          className={`w-full border-b border-b-gray-800 transition-all duration-[900ms] min-[590px]:hidden ${
-            isOpen ? "h-[17rem]" : "h-16"
-          }`}
-        >
-          <div
-            className="mt-4  flex cursor-pointer items-center justify-between py-3"
-            onClick={() => {
-              setIsOpen(!isOpen);
-              setTimeOutForDropdown();
-            }}
-          >
-            <h2 className="font-bold ">{dataHeaderZero}</h2>
-            <IoIosArrowDown
-              className={` duration-400  transition-all ease-out ${
-                dropDown ? "rotate-180 " : "rotate-360 "
-              }`}
-            />
-          </div>
-          <div className={` py-5 ${dropDown ? "visible " : "hidden "}`}>
-            {dataListZero.map((item: any) => {
-              return (
-                <li
-                  className="flex flex-col py-[0.4rem] text-white   transition-all delay-1000  duration-1000 ease-out"
-                  key={item}
-                >
-                  {item}
-                </li>
-              );
-            })}
-          </div>
-        </div>
 
-        {/*
-         */}
-
-        <div
-          className={`w-full border-b border-b-gray-800 transition-all duration-[800ms] min-[590px]:hidden ${
-            isOpen1 ? "h-[17rem]" : "h-16"
-          }`}
-        >
-          <div
-            className="mt-4  flex cursor-pointer items-center justify-between py-3"
-            onClick={() => {
-              setIsOpen1(!isOpen1);
-              setTimeOutForDropdown1();
-            }}
-          >
-            <h2 className="font-bold ">{dataHeaderOne}</h2>
-            <IoIosArrowDown
-              className={` duration-400  transition-all ease-out ${
-                dropDown1 ? "rotate-180 " : "rotate-360 "
-              }`}
-            />
-          </div>
-          <div className={` py-5 ${dropDown1 ? " visible " : " hidden "}`}>
-            {dataListOne.map((item: any) => {
-              return (
-                <li
-                  className="flex flex-col py-[0.4rem] text-white transition-all delay-1000 duration-1000"
-                  key={item}
-                >
-                  {item}
-                </li>
-              );
-            })}
-          </div>
-        </div>
-        <div
-          className={`w-full border-b border-b-gray-800 transition-all duration-1000 min-[590px]:hidden ${
-            isOpen2 ? "h-[13rem]" : "h-16"
-          }`}
-        >
-          <div
-            className="mt-4  flex cursor-pointer items-center justify-between py-3"
-            onClick={() => {
-              setIsOpen2(!isOpen2);
-              setTimeOutForDropdown2();
-            }}
-          >
-            <h2 className="font-bold ">{dataHeaderTwo}</h2>
-            <IoIosArrowDown
-              className={` duration-400  transition-all ease-out ${
-                dropDown2 ? "rotate-180 " : "rotate-360 "
-              }`}
-            />
-          </div>
-          <div className={` py-5 ${dropDown2 ? "visible" : "hidden "}`}>
-            {dataListTwo.map((item: any) => {
-              return (
-                <li
-                  className="flex flex-col py-[0.4rem] text-white   transition-all delay-1000  duration-[2000ms] ease-out"
-                  key={item}
-                >
-                  {item}
-                </li>
-              );
-            })}
-          </div>
-        </div>
+                {Footerdata.map((item: any) => {
+          return (
+            <FooterChild item={item}/>
+        
+                )
+                })}
         <div className="flex flex-col  md:w-72 ">
           <h2 className=" mt-5 font-bold uppercase">{footsub.head}</h2>
           <h1 className=" py-4 ">{footsub.detail}</h1>

@@ -17,7 +17,7 @@ function Svggrid() {
               fill="#FFFFFF"
             />
           </svg>
-          <h1 className=" items-center pt-2 text-center min-[590px]:text-[25px] text-[21px] font-extrabold leading-8 min-[590px]:text-[28px]">
+          <h1 className=" items-center pt-2 text-center min-[590px]:text-[25px] text-[21px] font-extrabold leading-8 ">
             {item.caption}
           </h1>
         </div>
