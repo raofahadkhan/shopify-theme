@@ -115,3 +115,85 @@ div.swiper-button-prev, div.swiper-button-next {
         @apply absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-30
     }
 }
+
+.animate {
+  animation: fadeInAnimation ease-in-out;
+  animation-duration: 900ms;
+  animation-iteration-count: 1;
+  /* animation-play-state: running; */
+}
+
+.scale {
+  animation: scale ease-in-out 900ms;
+  animation-iteration-count: 1;
+}
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes scale {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.slide_in {
+  animation: slidein ease-in-out 1000ms;
+}
+@keyframes slidein {
+  from {
+    gap: 5.5rem;
+    /* margin-right: -10%; */
+    /* width: 300%; */
+  }
+  to {
+    gap: 2.5rem;
+    /* margin-left: 0%; */
+    /* width: 100%; */
+  }
+}
+
+.danim {
+  transition: 1s;
+  transition-duration: 1s;
+}
+
+.slider_img {
+  animation: slider_translate_animation ease-in-out;
+  animation-duration: 100ms;
+  animation-iteration-count: 1;
+}
+/* .nth:nth-child(1) {
+  animation-duration: 2000ms;
+}
+.nth:nth-child(3) {
+  animation-duration: 200ms;
+} */
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes scale {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tracking-widee {
+  letter-spacing: 0.04em;
+}
