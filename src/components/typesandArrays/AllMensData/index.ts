@@ -22,7 +22,7 @@ export interface ProductDataType {
     imageAlt: string,
     catogry1?: string,
     catogry2: string,
-    availableSize?:string,
+    availableSize?: string,
 }
 
 export interface AllCatogryDataType {
@@ -265,8 +265,8 @@ export const AllCatogryData: Array<AllCatogryDataType> = [
                 imageAlt: "allwomens",
                 catogry1: "allwomans",
                 catogry2: "shirts",
-                banner:"BEST SELLING",
-                bannerColor:"bg-[#111111]"
+                banner: "BEST SELLING",
+                bannerColor: "bg-[#111111]"
             },
             {
                 imageUrl: "https://cdn.shopify.com/s/files/1/2091/0251/products/w-gatewood1_1800x1800.jpg?v=1497277815",
@@ -285,9 +285,9 @@ export const AllCatogryData: Array<AllCatogryDataType> = [
                 imageAlt: "allwomens",
                 catogry1: "allwomans",
                 catogry2: "shirts",
-                banner:"NEW",
-                bannerColor:"bg-[#111111]",
-                availableColours:["bg-[#B64733]" , "bg-[#13263F]" , "bg-[#DDDDDF]"]
+                banner: "NEW",
+                bannerColor: "bg-[#111111]",
+                availableColours: ["bg-[#B64733]", "bg-[#13263F]", "bg-[#DDDDDF]"]
             },
             {
                 imageUrl: "https://cdn.shopify.com/s/files/1/2091/0251/products/w-grafton-blue1_1800x1800.jpg?v=1497277701",
@@ -297,8 +297,8 @@ export const AllCatogryData: Array<AllCatogryDataType> = [
                 imageAlt: "allwomens",
                 catogry1: "allwomans",
                 catogry2: "pants",
-                banner:"Save $20",
-                bannerColor:"bg-[#DA3217]",
+                banner: "Save $20",
+                bannerColor: "bg-[#DA3217]",
             },
             {
                 imageUrl: "https://cdn.shopify.com/s/files/1/2091/0251/products/w-chelandress-teal1_1800x1800.jpg?v=1497277984",
@@ -308,8 +308,8 @@ export const AllCatogryData: Array<AllCatogryDataType> = [
                 imageAlt: "allwomens",
                 catogry1: "allwomans",
                 catogry2: "dresses",
-                banner:"Sav $20",
-                bannerColor:"bg-[#DA3217]",
+                banner: "Sav $20",
+                bannerColor: "bg-[#DA3217]",
             },
             {
                 imageUrl: "https://cdn.shopify.com/s/files/1/2091/0251/products/w-singleyparka-black1_1800x1800.jpg?v=1497277548",
@@ -328,7 +328,7 @@ export const AllCatogryData: Array<AllCatogryDataType> = [
                 imageAlt: "allwomens",
                 catogry1: "allwomans",
                 catogry2: "shirts",
-                availableColours:["bg-[#1F315D]" , "bg-[#D9E4E5]"]
+                availableColours: ["bg-[#1F315D]", "bg-[#D9E4E5]"]
             },
         ]
     },

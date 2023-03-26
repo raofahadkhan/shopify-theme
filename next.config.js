@@ -4,13 +4,19 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'cdn.shopify.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "img.icons8.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
