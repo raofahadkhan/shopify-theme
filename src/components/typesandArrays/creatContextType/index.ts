@@ -6,4 +6,6 @@ export interface contextType {
     removeFromCart: (item: ProductDataType) => void,
     price: number,
     updatePrice: (action: string, updatedPrice: string) => void;
+    navbarcolor: boolean;
+    setNavbarcolor: (item:any) => void;
 }

@@ -27,14 +27,12 @@ interface typeofNavItems {
 }
 
 export default function NavbarView({ navItem }: typeofNavItems) {
-  const { price }:any = useContext(CartContext);
+  const { price, navbarcolor, setNavbarcolor }: any = useContext(CartContext);
   const [SearchBoxView, setSearchBoxView] = useState(false);
   const { reload, query } = useRouter();
   const [sidebar, setSidebar] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const [navbarcolor, setNavbarcolor] = useState(false);
   const [opacityForScroll, setOpacityForScroll] = useState(100);
-  const [translate, setTranslate] = useState("translate-y-0");
   const [isOpenCart, setOpenCart] = useState(false);
 
   const isBrowser = (): boolean => typeof window !== "undefined";
@@ -42,11 +40,13 @@ export default function NavbarView({ navItem }: typeofNavItems) {
   useEffect(() => {
     return () => {
       if (window.scrollY >= 401) {
-        setTranslate("-translate-y-32");
-        setOpacityForScroll(0);
+        if (!navbarcolor) {
+          setOpacityForScroll(0);
+        }
         window.setTimeout(() => {
-          setOpacityForScroll(100)
-          setTranslate("translate-y-0");
+          if (!navbarcolor) {
+            setOpacityForScroll(100)
+          }
         }, 10);
       }
     }
@@ -54,12 +54,11 @@ export default function NavbarView({ navItem }: typeofNavItems) {
     isBrowser() && window.scrollY >= 401
   ])
 
-
   if (isBrowser()) {
     window.addEventListener("scroll", () => {
-      if (window.scrollY >= 401) {
+      if (window.scrollY > 511) {
         setNavbarcolor(true);
-      } else {
+      }else{
         setNavbarcolor(false);
       }
     })

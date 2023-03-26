@@ -7,11 +7,14 @@ export const CartContext = createContext<contextType | null>(null);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart]: any = useState([]);
+  const [navbarcolor, setNavbarcolors] = useState(false);
   const [price, setPrice] = useState(0);
   const addToCart = (item: ProductDataType) => {
     setCart([...cart, item]);
-    console.log(item, "Cart:", cart);
   };
+  function setNavbarcolor(item:boolean) {
+    setNavbarcolors(item)
+  }
   function updatePrice(action: string, updatedPrice: string) {
     if (action === "addition") {
       setPrice(price + Number(updatedPrice));
@@ -28,7 +31,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, price, updatePrice }}
+      value={{ cart, addToCart, removeFromCart, price, updatePrice, navbarcolor, setNavbarcolor }}
     >
       {children}
     </CartContext.Provider>
