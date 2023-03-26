@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { AllCatogryData } from "@/components/typesandArrays/AllMensData";
 import { CartContext } from "@/components/shared/CartContext";
 import { useContext } from "react";
+import Navbar from "@/components/views/Navbar";
 
 type Props = { params: any };
 
@@ -33,7 +34,7 @@ function findProduct(slug: string) {
   return product;
 }
 
-export default function Preview({ }: Props) {
+export default function Preview({}: Props) {
   const { setNavbarcolor }: any = useContext(CartContext);
   setTimeout(() => {
     setNavbarcolor(true);
@@ -54,6 +55,7 @@ export default function Preview({ }: Props) {
   return (
     <>
       <div className="h-[50vh]" />
+      <Navbar page="preview" />
       <ProductDetails images={images} video={video} data={product} />
       <div className="h-[50vh]" />
     </>

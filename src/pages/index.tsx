@@ -5,6 +5,7 @@ import ImageHoverEffect from "@/components/views/ImageHoverEffect";
 import HeroSection from "@/components/views/HeroSection";
 import Carousel from "@/components/Carousel";
 import ProductDetails from "@/components/ProductDetails";
+import Navbar from "@/components/views/Navbar";
 
 const images = [
   "https://cdn.shopify.com/s/files/1/2091/0251/products/m-wenlock2_1800x1800.jpg?v=1584466287",
@@ -23,6 +24,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="w-full h-screen">
+        <Navbar page="main" />
         <HeroSection />
         <SecondaryTextAfterHero />
         <div className="overflow-hidden">
