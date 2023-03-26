@@ -39,7 +39,7 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
   const isBrowser = (): boolean => typeof window !== "undefined";
 
   useEffect(() => {
-    if (page == "index") {
+    if (page != "preview") {
       return () => {
         if (window.scrollY >= 401) {
           if (!navbarcolor) {
@@ -56,7 +56,7 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
   }, [isBrowser() && window.scrollY >= 401]);
 
   if (isBrowser()) {
-    if (page == "index") {
+    if (page != "preview") {
       window.addEventListener("scroll", () => {
         if (window.scrollY > 511) {
           setNavbarcolor(true);
@@ -83,7 +83,7 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
           navbarcolor
             ? `top-0 duration-500 bg-white fixed shadow-sm h-20 opacity-${opacityForScroll} z-40`
             : "bg-transparent absolute z-40"
-        } ${page == "index" ? "" : "bg-white"} `}
+        } ${page !== "preview" ? "" : "bg-white"} `}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 ">
           <div className={` cursor-pointer `}>
