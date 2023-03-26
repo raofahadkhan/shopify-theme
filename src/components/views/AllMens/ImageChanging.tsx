@@ -7,7 +7,7 @@ export default function ImageChanging({ item, index }: any) {
   const onMouseEnter = () => setIsHovered(true);
   const onMouseLeave = () => setIsHovered(false);
   return (
-    <Link
+    <a
       href={`/preview/${item.name.split(" ").join("-").toLowerCase()}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -59,6 +59,6 @@ export default function ImageChanging({ item, index }: any) {
             <div key={index + 956} className={`w-4 h-4 ${item}`}></div>
           ))}
       </div>
-    </Link>
+    </a>
   );
 }
