@@ -6,3 +6,7 @@ export { default as SpringSummer2021 } from "./images/SpringSummer2021.webp"
 export { default as AloneWoman } from "./images/AloneWoman.webp"
 export { default as Favicon } from "./images/favicon.ico"
 export { default as reviews } from "./images/reviews.png"
+
+export { default as Hero1 } from "./aboutImages/hero1.webp"
+export { default as Hero2 } from "./aboutImages/hero2.webp"
+export { default as Hero3 } from "./aboutImages/hero3.webp"

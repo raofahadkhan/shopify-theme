@@ -66,7 +66,9 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
       });
     }
   }
-
+  if(page === "preview"){
+    setNavbarcolor(true);
+  }
   return (
     <div>
       <div
@@ -96,8 +98,8 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
             </Link>
           </div>
           <ul
-            className={`hidden md:flex flex-wrap space-x-10 text-gray-100 ${
-              navbarcolor ? "text-gray-900" : ""
+            className={`hidden md:flex flex-wrap space-x-10  ${
+              navbarcolor ? "text-gray-900" : "text-gray-100"
             }`}
           >
             {navItem &&
