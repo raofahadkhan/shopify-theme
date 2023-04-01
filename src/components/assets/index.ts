@@ -7,8 +7,8 @@ export { default as AloneWoman } from "./images/AloneWoman.webp"
 export { default as Favicon } from "./images/favicon.ico"
 export { default as reviews } from "./images/reviews.png"
 
-export { default as Hero1 } from "./aboutImages/hero1.webp"
-export { default as Hero2 } from "./aboutImages/hero2.webp"
-export { default as Hero3 } from "./aboutImages/hero3.webp"
+export { default as Hero1 } from "./aboutImages/Hero1.webp"
+export { default as Hero2 } from "./aboutImages/Hero2.webp"
+export { default as Hero3 } from "./aboutImages/Hero3.webp"
 
 // 
