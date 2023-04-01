@@ -202,6 +202,7 @@ export const NavbarItems: Array<NavbarItemType> = [
     {
         label: "About",
         dropdown: true,
+        href:"/about",
         child: [
             {
                 fourthMenu: [

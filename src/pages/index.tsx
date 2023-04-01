@@ -1,8 +1,11 @@
-import { Footer } from "@/components/home/Footer";
+import Carousel from "@/components/Carousel";
 import Svggrid from "@/components/home/Svggrid";
-import Productgrid from "@/components/home/cardgrid";
 import Product1 from "@/components/home/journalcard";
 import { Subscribe } from "@/components/home/signupcomponent";
+import HeroSection from "@/components/views/HeroSection";
+import ImageHoverEffect from "@/components/views/ImageHoverEffect";
+import Navbar from "@/components/views/Navbar";
+import SecondaryTextAfterHero from "@/components/views/SecondaryTextHero";
 import Head from "next/head";
 import { useEffect } from "react";
 import Gift from "../components/Gift";
@@ -11,9 +14,13 @@ import Parallex from "../components/Parallex";
 import Shop from "../components/Shop";
 import Swiper from "../components/Swiper";
 
-import HeroSection from "@/components/views/HeroSection";
-import ImageHoverEffect from "@/components/views/ImageHoverEffect";
-import SecondaryTextAfterHero from "@/components/views/SecondaryTextHero";
+const images = [
+	"https://cdn.shopify.com/s/files/1/2091/0251/products/m-wenlock2_1800x1800.jpg?v=1584466287",
+	"https://cdn.shopify.com/s/files/1/2091/0251/products/m-wenlock3_1800x1800.jpg?v=1584466287",
+	"https://cdn.shopify.com/s/files/1/2091/0251/products/m-wenlock1_1800x1800.jpg?v=1584466287",
+];
+const video = "video.mp4";
+
 export default function Home() {
 	useEffect(() => {
 		const elements = document.querySelectorAll(
@@ -66,17 +73,24 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main>
+				<Navbar page="index" />
 				<HeroSection />
-				<Product1 />
 				<SecondaryTextAfterHero />
+				<div className="overflow-hidden">
+					<Carousel />
+				</div>
 				<Shop />
 				<Hero />
 				<Gift />
+				<Product1 />
 				<ImageHoverEffect />
-				<Swiper />
-				<Parallex />
+				<div className="overflow-hidden">
+					<Swiper />
+				</div>
 				<Svggrid />
+				<Parallex />
 				<Subscribe />
+
 			</main>
 		</>
 	);

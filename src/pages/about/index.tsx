@@ -5,6 +5,11 @@ import React, { useEffect, useState } from "react";
 import { Component3 } from "../../components/about/aboutcomponent3";
 import Form from "../../components/about/inputform";
 import HeroChild from "@/components/about/heroSection/index";
+import HeroSectionForAbout from "@/components/views/About/HeroSection";
+import TextEffectSectionForAbout from "@/components/views/About/TextEffect";
+import Navbar from "@/components/views/Navbar";
+
+
 export default function Index() {
 	useEffect(() => {
 		const elements = document.querySelectorAll(
@@ -44,8 +49,9 @@ export default function Index() {
 	}, []);
 	return (
 		<>
-			{/* <HeroChild /> */}
-			{/* <HeroChild /> */}
+			<Navbar page="preview" />
+			<HeroSectionForAbout />
+			<TextEffectSectionForAbout />
 			<Component2 />
 			<Component3 />
 			<Form />
