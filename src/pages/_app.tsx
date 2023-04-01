@@ -5,6 +5,7 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import Navbar from "@/components/views/Navbar";
 import TopLabel from "@/components/views/Toplabel";
 import { Footer } from "@/components/Footer";
+import Productgrid from "@/components/cardgrid";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
@@ -13,6 +14,8 @@ export default function App({ Component, pageProps }: AppProps) {
 				<TopLabel />
 				<Navbar />
 				<Component {...pageProps} />
+				<Productgrid />
+				<Footer />
 			</ParallaxProvider>
 		</>
 	);

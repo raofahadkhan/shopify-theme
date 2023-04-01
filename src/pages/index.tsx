@@ -65,7 +65,7 @@ export default function Home() {
 				/>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-			<main className='w-full h-screen'>
+			<main>
 				<HeroSection />
 				<Product1 />
 				<SecondaryTextAfterHero />
@@ -77,8 +77,6 @@ export default function Home() {
 				<Parallex />
 				<Svggrid />
 				<Subscribe />
-				<Productgrid />
-				<Footer />
 			</main>
 		</>
 	);
