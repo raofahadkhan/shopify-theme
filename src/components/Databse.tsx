@@ -6,7 +6,7 @@ export const data =
     btn: 'Shop Gift Cards',
     imgLeft: '/images/img.jpg',
     altLeft: "Gift Cards",
-    imgRight: '/images/img2.webp',
+    imgRight: '/images/img222.webp',
     altRight: "Gift Cards"
 }
 
@@ -25,7 +25,7 @@ export const grid =
     subTitle: 'BRAND NEW',
     title: 'Summer wear',
     desc: 'Check out our comfy crewnecks, lightweight khakis, breathable tanktops and more.',
-    img1: '/images/img1.webp',
+    img1: '/images/img111.webp',
     alt1:"Summer",
     img2: '/images/img2.jpg',
     alt2:"Summer",
