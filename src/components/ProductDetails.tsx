@@ -32,6 +32,7 @@ function ProductDetails({ video, data }: Props) {
 
   function handleAddToCart() {
     addToCart({ ...data, size });
+    
   }
 
   return (
