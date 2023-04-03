@@ -9,18 +9,25 @@ export default function ImageHoverEffect() {
     const isBrowser = (): boolean => typeof window !== "undefined";
 
     if (isBrowser()) {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY >= 200) {
-                setScalingAnimation("scale-100");
-            } else {
-                setScalingAnimation("scale-125");
-            }
-        })
-    }
 
+        const elements = document.querySelectorAll(".scaling_animation");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setScalingAnimation("scale-100");
+                } else {
+                    setScalingAnimation("scale-125");
+                }
+            });
+        });
+        elements.forEach((element) => {
+            observer.observe(element);
+        });
+
+    };
 
     return (
-        <div className="w-full px-5 py-6 sm:p-12">
+        <div className="w-full px-5 py-6 sm:p-12 scaling_animation">
             <div className="mx-auto max-w-7xl grid grid-cols-2 sm:grid-cols-4 overflow-hidden">
                 {ImageData.map((item: ImageDataType, index: number) =>
                     <div key={index + 2} className={`${item.colSpan} ${item.TabColStart} ${item.TabColSpanEnd} overflow-hidden cursor-pointer relative group w-full`}>

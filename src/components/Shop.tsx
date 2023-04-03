@@ -93,7 +93,7 @@ const gridData: gridType = grid;
 export default function Shop() {
     return (
         <div>
-            <div className=' max-w-6xl m-auto md:pl-10'>
+            <div className=' max-w-7xl m-auto md:pl-10 pb-20'>
                 <div className='lg:mx-[6%] mx-[3%] flex justify-between md:flex-row flex-col'>
                     <div className='md:w-[60%] w-full flex relative'>
                         <div className='flex my-[20px] min-[560px]:w-[450px] w-[210px] m-auto items-center relative '>
