@@ -75,7 +75,7 @@ export default function Home() {
 			<main>
 				<Navbar page="index" />
 				<HeroSection />
-				{/* <SecondaryTextAfterHero />
+				<SecondaryTextAfterHero />
 				<div className="overflow-hidden">
 					<Carousel />
 				</div>
@@ -89,7 +89,7 @@ export default function Home() {
 				</div>
 				<Svggrid />
 				<Parallex />
-				<Subscribe /> */}
+				<Subscribe />
 
 			</main>
 		</>

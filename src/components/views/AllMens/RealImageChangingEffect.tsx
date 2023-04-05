@@ -7,7 +7,7 @@ export default function RealImageChangingEffect({ subItem, index }: any) {
     const onMouseEnter = () => setIsHovered(true);
     const onMouseLeave = () => setIsHovered(false);
     return (
-        <div className="border-4 border-yellow-200">
+        <div>
             < a
                 href={`/preview/${subItem.node.id.split("/")[(subItem.node.id.split("/")).length - 1]}`}
                 onMouseEnter={onMouseEnter}
