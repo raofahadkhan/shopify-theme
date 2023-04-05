@@ -97,7 +97,7 @@ export default function ImageChanging({ items }: any) {
     <div className="flex flex-1 flex-wrap gap-4">
       {
         items.map((subItem: any, index: number) =>
-            <RealImageChangingEffect subItem={subItem} index={index} />
+            <RealImageChangingEffect key={index} subItem={subItem} index={index} />
         )
       }
     </div >
