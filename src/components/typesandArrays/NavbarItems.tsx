@@ -34,14 +34,14 @@ export interface NavbarItemType {
 export const NavbarItems: Array<NavbarItemType> = [
     {
         label: "Men",
-        href: "/allmens/mens",
+        href: "/allmens/male",
         dropdown: true,
         child: [
             {
                 firstMenu: [
                     {
                         heading: "All men",
-                        href: "/allmens/mens",
+                        href: "/allmens/male",
                         underLineWidth: "4.5rem",
                         content: [
                             {
@@ -126,7 +126,7 @@ export const NavbarItems: Array<NavbarItemType> = [
     },
     {
         label: "Women",
-        href: "/allmens/allwomens",
+        href: "/allmens/female",
         dropdown: true,
         child: [
             {
@@ -135,7 +135,7 @@ export const NavbarItems: Array<NavbarItemType> = [
                         content: [
                             {
                                 label: "All women",
-                                href: "http://localhost:3000/allmens/allwomens",
+                                href: "http://localhost:3000/allmens/female",
                                 dropdown: false,
                                 underLineWidth: "6.6rem",
                             },
