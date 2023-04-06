@@ -7,14 +7,13 @@ export default function RealImageChangingEffect({ subItem, index }: any) {
     const onMouseEnter = () => setIsHovered(true);
     const onMouseLeave = () => setIsHovered(false);
     return (
-        <div>
+        <div className="w-[47%] md:w-[22%] ">
             < a
                 href={`/preview/${subItem.node.id.split("/")[(subItem.node.id.split("/")).length - 1]}`}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 key={index + 435}
-                className="group relative flex flex-col space-y-2 w-full sm:w-6/12 cursor-pointer"
-                // className="group relative flex flex-col space-y-2 w-5/12 sm:w-[23%] cursor-pointer"
+                className="group relative flex flex-col space-y-2 w-full sm:w-12/12 cursor-pointer"
             >
                 {
                     isHovering ? (
@@ -55,11 +54,3 @@ export default function RealImageChangingEffect({ subItem, index }: any) {
         </div>
     )
 }
-
-{/* 
-<div className="flex space-x-2">
-{item.availableColours &&
-    item.availableColours.map((item: string[], index: number) => (
-        <div key={index + 956} className={`w-4 h-4 ${item}`}></div>
-    ))}
-</div> */}
