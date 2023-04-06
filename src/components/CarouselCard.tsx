@@ -7,7 +7,7 @@ type Props = {
 const CarouselCard = ({ data }: any) => {
   const [showSecondaryImg, setSecondaryImg] = React.useState(false);
 
-  
+  console.log(data?.node.variants.edges[0].node.price.amount);
   return (
     <div>
       <div
@@ -20,7 +20,7 @@ const CarouselCard = ({ data }: any) => {
         {showSecondaryImg ? (
           <img
             src={data?.node.images.edges[1]?.node.url}
-            className="flex-shrink-0 rounded-md  "
+            className="flex-shrink-0 rounded-md "
           />
         ) : (
           <img
@@ -48,11 +48,13 @@ const CarouselCard = ({ data }: any) => {
         </motion.h3>
       </div>
       <div className="ml-4 flex flex-col space-y-2">
-        <h2 className="text-xl mt-2">{data.name}</h2>
-        <p className="tracking-[1.4px]">${data.price}</p>
+        <h2 className="text-xl mt-2">{data?.node.title}</h2>
+        <p className="tracking-[1.4px]">
+          ${data?.node.variants.edges[0].node.price.amount}
+        </p>
         <div className="flex">
           {data.reviews && (
-            <div className=" flex items-center space-x-2">
+            <div className=" flex items-start space-x-2">
               <div className="w-20">
                 <Image src={data.reviews} alt={""} width={50} height={50} />
               </div>
