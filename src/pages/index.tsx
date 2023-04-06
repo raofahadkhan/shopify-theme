@@ -6,6 +6,8 @@ import HeroSection from "@/components/views/HeroSection";
 import Carousel from "@/components/Carousel";
 import ProductDetails from "@/components/ProductDetails";
 import Navbar from "@/components/views/Navbar";
+import { AllCatogryData } from "@/components/typesandArrays/AllMensData";
+
 
 const images = [
   "https://cdn.shopify.com/s/files/1/2091/0251/products/m-wenlock2_1800x1800.jpg?v=1584466287",
@@ -32,7 +34,7 @@ export default function Home() {
         </div>
         <ImageHoverEffect />
         <div className="h-[15vh]" />
-        {/* <ProductDetails images={images} video={video} /> */}
+        <ProductDetails images={images} video={video} data={AllCatogryData[0].productData && AllCatogryData[0].productData[0]} />
       </main>
     </>
   );
