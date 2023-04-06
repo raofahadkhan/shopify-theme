@@ -7,8 +7,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper";
+import { ProductType } from "./typesandArrays/shopifyTypes/productTypes";
+// import { ProductType } from "./typesandArrays/shopifyTypes/productTypes";
 
-function CustomCarousel(data: any) {
+function CustomCarousel({ data }: { data: any }) {
+  console.log("data from props=========", data.node);
+  // console.log("from custom carousel page", data.data);
+
   return (
     <div className="container">
       <Swiper
@@ -33,10 +38,19 @@ function CustomCarousel(data: any) {
           },
         }}
       >
-        {data.data.map((product: any, index: any) => {
+        {data.node.map((product: any, index: any) => {
+          // product.node
+          // product.node
+
+          // console.log("data of product========", product.node);
           return (
             <SwiperSlide key={index}>
-              <CarouselCard data={product} />
+              {/* {product.node.map((pro: any) => {
+                
+                console.log(pro); */}
+              {/* // return <CarouselCard data={product} />; */}
+              {/* })} */}
+              <CarouselCard data={product.node} />
             </SwiperSlide>
           );
         })}

@@ -4,8 +4,10 @@ import Image from "next/image";
 type Props = {
   data: any;
 };
-const CarouselCard = ({ data }: Props) => {
+const CarouselCard = ({ data }: any) => {
   const [showSecondaryImg, setSecondaryImg] = React.useState(false);
+  // console.log("imeg=================>", data.node.images.edges[0].node.url);
+  // console.log("card data", data.images.edges[0].node.url);
 
   return (
     <div>
@@ -16,11 +18,18 @@ const CarouselCard = ({ data }: Props) => {
         onMouseEnter={() => setSecondaryImg(true)}
         onMouseLeave={() => setSecondaryImg(false)}
       >
-        {showSecondaryImg ? (
-          <img src={data.imageUrl} className="flex-shrink-0 rounded-md  " />
+        {/* {showSecondaryImg ? (
+          <img
+            src={data.images.edges[0].node.url}
+            className="flex-shrink-0 rounded-md  "
+          />
         ) : (
-          <img src={data.imageUrl2} className="flex-shrink-0 rounded-md " />
-        )}
+          <img
+            src={data.images.edges[1].node.url}
+            className="flex-shrink-0 rounded-md "
+          />
+        )} */}
+        {/* {data.node.handle} */}
 
         {data.banner && (
           <h3
