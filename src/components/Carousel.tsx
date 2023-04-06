@@ -1,7 +1,5 @@
 "use client";
 import { useState } from "react";
-import { AllCatogryData } from "./typesandArrays/AllMensData";
-
 import CustomCarousel from "./CustomCarousel";
 import { AllProductType } from "./typesandArrays/shopifyTypes/productTypes";
 
@@ -15,9 +13,6 @@ export default function Carousel({
   dataMen: AllProductType;
   dataWomen: AllProductType;
 }) {
-  // console.log(dataMen);
-  // const data: ProductType = dataMen;
-
   const [currentCarousel, setCurrentCarousel] = useState(1);
   return (
     <main className="w-screen flex flex-col items-center h-fit pb-[30px]">
@@ -44,10 +39,10 @@ export default function Carousel({
       </div>
       <div className="w-full h-full">
         {currentCarousel == 1 && (
-          <CustomCarousel data={dataMen.data.collection.products.edges} />
+          <CustomCarousel data={dataMen.data.collection.products} />
         )}
         {currentCarousel == 2 && (
-          <CustomCarousel data={dataWomen.data.collection.products.edges} />
+          <CustomCarousel data={dataWomen.data.collection.products} />
         )}
       </div>
     </main>

@@ -5,15 +5,10 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import { Pagination, Navigation } from "swiper";
 import { ProductType } from "./typesandArrays/shopifyTypes/productTypes";
-// import { ProductType } from "./typesandArrays/shopifyTypes/productTypes";
 
-function CustomCarousel({ data }: { data: any }) {
-  console.log("data from props=========", data.node);
-  // console.log("from custom carousel page", data.data);
-
+function CustomCarousel({ data }: { data: ProductType }) {
   return (
     <div className="container">
       <Swiper
@@ -38,23 +33,13 @@ function CustomCarousel({ data }: { data: any }) {
           },
         }}
       >
-        {data.node.map((product: any, index: any) => {
-          // product.node
-          // product.node
-
-          // console.log("data of product========", product.node);
+        {data.edges.map((product: any, index: any) => {
           return (
             <SwiperSlide key={index}>
-              {/* {product.node.map((pro: any) => {
-                
-                console.log(pro); */}
-              {/* // return <CarouselCard data={product} />; */}
-              {/* })} */}
-              <CarouselCard data={product.node} />
+              <CarouselCard data={product} />
             </SwiperSlide>
           );
         })}
-
         <div className="slider-controler">
           <div className="swiper-button-prev slider-arrow"></div>
           <div className="swiper-button-next slider-arrow"></div>
