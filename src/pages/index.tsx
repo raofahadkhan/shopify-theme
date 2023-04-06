@@ -90,7 +90,6 @@ export default function Home() {
 				<Svggrid />
 				<Parallex />
 				<Subscribe />
-
 			</main>
 		</>
 	);

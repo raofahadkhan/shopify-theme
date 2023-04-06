@@ -65,7 +65,7 @@ export const maleShortsApiFetchingQuery =`query ProductType {
 export const maleShirtsApiFetchingQuery = `query ProductType {
     collection(handle: "male") {
       handle
-      products(first: 10, filters: { productType: "Shirts" }) {
+      products(first: 10, filters: { productType: "shirts" }) {
         edges {
           node {
             images(first: 3){
@@ -161,7 +161,7 @@ export const maleShirtsApiFetchingQuery = `query ProductType {
   export const maleSaleApiFetchingQuery = `query ProductType {
     collection(handle: "male") {
       handle
-      products(first: 10, filters: { productType: "sale" }) {
+      products(first: 10, filters: { productType: "sales" }) {
         edges {
           node {
             images(first: 3){
