@@ -3,9 +3,6 @@ import { useState } from "react";
 import CustomCarousel from "./CustomCarousel";
 import { AllProductType } from "./typesandArrays/shopifyTypes/productTypes";
 
-//Image 1 :https://cdn.shopify.com/s/files/1/2091/0251/products/m-adventuremobilepullover-grey2_b2facf5e-7e6a-489d-ab6d-87c2be3d4db7_360x.jpg?v=1609257900
-//Image 2 :https://cdn.shopify.com/s/files/1/2091/0251/products/m-polarispullover-red2_360x.jpg?v=1609258000
-
 export default function Carousel({
   dataMen,
   dataWomen,

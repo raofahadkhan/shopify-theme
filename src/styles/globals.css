@@ -44,24 +44,16 @@
   }
 }
 
-div.swiper {
+.comp1 div.swiper {
   @apply w-full py-10;
 }
 
-div.swiper-slide {
+.comp1 div.swiper-slide {
   @apply flex flex-col justify-center bg-white text-center gap-5 p-7 md:min-w-[230px] md:w-[37%] min-w-[320px] h-[380px];
 }
 
-/* div.swiper-slide-active {
-	@apply shadow-[0_10px_25px_rgb(0, 0, 0, 0.1)];
-} */
-
-span.swiper-pagination-bullet.swiper-pagination-bullet-active {
-  @apply bg-black;
-}
-
-span.swiper-pagination-bullet {
-  @apply bg-transparent border-2 border-black opacity-100 w-2 h-2;
+.comp1 div.swiper-slide-active {
+	@apply shadow-xl;
 }
 
 div.swiper-button-prev,
@@ -296,8 +288,7 @@ div.swiper-button-next {
   position: relative;
   width: 100%;
 }
-.swiper,
-swiper-container {
+.swiper, .swiper-container {
   overflow: visible !important;
 }
 .swiper-slide {

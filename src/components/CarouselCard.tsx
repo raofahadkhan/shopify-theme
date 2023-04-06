@@ -7,7 +7,6 @@ type Props = {
 const CarouselCard = ({ data }: any) => {
   const [showSecondaryImg, setSecondaryImg] = React.useState(false);
 
-  console.log(data?.node.variants.edges[0].node.price.amount);
   return (
     <div>
       <div
