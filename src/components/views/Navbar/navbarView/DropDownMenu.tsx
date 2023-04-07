@@ -24,11 +24,11 @@ export default function DropDownMenu({ navbarcolors, item }: { navbarcolors: boo
                     ))}
                     {subItem.secondMenu && subItem.secondMenu.map((subsubItem: everysubMenuType, index: number) => (
                         <div key={index + 300} className={`translate-y-10 group-hover:translate-y-0 duration-300`}>
-                            <h3 className="text-xl font-normal font-sans">{subsubItem.heading}</h3>
+                            <h3 className=" text-xl font-normal font-sans">{subsubItem.heading}</h3>
                             {subsubItem.content && subsubItem.content.map((subsubsubItem: everysubMenuContentType, index: number) => {
                                 underLineWidth = (subsubsubItem.underLineWidth === "3.4rem" ? 'hover:after:w-15' : subsubsubItem.underLineWidth === "6.6rem" ? "hover:after:w-18" : subsubsubItem.underLineWidth === "3.7rem" ? "hover:after:w-17" : subsubsubItem.underLineWidth === "2.4rem" ? "hover:after:w-13" : "");
                                 return (
-                                    <h3 key={index + 400} className={`text-xl font-normal font-sans leading-10 relative after:bg-black after:h-[2px] after:w-[0%] after:left-0 after:bottom-1 after:absolute after:rounded-3xl after:duration-300 ${underLineWidth}`}>
+                                    <h3 key={index + 400} className={`text-xl font-normal font-sans leading-10 relative after:bg-black after:h-[2px] after:w-[0%] ${underLineWidth} after:left-0 after:bottom-1 after:absolute after:rounded-3xl after:duration-300 `}>
                                         <div >
                                             <a href={subsubsubItem.href}>
                                                 {subsubsubItem.label}

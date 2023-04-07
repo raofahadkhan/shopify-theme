@@ -11,8 +11,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [price, setPrice] = useState(0);
   const addToCart = (item: ProductDataType) => {
     setCart([...cart, item]);
+    setPrice(Number(item.price));
   };
-  function setNavbarcolor(item:boolean) {
+  function setNavbarcolor(item: boolean) {
     setNavbarcolors(item)
   }
   function updatePrice(action: string, updatedPrice: string) {

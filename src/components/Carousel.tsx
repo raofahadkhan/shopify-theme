@@ -10,7 +10,7 @@ import CustomCarousel from "./CustomCarousel";
 export default function Carousel() {
   const [currentCarousel, setCurrentCarousel] = useState(1);
   return (
-    <main className="w-screen flex flex-col items-center h-fit overflow-y-hidden pb-[30px]">
+    <main className="w-screen flex flex-col items-center h-fit pb-[30px]">
       <h2 className="uppercase tracking-[3px] text-lg">Top Picks</h2>
       <div className="flex justify-between text-3xl font-bold ">
         <p
@@ -27,7 +27,6 @@ export default function Carousel() {
           }`}
           onClick={() => {
             setCurrentCarousel(2);
-            console.log(currentCarousel);
           }}
         >
           Women

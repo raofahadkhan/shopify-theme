@@ -50,7 +50,7 @@ export default function TextEffectSectionForAbout() {
     }, 300);
   }
   return (
-    <div className="h-screen overflow-hidden max-w-6xl mx-auto">
+    <div className="overflow-hidden max-w-6xl mx-auto">
       <div className="max-w-7xl mx-auto z-10 h-full flex justify-start items-end absolute inset-0 w-full bg-transparent pb-10 md:pb-[7rem] pl-5">
         <div className="h-28 overflow-hidden py-4 px-14 ">
           <h1

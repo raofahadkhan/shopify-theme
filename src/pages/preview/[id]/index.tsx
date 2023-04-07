@@ -55,6 +55,7 @@ export default function Preview({}: Props) {
   return (
     <>
       <Navbar page="preview" />
+      <div className="h-20" />
       <ProductDetails images={images} video={video} data={product} />
     </>
   );

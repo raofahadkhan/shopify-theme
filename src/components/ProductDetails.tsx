@@ -1,10 +1,12 @@
 "use client";
+import { FaLongArrowAltRight } from 'react-icons/fa'
 import React, { useState } from "react";
 import MoreDetails from "./MoreDetails";
 import SizeChart from "./SizeChart";
 import AskQuestionForm from "./AskQuestionForm";
 import { CartContext } from "@/components/shared/CartContext";
 import { useContext } from "react";
+import BlackButton from "./shared/Button";
 
 type Props = {
   images: string[];
@@ -30,6 +32,7 @@ function ProductDetails({ video, data }: Props) {
 
   function handleAddToCart() {
     addToCart({ ...data, size });
+    
   }
 
   return (
@@ -42,9 +45,8 @@ function ProductDetails({ video, data }: Props) {
                 src={images[2]}
                 alt=""
                 onClick={() => setSelected({ type: "video", src: video })}
-                className={`w-[100px] ${
-                  selected.type == "video" ? "ring-2 ring-black" : ""
-                }`}
+                className={`w-[100px] ${selected.type == "video" ? "ring-2 ring-black" : ""
+                  }`}
               />
               <img
                 className="absolute top-1 right-1 w-[25px] h-[25px] "
@@ -59,9 +61,8 @@ function ProductDetails({ video, data }: Props) {
                 src={image}
                 alt=""
                 onClick={() => setSelected({ type: "image", src: image })}
-                className={`w-[100px] cursor-pointer ${
-                  selected.src == image ? "ring-2 ring-black" : ""
-                }`}
+                className={`w-[100px] cursor-pointer ${selected.src == image ? "ring-2 ring-black" : ""
+                  }`}
               />
             );
           })}
@@ -86,36 +87,32 @@ function ProductDetails({ video, data }: Props) {
         <p className="text-lg uppercase font-semibold w-full">Size</p>
         <div className="flex space-x-4 flex-wrap">
           <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0 ${
-              size == "S" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
+            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0 ${size == "S" ? "ring-black ring-2" : "ring-1 ring-gray-300"
+              }`}
             onClick={() => setSize("S")}
           >
             S
           </button>
 
           <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300  flex-grow-0 flex-shrink-0 ${
-              size == "M" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
+            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300  flex-grow-0 flex-shrink-0 ${size == "M" ? "ring-black ring-2" : "ring-1 ring-gray-300"
+              }`}
             onClick={() => setSize("M")}
           >
             M
           </button>
 
           <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0 ${
-              size == "L" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
+            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0 ${size == "L" ? "ring-black ring-2" : "ring-1 ring-gray-300"
+              }`}
             onClick={() => setSize("L")}
           >
             L
           </button>
 
           <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300  flex-grow-0 flex-shrink-0 ${
-              size == "XL" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
+            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300  flex-grow-0 flex-shrink-0 ${size == "XL" ? "ring-black ring-2" : "ring-1 ring-gray-300"
+              }`}
             onClick={() => setSize("XL")}
           >
             XL
@@ -123,16 +120,20 @@ function ProductDetails({ video, data }: Props) {
         </div>
 
         <button
-          className="w-full group text-center ring-black ring-1 py-3 text-lg font-bold flex items-center"
+          className="w-full overflow-hidden group text-center ring-black ring-1 py-3 text-lg font-bold flex items-center"
           onClick={handleAddToCart}
         >
           <p className="flex-grow group-hover:-translate-x-8 transition duration-200">
             Add to Cart
           </p>
-          <img
+          <div className="w-[20px] translate-x-8 group-hover:-translate-x-20 duration-300 invisible group-hover:inline-flex group-hover:visible">
+
+            <FaLongArrowAltRight />
+          </div>
+          {/* <img
             src="https://img.icons8.com/ios-filled/256/long-arrow-up.png"
-            className="rotate-[90deg] w-[20px] translate-x-8 group-hover:-translate-x-2 transition duration-200 hidden group-hover:inline-flex"
-          />
+            className="rotate-[90deg] w-[20px] translate-x-8 group-hover:-translate-x-20 transition duration-200 hidden group-hover:inline-flex"
+          /> */}
         </button>
 
         <button className="w-full text-center text-white bg-black py-3 text-lg font-bold">

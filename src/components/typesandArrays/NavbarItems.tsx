@@ -229,6 +229,7 @@ export const NavbarItems: Array<NavbarItemType> = [
     },
     {
         label: "Theme features",
+        href:"/themefeatures",
         dropdown: false,
         heightToDisplay: 0,
     },

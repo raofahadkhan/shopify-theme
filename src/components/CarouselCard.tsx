@@ -10,9 +10,8 @@ const CarouselCard = ({ data }: Props) => {
   return (
     <div>
       <div
-        // w-[160px] lg:w-[260px] min-h-[200px] lg:min-h-[400px]
         className={
-          " flex flex-col shrink-0 relative bg-no-repeat transition-all duration-300 group bg-cover snap-center pt-6 mx-2 lg:mx-4"
+          "flex flex-col shrink-0 relative bg-no-repeat transition-all duration-300 group bg-cover snap-center pt-6 mx-2 lg:mx-4"
         }
         onMouseEnter={() => setSecondaryImg(true)}
         onMouseLeave={() => setSecondaryImg(false)}
