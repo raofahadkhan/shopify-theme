@@ -9,7 +9,7 @@ export default function RealImageChangingEffect({ subItem, index }: any) {
     return (
         <div className="w-[47%] md:w-[22%] ">
             < a
-                href={`/preview/${subItem.node.id.split("/")[(subItem.node.id.split("/")).length - 1]}`}
+                href={`/preview/${subItem.node.handle}`}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 key={index + 435}
@@ -51,6 +51,6 @@ export default function RealImageChangingEffect({ subItem, index }: any) {
                     <p className="text-xs">2 Person</p>
                 </div>
             </a >
-        </div>
+        </div >
     )
 }

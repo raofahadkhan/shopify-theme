@@ -1,0 +1,34 @@
+export const allProductQuery = `{
+    products(first:25) {
+      edges {
+        node {
+            variants(first:250){
+                edges{
+                    node{
+                        id,
+                        title,
+                        price{
+                            amount,
+                            currencyCode
+                        },
+                        sku
+  
+  
+                    }
+                }
+            }
+            handle
+            images(first:3){
+                edges{
+                    node{
+                        url
+                    }
+                }
+            },
+          id,
+          title,
+          description
+        }
+      }
+    }
+  }`;

@@ -11,7 +11,6 @@ import { femaleApiFetchingQuery, femaleDressesApiFetchingQuery, femaleJacketsApi
 const apiUrl = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
 
 export default function page({ params, allCatogryDataofMensFromApi, allCatogryDataofWomensFromApi }: any) {
-  console.log(allCatogryDataofMensFromApi)
   if (params && allCatogryDataofMensFromApi && allCatogryDataofWomensFromApi) {
 
     let particularData = AllCatogryData.find(

@@ -15,9 +15,10 @@ type Props = {
 };
 
 function ProductDetails({ video, data }: Props) {
+  console.log(data)
   const images = [
-    data.imageUrl,
-    data.imageUrl2,
+    data.images.edges[0].node.url,
+    data.images.edges[1].node.url,
     "https://cdn.shopify.com/s/files/1/2091/0251/products/m-wenlock1_1800x1800.jpg?v=1584466287",
   ];
 
@@ -32,7 +33,7 @@ function ProductDetails({ video, data }: Props) {
 
   function handleAddToCart() {
     addToCart({ ...data, size });
-    
+
   }
 
   return (
@@ -55,16 +56,18 @@ function ProductDetails({ video, data }: Props) {
             </div>
           )}
           {images.map((image, i) => {
-            return (
-              <img
-                key={i}
-                src={image}
-                alt=""
-                onClick={() => setSelected({ type: "image", src: image })}
-                className={`w-[100px] cursor-pointer ${selected.src == image ? "ring-2 ring-black" : ""
-                  }`}
-              />
-            );
+            if (image) {
+              return (
+                <img
+                  key={i}
+                  src={image}
+                  alt=""
+                  onClick={() => setSelected({ type: "image", src: image })}
+                  className={`w-[100px] cursor-pointer ${selected.src == image ? "ring-2 ring-black" : ""
+                    }`}
+                />
+              );
+            }
           })}
         </div>
 
@@ -81,8 +84,8 @@ function ProductDetails({ video, data }: Props) {
       </div>
 
       <div className="basis-1/2 flex flex-col space-y-4 mt-6 lg:mt-0 px-4 lg:px-0">
-        <h3 className="text-3xl font-bold">{data.name ? data.name : ""}</h3>
-        <p className="text-xl tracking-[2px]">${data.price}</p>
+        <h3 className="text-3xl font-bold">{data.title}</h3>
+        <p className="text-xl tracking-[2px]">$45</p>
         <hr className="bg-gray-300" />
         <p className="text-lg uppercase font-semibold w-full">Size</p>
         <div className="flex space-x-4 flex-wrap">
@@ -140,12 +143,8 @@ function ProductDetails({ video, data }: Props) {
           Buy it now
         </button>
         <p className="italic tracking-[1px]">
-          This is a demonstration store. You can purchase products like this
-          from United By Blue
-        </p>
-        <p className="">
-          Like your well-worn pair of jeans in short-sleeve button down form.
-          Features an understated plus-sign pattern.
+          {data.description.substr(0, 151)}
+          <span className='block mt-3'>{data.description.substr(151) ? data.description.substr(151) : " "}</span>
         </p>
         <ul className="list-disc ml-8">
           <li>All-over print </li>
