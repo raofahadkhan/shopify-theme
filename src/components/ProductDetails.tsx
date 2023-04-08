@@ -16,11 +16,14 @@ type Props = {
 };
 
 function ProductDetails({ data, videoStatus, video }: Props) {
+  console.log("from product page", data);
   const [price, setPrice] = useState<number>(
     data?.node?.variants?.edges[0]?.node.price.amount
   );
+  const [title, setTitle] = useState();
   const [variant, setVariant] = useState();
-  const [size, setSize] = useState("S");
+  // console.log("outside cart", variant);
+  const [size, setSize] = useState(data.node.variants.edges[0].node.title);
   const { addToCart }: any = useContext(CartContext);
   const [selected, setSelected] = useState({
     type: "video",
@@ -37,6 +40,8 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     const variantt = data?.node?.variants.edges?.find(
       (ele: any) => ele.node.title === size
     );
+
+    setTitle(data?.node?.title);
     setVariant(variantt);
     setPrice(variantt?.node?.price?.amount);
     if (videoStatus === false) {
@@ -44,8 +49,8 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     }
   }, [size, videoStatus]);
 
-  function handleAddToCart() {
-    addToCart({ ...data, size });
+  function handleAddToCart(variant: any) {
+    addToCart({ ...variant, size, title, images });
   }
 
   return (
@@ -109,52 +114,28 @@ function ProductDetails({ data, videoStatus, video }: Props) {
         <hr className="bg-gray-300" />
         <p className="text-lg uppercase font-semibold w-full">Size</p>
         <div className="flex space-x-4 flex-wrap">
-          <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0 ${
-              size == "S" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
-            onClick={() => {
-              setSize("S");
-              // setPrice(200);
-            }}
-          >
-            S
-          </button>
-
-          {/* <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300  flex-grow-0 flex-shrink-0 ${
-              size == "M" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
-            onClick={() => {
-              setSize("M");
-              // setVariantState();
-            }}
-          >
-            M
-          </button>
-
-          <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0 ${
-              size == "L" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
-            onClick={() => setSize("L")}
-          >
-            L
-          </button>
-
-          <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300  flex-grow-0 flex-shrink-0 ${
-              size == "XL" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
-            onClick={() => setSize("XL")}
-          >
-            XL
-          </button> */}
+          {data.node.variants.edges.map((elem: any, index: number) => (
+            <button
+              className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0
+               ${
+                 size == `${elem.node.title}`
+                   ? "ring-black ring-2"
+                   : "ring-1 ring-gray-300"
+               }`}
+              onClick={() => {
+                setSize(`${elem.node.title}`);
+                // setPrice(200);
+              }}
+              key={index}
+            >
+              {elem.node.title}
+            </button>
+          ))}
         </div>
 
         <button
           className="w-full overflow-hidden group text-center ring-black ring-1 py-3 text-lg font-bold flex items-center"
-          onClick={handleAddToCart}
+          onClick={() => handleAddToCart(variant)}
         >
           <p className="flex-grow group-hover:-translate-x-8 transition duration-200">
             Add to Cart

@@ -68,14 +68,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     data();
   }, []);
 
-  const addToCart = (item: ProductDataType) => {
+  const addToCart = (item: any) => {
     setCart([...cart, item]);
-    setPrice(Number(item.price));
+    setPrice(price+Number(item?.node?.price?.amount));
   };
   function setNavbarcolor(item: boolean) {
     setNavbarcolors(item);
   }
   function updatePrice(action: string, updatedPrice: string) {
+    console.log("safsdfaf", updatedPrice);
     if (action === "addition") {
       setPrice(price + Number(updatedPrice));
     } else if (action == "substraction") {
