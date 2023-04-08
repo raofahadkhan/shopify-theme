@@ -36,10 +36,16 @@ export default function Carousel({
       </div>
       <div className="w-full h-full">
         {currentCarousel == 1 && (
-          <CustomCarousel data={dataMen.data.collection.products} />
+          <CustomCarousel
+            data={dataMen.data.collection.products}
+            btnState="mens"
+          />
         )}
         {currentCarousel == 2 && (
-          <CustomCarousel data={dataWomen.data.collection.products} />
+          <CustomCarousel
+            data={dataWomen.data.collection.products}
+            btnState="allwomens"
+          />
         )}
       </div>
     </main>

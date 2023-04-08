@@ -7,8 +7,15 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import { ProductType } from "./typesandArrays/shopifyTypes/productTypes";
+import Link from "next/link";
 
-function CustomCarousel({ data }: { data: ProductType }) {
+function CustomCarousel({
+  data,
+  btnState,
+}: {
+  data: ProductType;
+  btnState: string;
+}) {
   return (
     <div className="container">
       <Swiper
@@ -36,7 +43,9 @@ function CustomCarousel({ data }: { data: ProductType }) {
         {data.edges.map((product: any, index: any) => {
           return (
             <SwiperSlide key={index}>
-              <CarouselCard data={product} />
+              <Link href={`/preview/${product.node.handle}`}>
+                <CarouselCard data={product} />
+              </Link>
             </SwiperSlide>
           );
         })}
@@ -46,9 +55,11 @@ function CustomCarousel({ data }: { data: ProductType }) {
         </div>
       </Swiper>
       <div className="flex py-12">
-        <button className="mx-auto px-6 py-3 bg-black text-white font-extrabold">
-          View All
-        </button>
+        <Link href={`/allmens/${btnState}`} className="mx-auto">
+          <button className="mx-auto px-6 py-3 bg-black text-white font-extrabold">
+            View All
+          </button>
+        </Link>
       </div>
     </div>
   );
