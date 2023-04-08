@@ -108,7 +108,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
         <p className="text-lg uppercase font-semibold w-full">Size</p>
         <div className="flex space-x-4 flex-wrap">
 
-          {data.node.variants.edges.map((elem: any) =>
+          {data.node.variants.edges.map((elem: any, index: number) =>
             <button
               className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0
                ${size == `${elem.node.title}` ? "ring-black ring-2" : "ring-1 ring-gray-300"
@@ -117,6 +117,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
                 setSize(`${elem.node.title}`);
                 // setPrice(200);
               }}
+              key={index}
             >
               {elem.node.title}
             </button>
