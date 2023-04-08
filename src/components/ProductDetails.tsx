@@ -20,7 +20,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     data?.node?.variants?.edges[0]?.node.price.amount
   );
   const [variant, setVariant] = useState();
-  const [size, setSize] = useState("S");
+  const [size, setSize] = useState(data.node.variants.edges[0].node.title);
   const { addToCart }: any = useContext(CartContext);
   const [selected, setSelected] = useState({
     type: "video",
@@ -59,9 +59,8 @@ function ProductDetails({ data, videoStatus, video }: Props) {
                   src={images[2]}
                   alt=""
                   onClick={() => setSelected({ type: "video", src: video })}
-                  className={`w-[100px] ${
-                    selected.type == "video" ? "ring-2 ring-black" : ""
-                  }`}
+                  className={`w-[100px] ${selected.type == "video" ? "ring-2 ring-black" : ""
+                    }`}
                 />
               )}
               <img
@@ -77,9 +76,8 @@ function ProductDetails({ data, videoStatus, video }: Props) {
                 src={image}
                 alt=""
                 onClick={() => setSelected({ type: "image", src: image })}
-                className={`w-[100px] cursor-pointer ${
-                  selected.src == image ? "ring-2 ring-black" : ""
-                }`}
+                className={`w-[100px] cursor-pointer ${selected.src == image ? "ring-2 ring-black" : ""
+                  }`}
               />
             );
           })}
@@ -109,47 +107,21 @@ function ProductDetails({ data, videoStatus, video }: Props) {
         <hr className="bg-gray-300" />
         <p className="text-lg uppercase font-semibold w-full">Size</p>
         <div className="flex space-x-4 flex-wrap">
-          <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0 ${
-              size == "S" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
-            onClick={() => {
-              setSize("S");
-              // setPrice(200);
-            }}
-          >
-            S
-          </button>
 
-          {/* <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300  flex-grow-0 flex-shrink-0 ${
-              size == "M" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
-            onClick={() => {
-              setSize("M");
-              // setVariantState();
-            }}
-          >
-            M
-          </button>
+          {data.node.variants.edges.map((elem: any) =>
+            <button
+              className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0
+               ${size == `${elem.node.title}` ? "ring-black ring-2" : "ring-1 ring-gray-300"
+                }`}
+              onClick={() => {
+                setSize(`${elem.node.title}`);
+                // setPrice(200);
+              }}
+            >
+              {elem.node.title}
+            </button>
+          )}
 
-          <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0 ${
-              size == "L" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
-            onClick={() => setSize("L")}
-          >
-            L
-          </button>
-
-          <button
-            className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300  flex-grow-0 flex-shrink-0 ${
-              size == "XL" ? "ring-black ring-2" : "ring-1 ring-gray-300"
-            }`}
-            onClick={() => setSize("XL")}
-          >
-            XL
-          </button> */}
         </div>
 
         <button
