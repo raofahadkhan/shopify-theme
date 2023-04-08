@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function RealImageChangingEffect({ subItem, index }: any) {
+    console.log(subItem.node)
     const [isHovering, setIsHovered] = useState(false);
     const onMouseEnter = () => setIsHovered(true);
     const onMouseLeave = () => setIsHovered(false);

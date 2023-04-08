@@ -49,21 +49,21 @@ const video = "/video.mp4";
 
 
 function findProductUsingLastIndexOfId(itemToMap: any, slug: any) {
-  let DataToReturn = itemToMap.find((item: any) => slug === (item.node.id).handle);
+  let DataToReturn = itemToMap.find((item: any) => slug === (item.node).handle);
   return DataToReturn
 }
 
 export default function Preview({ params, allProductData }: any) {
   if (params && allProductData) {
     let filteredDataForPreviewProduct = findProductUsingLastIndexOfId((allProductData.data.products.edges), params.id)
-    console.log(filteredDataForPreviewProduct)
-    // return (
-    //   <>
-    //     <Navbar page="preview" />
-    //     <div className="h-20" />
-    //     <ProductDetails images={images} video={video} data={filteredDataForPreviewProduct.node} />
-    //   </>
-    // );
+    console.log("Filetered Data" + filteredDataForPreviewProduct)
+    return (
+      <>
+        <Navbar page="preview" />
+        <div className="h-20" />
+        <ProductDetails images={images} video={video} data={filteredDataForPreviewProduct.node} />
+      </>
+    );
   } else {
     return (
       <div>Loading...</div>
