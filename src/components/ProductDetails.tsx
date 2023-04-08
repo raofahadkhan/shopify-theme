@@ -50,7 +50,7 @@ function ProductDetails({ video, data }: Props) {
       <div onClick={() => showChart("hide")} className={`${blackScreen ? "flex" : "hidden"} fixed inset-0 bg-slate-700 opacity-75 z-10`}></div>
       {/* <div className='fixed inset-0 flex justify-center items-center z-50'> */}
       <div className={`${popupScreen ? "flex" : "hidden"} flex-col fixed my-16 left-20 right-20 md:left-40 md:right-40 lg:left-[29rem] lg:right-[29rem] xl:left-[32rem] xl:right-[32rem] 2xl:left-[40rem] 2xl:right-[40rem] p-4 bg-white z-50 `}>
-        <div className='text-right' onClick={() => { showChart("hide") }}>C</div>
+        <div className='text-right cursor-pointer' onClick={() => { showChart("hide") }}>C</div>
         {/* Size Chart Created by abbasit using table tag */}
         <table>
           <tr>
