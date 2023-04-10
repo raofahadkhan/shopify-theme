@@ -22,9 +22,9 @@ function ProductDetails({ data, videoStatus, video }: Props) {
   );
   const [title, setTitle] = useState();
   const [variant, setVariant] = useState();
-  // console.log("outside cart", variant);
+  console.log("outside cart", variant);
   const [size, setSize] = useState(data.node.variants.edges[0].node.title);
-  const { addToCart }: any = useContext(CartContext);
+  const { addToCart, cart }: any = useContext(CartContext);
   const [selected, setSelected] = useState({
     type: "video",
     src: "video.mp4",
@@ -50,7 +50,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
   }, [size, videoStatus]);
 
   function handleAddToCart(variant: any) {
-    addToCart({ ...variant, size, title, images });
+    if (cart) addToCart({ ...variant, size, title, images });
   }
 
   return (
@@ -109,7 +109,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
           {/* {variant?.node?.price.amount}
            */}
 
-          {price}
+          {`$${price}`}
         </p>
         <hr className="bg-gray-300" />
         <p className="text-lg uppercase font-semibold w-full">Size</p>

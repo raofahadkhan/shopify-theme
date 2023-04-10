@@ -13,7 +13,7 @@ export default function IncrementButtons({ item }: { item: any }) {
     } else {
       removeFromCart(item);
     }
-    updatePrice("substraction", item.price);
+    updatePrice("substraction", item.node.price.amount);
   }
   function incrementPerform() {
     setNumberOfItems(numberOfItems + 1);
