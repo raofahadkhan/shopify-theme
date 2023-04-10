@@ -56,6 +56,8 @@ const getAllProductsDataFromAPI = async () => {
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart]: any = useState([]);
+  const [shopifyCart, SetShopifyCart] = useState({});
+
   // const cartReducer = (state: any, action: any) => {
   //   switch (action.type) {
   //     default:

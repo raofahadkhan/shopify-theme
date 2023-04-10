@@ -15,6 +15,19 @@ type Props = {
   data: any;
 };
 
+export async function createShopifyCart() {
+  const url = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
+  let res = await fetch(url, {
+    method: "Post",
+    headers: {
+      "Content-type": "application/json",
+      "X-Shopify-Storefront-Access-Token": `${process.env.API_KEY}`,
+    },
+    body: JSON.stringify({ query: queryForCartCreation }),
+  });
+  return res.json();
+}
+
 function ProductDetails({ data, videoStatus, video }: Props) {
   console.log("from product page", data);
   const [price, setPrice] = useState<number>(
@@ -24,7 +37,8 @@ function ProductDetails({ data, videoStatus, video }: Props) {
   const [variant, setVariant] = useState();
   console.log("outside cart", variant);
   const [size, setSize] = useState(data.node.variants.edges[0].node.title);
-  const { addToCart, cart }: any = useContext(CartContext);
+  const { addToCart, cart, shopifyCart, SetShopifyCart }: any =
+    useContext(CartContext);
   const [selected, setSelected] = useState({
     type: "video",
     src: "video.mp4",
@@ -40,7 +54,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     const variantt = data?.node?.variants.edges?.find(
       (ele: any) => ele.node.title === size
     );
-
+    // console.log("I am variant", variantt.node.id);
     setTitle(data?.node?.title);
     setVariant(variantt);
     setPrice(variantt?.node?.price?.amount);
@@ -49,9 +63,12 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     }
   }, [size, videoStatus]);
 
-  function handleAddToCart(variant: any) {
+  async function handleAddToCart(variant: any) {
     if (cart) addToCart({ ...variant, size, title, images });
+    const shopifyCartRes = await createShopifyCart();
+    SetShopifyCart(shopifyCartRes);
   }
+  console.log(shopifyCart);
 
   return (
     <section className="flex flex-col lg:flex-row lg:space-x-8 lg:px-12 ">
@@ -175,3 +192,68 @@ function ProductDetails({ data, videoStatus, video }: Props) {
 }
 
 export default ProductDetails;
+
+const queryForCartCreation = `mutation {
+  cartCreate(
+    input: {
+      lines: [
+        {
+          quantity: 1
+          merchandiseId:${variant.node.id}
+        }
+      ],
+      # The information about the buyer that's interacting with the cart.
+    }
+  ) {
+    cart {
+      id
+      createdAt
+      updatedAt
+      lines(first: 10) {
+        edges {
+          node {
+            id
+            merchandise {
+              ... on ProductVariant {
+                id
+              }
+            }
+          }
+        }
+      }
+      buyerIdentity {
+        deliveryAddressPreferences {
+          __typename
+        }
+      }
+      attributes {
+        key
+        value
+      }
+      # The estimated total cost of all merchandise that the customer will pay at checkout.
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        # The estimated amount, before taxes and discounts, for the customer to pay at checkout.
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        # The estimated tax amount for the customer to pay at checkout.
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        # The estimated duty amount for the customer to pay at checkout.
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+      }
+    }
+  }
+}
+
+`;
