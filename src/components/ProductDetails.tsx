@@ -15,7 +15,68 @@ type Props = {
   data: any;
 };
 
-export async function createShopifyCart() {
+export async function createShopifyCart(variant: any) {
+  // console.log('from createShopifyCart',variant.node.id)
+  const variantId = JSON.stringify(variant.node.id);
+  const queryForCartCreation = `mutation {
+    cartCreate(
+      input: {
+        lines: [
+          {
+            quantity: 1
+            merchandiseId:${variantId}
+          }
+        ],
+      }
+    ) {
+      cart {
+        id
+        createdAt
+        updatedAt
+        lines(first: 10) {
+          edges {
+            node {
+              id
+              merchandise {
+                ... on ProductVariant {
+                  id
+                }
+              }
+            }
+          }
+        }
+        buyerIdentity {
+          deliveryAddressPreferences {
+            __typename
+          }
+        }
+        attributes {
+          key
+          value
+        }
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+          totalTaxAmount {
+            amount
+            currencyCode
+          }
+          totalDutyAmount {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+  }
+  `;
+
   const url = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
   let res = await fetch(url, {
     method: "Post",
@@ -28,16 +89,82 @@ export async function createShopifyCart() {
   return res.json();
 }
 
+export async function updateShopifyCart(variant: any, shopifyCart: any) {
+  const variantId = JSON.stringify(variant.node.id);
+  const cartId = !shopifyCart.data?.cartCreate
+    ? JSON.stringify(shopifyCart?.data?.cartLinesAdd.cart.id)
+    : JSON.stringify(shopifyCart?.data?.cartCreate.cart.id);
+  console.log(cartId);
+  const queryForUpdateShopifyCart = `mutation {  
+    cartLinesAdd(
+      cartId: ${cartId}
+        lines: [
+       {
+            quantity: 1
+            merchandiseId: ${variantId}
+          }
+    ]
+    ) {
+      cart {
+        id
+        lines(first: 10) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                }
+              }
+            }
+          }
+        }
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+          totalTaxAmount {
+            amount
+            currencyCode
+          }
+          totalDutyAmount {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+  }
+  `;
+
+  const url = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
+  let res = await fetch(url, {
+    method: "Post",
+    headers: {
+      "Content-type": "application/json",
+      "X-Shopify-Storefront-Access-Token": `${process.env.API_KEY}`,
+    },
+    body: JSON.stringify({ query: queryForUpdateShopifyCart }),
+  });
+  return res.json();
+}
+
 function ProductDetails({ data, videoStatus, video }: Props) {
-  console.log("from product page", data);
+  // console.log("from product page", data);
   const [price, setPrice] = useState<number>(
     data?.node?.variants?.edges[0]?.node.price.amount
   );
   const [title, setTitle] = useState();
   const [variant, setVariant] = useState();
-  console.log("outside cart", variant);
+  // console.log("outside cart", variant);
   const [size, setSize] = useState(data.node.variants.edges[0].node.title);
-  const { addToCart, cart, shopifyCart, SetShopifyCart }: any =
+  const { addToCart, cart, shopifyCart, setShopifyCart }: any =
     useContext(CartContext);
   const [selected, setSelected] = useState({
     type: "video",
@@ -61,15 +188,37 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     if (videoStatus === false) {
       setSelected({ type: "image", src: images[0] });
     }
-  }, [size, videoStatus]);
+  }, [size]);
 
-  async function handleAddToCart(variant: any) {
-    if (cart) addToCart({ ...variant, size, title, images });
-    const shopifyCartRes = await createShopifyCart();
-    SetShopifyCart(shopifyCartRes);
+  async function handleAddToCart(variant: any, shopifyCart: any) {
+    let handleDuplicates = cart.find(
+      (cartItem: any) => cartItem.node.id === variant.node.id
+    );
+    if (handleDuplicates) {
+      // setCart((item.count += 1));
+      alert("already added");
+    } else {
+      if (cart.length === 0 && shopifyCart.length === 0) {
+        addToCart({ ...variant, size, title, images });
+        const shopifyCartRes = await createShopifyCart(variant);
+        await setShopifyCart(shopifyCartRes);
+        console.log("shopifyCartState =====>", shopifyCart);
+        console.log(
+          "shopifyCartRes ======>",
+          // shopifyCartRes.data.cartCreate.cart.id,
+          shopifyCartRes
+        );
+      } else {
+        addToCart({ ...variant, size, title, images });
+        const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
+        await setShopifyCart(cartUpdateRes);
+        console.log("shopifyCartState =====>", shopifyCart);
+
+        console.log("from updateshopifycart", cartUpdateRes);
+        // alert("fahad");
+      }
+    }
   }
-  console.log(shopifyCart);
-
   return (
     <section className="flex flex-col lg:flex-row lg:space-x-8 lg:px-12 ">
       <div className="basis-1/2 flex flex-row-reverse lg:flex-row lg:px-2 space-x-4 self-start static lg:sticky top-0 md:w-full ">
@@ -152,7 +301,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
 
         <button
           className="w-full overflow-hidden group text-center ring-black ring-1 py-3 text-lg font-bold flex items-center"
-          onClick={() => handleAddToCart(variant)}
+          onClick={() => handleAddToCart(variant, shopifyCart)}
         >
           <p className="flex-grow group-hover:-translate-x-8 transition duration-200">
             Add to Cart
@@ -192,68 +341,3 @@ function ProductDetails({ data, videoStatus, video }: Props) {
 }
 
 export default ProductDetails;
-
-const queryForCartCreation = `mutation {
-  cartCreate(
-    input: {
-      lines: [
-        {
-          quantity: 1
-          merchandiseId:${variant.node.id}
-        }
-      ],
-      # The information about the buyer that's interacting with the cart.
-    }
-  ) {
-    cart {
-      id
-      createdAt
-      updatedAt
-      lines(first: 10) {
-        edges {
-          node {
-            id
-            merchandise {
-              ... on ProductVariant {
-                id
-              }
-            }
-          }
-        }
-      }
-      buyerIdentity {
-        deliveryAddressPreferences {
-          __typename
-        }
-      }
-      attributes {
-        key
-        value
-      }
-      # The estimated total cost of all merchandise that the customer will pay at checkout.
-      cost {
-        totalAmount {
-          amount
-          currencyCode
-        }
-        # The estimated amount, before taxes and discounts, for the customer to pay at checkout.
-        subtotalAmount {
-          amount
-          currencyCode
-        }
-        # The estimated tax amount for the customer to pay at checkout.
-        totalTaxAmount {
-          amount
-          currencyCode
-        }
-        # The estimated duty amount for the customer to pay at checkout.
-        totalDutyAmount {
-          amount
-          currencyCode
-        }
-      }
-    }
-  }
-}
-
-`;

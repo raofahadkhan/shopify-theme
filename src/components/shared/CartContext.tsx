@@ -56,7 +56,7 @@ const getAllProductsDataFromAPI = async () => {
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart]: any = useState([]);
-  const [shopifyCart, SetShopifyCart] = useState({});
+  const [shopifyCart, setShopifyCart] = useState([]);
 
   // const cartReducer = (state: any, action: any) => {
   //   switch (action.type) {
@@ -76,17 +76,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addToCart = (item: any) => {
-    let handleDuplicates = cart.find(
-      (cartItem: any) => cartItem.node.id === item.node.id
-    );
+    // let handleDuplicates = cart.find(
+    //   (cartItem: any) => cartItem.node.id === item.node.id
+    // );
 
-    if (handleDuplicates) {
-      // setCart((item.count += 1));
-      alert("already added");
-    } else {
-      setCart([...cart, item]);
-      setPrice(price + Number(item?.node?.price?.amount));
-    }
+    // if (handleDuplicates) {
+    //   // setCart((item.count += 1));
+    //   alert("already added");
+    // } else {
+    setCart([...cart, item]);
+    setPrice(price + Number(item?.node?.price?.amount));
+    // }
     // console.log("raofahadkhan", handleDuplicates);
     // console.log("ITEM===========", item.node.id);
     // console.log(
@@ -128,6 +128,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         navbarcolor,
         setNavbarcolor,
         allProductData,
+        shopifyCart,
+        setShopifyCart,
       }}
     >
       {children}

@@ -9,4 +9,6 @@ export interface contextType {
   navbarcolor: boolean;
   setNavbarcolor: (item: any) => void;
   allProductData: any;
+  shopifyCart: any;
+  setShopifyCart: any;
 }
