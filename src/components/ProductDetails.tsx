@@ -92,8 +92,8 @@ export async function createShopifyCart(variant: any) {
 export async function updateShopifyCart(variant: any, shopifyCart: any) {
   const variantId = JSON.stringify(variant.node.id);
   const cartId = !shopifyCart.data?.cartCreate
-    ? JSON.stringify(shopifyCart?.data?.cartLinesAdd.cart.id)
-    : JSON.stringify(shopifyCart?.data?.cartCreate.cart.id);
+    ? JSON.stringify(shopifyCart?.data?.cartLinesAdd?.cart.id)
+    : JSON.stringify(shopifyCart?.data?.cartCreate?.cart.id);
   console.log(cartId);
   const queryForUpdateShopifyCart = `mutation {  
     cartLinesAdd(
