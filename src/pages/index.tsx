@@ -1,11 +1,12 @@
 import Carousel from "@/components/Carousel";
+import ProductDetails from "@/components/ProductDetails";
 import Svggrid from "@/components/home/Svggrid";
 import Product1 from "@/components/home/journalcard";
 import { Subscribe } from "@/components/home/signupcomponent";
+import { AllProductType } from "@/components/typesandArrays/shopifyTypes/productTypes";
 import HeroSection from "@/components/views/HeroSection";
 import ImageHoverEffect from "@/components/views/ImageHoverEffect";
 import Navbar from "@/components/views/Navbar";
-import { AllCatogryData } from "@/components/typesandArrays/AllMensData";
 import SecondaryTextAfterHero from "@/components/views/SecondaryTextHero";
 import Head from "next/head";
 import { useEffect } from "react";
@@ -14,11 +15,6 @@ import Hero from "../components/Hero";
 import Parallex from "../components/Parallex";
 import Shop from "../components/Shop";
 import Swiper from "../components/Swiper";
-import {
-  AllProductType,
-  ProductType,
-} from "@/components/typesandArrays/shopifyTypes/productTypes";
-import ProductDetails from "@/components/ProductDetails";
 
 const images = [
   "https://cdn.shopify.com/s/files/1/2091/0251/products/m-wenlock2_1800x1800.jpg?v=1584466287",
@@ -65,7 +61,6 @@ export default function Home({
   const featuredProduct = allMenProducts.data.collection.products.edges.find(
     (ele: any) => ele.node.handle === "chambray-button-down"
   );
-  // console.log(featuredProduct);
 
   useEffect(() => {
     const elements = document.querySelectorAll(".animation_triggering_class");
@@ -110,8 +105,8 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Navbar page="index" />
-        <HeroSection />
+        <Navbar page="preview" />
+        {/* <HeroSection />
         <SecondaryTextAfterHero />
         <div className="overflow-hidden">
           <Carousel dataMen={allMenProducts} dataWomen={allWomenProducts} />
@@ -123,7 +118,7 @@ export default function Home({
         <ImageHoverEffect />
         <div className="overflow-hidden max-w-7xl mx-auto">
           <Swiper />
-        </div>
+        </div> */}
         <ProductDetails
           images={images}
           video={video}

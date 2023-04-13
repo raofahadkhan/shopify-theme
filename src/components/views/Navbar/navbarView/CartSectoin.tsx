@@ -1,17 +1,13 @@
-import Image from "next/image";
 import { CartContext } from "@/components/shared/CartContext";
+import Image from "next/image";
 import { useContext } from "react";
 import IncrementButtons from "./IncrementButtons";
-import { VariantsType } from "@/components/typesandArrays/shopifyTypes/productTypes";
 
 export default function CartSectoin() {
   const { cart, removeFromCart }: any = useContext(CartContext);
-  // console.log("from cart section", cart);
-
   return (
     <div className="h-[63%] w-full overflow-y-auto py-6 space-y-4">
       {cart.map((item: any, index: number) => {
-        // console.log("from cart", item);
         return (
           <div key={index + 66332344} className="max-w-xs flex w-full">
             <Image

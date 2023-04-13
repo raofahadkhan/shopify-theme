@@ -1,7 +1,5 @@
-import { createContext, useEffect, useReducer, useState } from "react";
-import { ProductDataType } from "../typesandArrays/AllMensData";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { contextType } from "../typesandArrays/creatContextType";
-import { ReactNode } from "react";
 
 export const CartContext = createContext<contextType | null>(null);
 
@@ -57,42 +55,17 @@ const getAllProductsDataFromAPI = async () => {
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart]: any = useState([]);
   const [shopifyCart, setShopifyCart] = useState([]);
-
-  // const cartReducer = (state: any, action: any) => {
-  //   switch (action.type) {
-  //     default:
-  //       return state;
-  //   }
-  // };
-  // const [state, dispatch] = useReducer(cartReducer, cart);
-
   const [navbarcolor, setNavbarcolors] = useState(false);
   const [price, setPrice] = useState(0);
   const [allProductData, setAllProductData] = useState();
   const data = async () => {
     const dataa = await getAllProductsDataFromAPI();
-    // console.log(dataa);
     setAllProductData(dataa);
   };
 
   const addToCart = (item: any) => {
-    // let handleDuplicates = cart.find(
-    //   (cartItem: any) => cartItem.node.id === item.node.id
-    // );
-
-    // if (handleDuplicates) {
-    //   // setCart((item.count += 1));
-    //   alert("already added");
-    // } else {
     setCart([...cart, item]);
     setPrice(price + Number(item?.node?.price?.amount));
-    // }
-    // console.log("raofahadkhan", handleDuplicates);
-    // console.log("ITEM===========", item.node.id);
-    // console.log(
-    //   "CART============",
-    //   cart.find((cartItem: any) => cartItem.node.id)
-    // );
   };
   useEffect(() => {
     data();
@@ -115,7 +88,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       (cartItem: any) => cartItem.node.id !== item.node.id
     );
     setCart(remaningData);
-    // console.log(cart);
   };
   return (
     <CartContext.Provider

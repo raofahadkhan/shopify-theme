@@ -1,12 +1,10 @@
 "use client";
+import { CartContext } from "@/components/shared/CartContext";
+import { useContext, useEffect, useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import React, { useEffect, useState } from "react";
+import AskQuestionForm from "./AskQuestionForm";
 import MoreDetails from "./MoreDetails";
 import SizeChart from "./SizeChart";
-import AskQuestionForm from "./AskQuestionForm";
-import { CartContext } from "@/components/shared/CartContext";
-import { useContext } from "react";
-import BlackButton from "./shared/Button";
 
 type Props = {
   images: string[];
@@ -16,7 +14,6 @@ type Props = {
 };
 
 export async function createShopifyCart(variant: any) {
-  // console.log('from createShopifyCart',variant.node.id)
   const variantId = JSON.stringify(variant.node.id);
   const queryForCartCreation = `mutation {
     cartCreate(
@@ -156,13 +153,11 @@ export async function updateShopifyCart(variant: any, shopifyCart: any) {
 }
 
 function ProductDetails({ data, videoStatus, video }: Props) {
-  // console.log("from product page", data);
   const [price, setPrice] = useState<number>(
     data?.node?.variants?.edges[0]?.node.price.amount
   );
   const [title, setTitle] = useState();
   const [variant, setVariant] = useState();
-  // console.log("outside cart", variant);
   const [size, setSize] = useState(data.node.variants.edges[0].node.title);
   const { addToCart, cart, shopifyCart, setShopifyCart }: any =
     useContext(CartContext);
@@ -181,7 +176,6 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     const variantt = data?.node?.variants.edges?.find(
       (ele: any) => ele.node.title === size
     );
-    // console.log("I am variant", variantt.node.id);
     setTitle(data?.node?.title);
     setVariant(variantt);
     setPrice(variantt?.node?.price?.amount);
@@ -195,19 +189,12 @@ function ProductDetails({ data, videoStatus, video }: Props) {
       (cartItem: any) => cartItem.node.id === variant.node.id
     );
     if (handleDuplicates) {
-      // setCart((item.count += 1));
       alert("already added");
     } else {
       if (cart.length === 0 && shopifyCart.length === 0) {
         addToCart({ ...variant, size, title, images });
         const shopifyCartRes = await createShopifyCart(variant);
         await setShopifyCart(shopifyCartRes);
-        console.log("shopifyCartState =====>", shopifyCart);
-        console.log(
-          "shopifyCartRes ======>",
-          // shopifyCartRes.data.cartCreate.cart.id,
-          shopifyCartRes
-        );
       } else {
         addToCart({ ...variant, size, title, images });
         const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
@@ -215,7 +202,6 @@ function ProductDetails({ data, videoStatus, video }: Props) {
         console.log("shopifyCartState =====>", shopifyCart);
 
         console.log("from updateshopifycart", cartUpdateRes);
-        // alert("fahad");
       }
     }
   }
@@ -270,13 +256,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
 
       <div className="basis-1/2 flex flex-col space-y-4 mt-6 lg:mt-0 px-4 lg:px-0">
         <h3 className="text-3xl font-bold">{data ? data?.node?.title : ""}</h3>
-        <p className="text-xl tracking-[2px]">
-          {/* ${data?.node.variants.edges[0].node.price.amount} */}
-          {/* {variant?.node?.price.amount}
-           */}
-
-          {`$${price}`}
-        </p>
+        <p className="text-xl tracking-[2px]">{`$${price}`}</p>
         <hr className="bg-gray-300" />
         <p className="text-lg uppercase font-semibold w-full">Size</p>
         <div className="flex space-x-4 flex-wrap">
@@ -290,7 +270,6 @@ function ProductDetails({ data, videoStatus, video }: Props) {
                }`}
               onClick={() => {
                 setSize(`${elem.node.title}`);
-                // setPrice(200);
               }}
               key={index}
             >
