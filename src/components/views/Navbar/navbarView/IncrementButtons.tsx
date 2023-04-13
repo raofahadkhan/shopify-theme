@@ -1,28 +1,166 @@
-import { useContext } from "react"
 import { CartContext } from "@/components/shared/CartContext";
-import { useState } from "react"
-import { ProductDataType } from "@/components/typesandArrays/AllMensData";
+import { useContext, useState } from "react";
 
-export default function IncrementButtons({ item }: { item: ProductDataType }) {
-    const { updatePrice, removeFromCart }: any = useContext(CartContext);
-    const [numberOfItems, setNumberOfItems] = useState(1);
-    function decrementPerform() {
-        if (numberOfItems > 1) {
-            setNumberOfItems(numberOfItems - 1)
-        } else {
-            removeFromCart(item);
+export async function incrementLineItem(
+  item: any,
+  shopifyCart: any,
+  numberOfItems: number,
+  setBtndisable: any
+) {
+  const cartId = shopifyCart?.cart?.id;
+  const lineItem = shopifyCart?.cart?.lines?.edges.find(
+    (ele: any) => ele?.node?.merchandise?.id === item?.node?.id
+  );
+  setBtndisable(true);
+  const lineItemId = lineItem?.node.id;
+  console.log(
+    "this is quantity of line item",
+    Number(lineItem?.node?.quantity) + 1
+  );
+  const queryForLineItemsUpdate = `mutation {
+    cartLinesUpdate(
+      cartId: ${JSON.stringify(cartId)}
+      lines: {
+        id: ${JSON.stringify(lineItemId)}
+        quantity: ${numberOfItems}
         }
-        updatePrice("substraction", item.price);
+    ) {
+      cart {
+        id
+        lines(first: 10) {
+          edges {
+            node {
+              id
+              quantity
+              merchandise {
+                ... on ProductVariant {
+                  id
+                }
+              }
+            }
+          }
+        }
+        cost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+          totalTaxAmount {
+            amount
+            currencyCode
+          }
+          totalDutyAmount {
+            amount
+            currencyCode
+          }
+        }
+      }
     }
-    function incrementPerform() {
-        setNumberOfItems(numberOfItems + 1);
-        updatePrice("addition", item.price);
+  }
+  `;
+
+  const url = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
+  let res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+      "X-Shopify-Storefront-Access-Token": `${process.env.API_KEY}`,
+    },
+    body: JSON.stringify({ query: queryForLineItemsUpdate }),
+  });
+  let parsedCartData = await res.json();
+  if (!parsedCartData.errors) {
+    setTimeout(() => {
+      setBtndisable(false);
+    }, 500);
+  }
+  console.log("Api data", parsedCartData);
+  return parsedCartData;
+}
+export default function IncrementButtons({ item }: { item: any }) {
+  const { updatePrice, removeFromCart, shopifyCart, setShopifyCart }: any =
+    useContext(CartContext);
+  console.log("incremented quantity of line item", shopifyCart);
+  const [numberOfItems, setNumberOfItems] = useState(1);
+  const [btndisable, setBtndisable] = useState(false);
+  const cartId = shopifyCart?.cart?.id;
+  const lineItem = shopifyCart?.cart?.lines.edges.find(
+    (ele: any) => ele?.node?.id === item?.node?.id
+  );
+  const lineItemId = lineItem?.node?.id;
+
+  async function decrementPerform(
+    item: any,
+    shopifyCart: any,
+    setBtndisable: any,
+    numberOfItems: number
+  ) {
+    if (numberOfItems > 1) {
+      await setNumberOfItems(--numberOfItems);
+      // updatePrice("addition", item.node.price.amount);
+      const shopifyCartRes = await incrementLineItem(
+        item,
+        shopifyCart,
+        numberOfItems,
+        setBtndisable
+      );
+      await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
+    } else {
+      removeFromCart(item);
+      const shopifyCartRes = await incrementLineItem(
+        item,
+        shopifyCart,
+        (numberOfItems = 0),
+        setBtndisable
+      );
+      await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
     }
-    return (
-        <div className="border-2 flex justify-center">
-            <button className="py-1 px-3 hover:bg-gray-200 text-center" onClick={decrementPerform}>-</button>
-            <div className="py-1 px-3 text-center">{numberOfItems}</div>
-            <button onClick={incrementPerform} className="py-1 px-3 hover:bg-gray-200 text-center">+</button>
-        </div>
-    )
+    updatePrice("substraction", item.node.price.amount);
+  }
+  async function incrementPerform(
+    item: any,
+    shopifyCart: any,
+    setBtndisable: any,
+    numberOfItems: number
+  ) {
+    await setNumberOfItems(++numberOfItems);
+    updatePrice("addition", item.node.price.amount);
+    const shopifyCartRes = await incrementLineItem(
+      item,
+      shopifyCart,
+      numberOfItems,
+      setBtndisable
+    );
+    await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
+    console.log("this is cart resss", shopifyCartRes);
+  }
+  return (
+    <div className="border-2 flex justify-center">
+      <button
+        disabled={btndisable}
+        className="py-1 px-3 hover:bg-gray-200 text-center"
+        onClick={() =>
+          decrementPerform(item, shopifyCart, setBtndisable, numberOfItems)
+        }
+      >
+        -
+      </button>
+      <div className="py-1 px-3 text-center">{numberOfItems}</div>
+      <button
+        disabled={btndisable}
+        onClick={() => {
+          incrementPerform(item, shopifyCart, setBtndisable, numberOfItems);
+        }}
+        className={`py-1 px-3 hover:bg-gray-200 text-center ${
+          btndisable ? "text-gray-300" : "text-gray-800"
+        }`}
+      >
+        +
+      </button>
+    </div>
+  );
 }

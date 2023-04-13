@@ -5,10 +5,17 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import { Pagination, Navigation } from "swiper";
+import { ProductType } from "./typesandArrays/shopifyTypes/productTypes";
+import Link from "next/link";
 
-function CustomCarousel(data: any) {
+function CustomCarousel({
+  data,
+  btnState,
+}: {
+  data: ProductType;
+  btnState: string;
+}) {
   return (
     <div className="container">
       <Swiper
@@ -33,23 +40,26 @@ function CustomCarousel(data: any) {
           },
         }}
       >
-        {data.data.map((product: any, index: any) => {
+        {data.edges.map((product: any, index: any) => {
           return (
             <SwiperSlide key={index}>
-              <CarouselCard data={product} />
+              <Link href={`/preview/${product.node.handle}`}>
+                <CarouselCard data={product} />
+              </Link>
             </SwiperSlide>
           );
         })}
-
         <div className="slider-controler">
           <div className="swiper-button-prev slider-arrow"></div>
           <div className="swiper-button-next slider-arrow"></div>
         </div>
       </Swiper>
       <div className="flex py-12">
-        <button className="mx-auto px-6 py-3 bg-black text-white font-extrabold">
-          View All
-        </button>
+        <Link href={`/allmens/${btnState}`} className="mx-auto">
+          <button className="mx-auto px-6 py-3 bg-black text-white font-extrabold">
+            View All
+          </button>
+        </Link>
       </div>
     </div>
   );

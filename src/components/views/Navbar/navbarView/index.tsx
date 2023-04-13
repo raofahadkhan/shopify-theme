@@ -27,14 +27,48 @@ interface typeofNavItems {
   page: string;
 }
 
+export async function checkout(shopifyCart: any) {
+  const cartId = JSON.stringify(shopifyCart?.cart?.id);
+  const queryForCheckout = `query checkoutURL {
+    cart(id: ${cartId}) {
+      checkoutUrl
+    }
+  }
+  
+  `;
+
+  const url = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
+  let res = await fetch(url, {
+    method: "Post",
+    headers: {
+      "Content-type": "application/json",
+      "X-Shopify-Storefront-Access-Token": `${process.env.API_KEY}`,
+    },
+    body: JSON.stringify({ query: queryForCheckout }),
+  });
+  return res.json();
+
+  // window.open(res.data.cart.checkoutURL)
+}
+
 export default function NavbarView({ navItem, page }: typeofNavItems) {
-  const { price, navbarcolor, setNavbarcolor }: any = useContext(CartContext);
+  const { price, navbarcolor, setNavbarcolor, shopifyCart }: any =
+    useContext(CartContext);
   const [SearchBoxView, setSearchBoxView] = useState(false);
   const { reload, query } = useRouter();
   const [sidebar, setSidebar] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [opacityForScroll, setOpacityForScroll] = useState(100);
   const [isOpenCart, setOpenCart] = useState(false);
+
+  async function handleclick(shopifyCart: any) {
+    const cartId = shopifyCart?.cart?.id;
+    const shopifyCheckoutRes = await checkout(shopifyCart);
+    const checkoutLink = shopifyCheckoutRes.data.cart.checkoutUrl;
+
+    console.log(shopifyCheckoutRes.data.cart.checkoutUrl);
+    window.open(checkoutLink);
+  }
 
   const isBrowser = (): boolean => typeof window !== "undefined";
 
@@ -66,7 +100,7 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
       });
     }
   }
-  if(page === "preview"){
+  if (page === "preview") {
     setNavbarcolor(true);
   }
   return (
@@ -248,7 +282,10 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
             <p className="text-xs">
               Shipping, taxes, and discount codes calculated at checkout.
             </p>
-            <button className="w-full py-3 bg-black font-semibold text-white">
+            <button
+              className="w-full py-3 bg-black font-semibold text-white"
+              onClick={() => handleclick(shopifyCart)}
+            >
               Check out
             </button>
           </div>

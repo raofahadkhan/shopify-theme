@@ -1,13 +1,15 @@
 "use client";
 import { useState } from "react";
-import { AllCatogryData } from "./typesandArrays/AllMensData";
-
 import CustomCarousel from "./CustomCarousel";
+import { AllProductType } from "./typesandArrays/shopifyTypes/productTypes";
 
-//Image 1 :https://cdn.shopify.com/s/files/1/2091/0251/products/m-adventuremobilepullover-grey2_b2facf5e-7e6a-489d-ab6d-87c2be3d4db7_360x.jpg?v=1609257900
-//Image 2 :https://cdn.shopify.com/s/files/1/2091/0251/products/m-polarispullover-red2_360x.jpg?v=1609258000
-
-export default function Carousel() {
+export default function Carousel({
+  dataMen,
+  dataWomen,
+}: {
+  dataMen: AllProductType;
+  dataWomen: AllProductType;
+}) {
   const [currentCarousel, setCurrentCarousel] = useState(1);
   return (
     <main className="w-screen flex flex-col items-center h-fit pb-[30px]">
@@ -34,10 +36,16 @@ export default function Carousel() {
       </div>
       <div className="w-full h-full">
         {currentCarousel == 1 && (
-          <CustomCarousel data={AllCatogryData[0].productData} />
+          <CustomCarousel
+            data={dataMen.data.collection.products}
+            btnState="mens"
+          />
         )}
         {currentCarousel == 2 && (
-          <CustomCarousel data={AllCatogryData[1].productData} />
+          <CustomCarousel
+            data={dataWomen.data.collection.products}
+            btnState="allwomens"
+          />
         )}
       </div>
     </main>
