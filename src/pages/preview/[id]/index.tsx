@@ -54,13 +54,13 @@ export default function Preview({}: Props) {
   }
   return (
     <>
-      <Navbar page="preview" />
+      <Navbar page="index" />
       <div className="h-20" />
       <ProductDetails
-        videoStatus={false}
+        videoStatus={false} //ok
         images={images}
         video={video}
-        data={product}
+        data={product} //ok
       />
     </>
   );

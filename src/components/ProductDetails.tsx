@@ -88,12 +88,8 @@ export async function createShopifyCart(variant: any) {
 
 export async function updateShopifyCart(variant: any, shopifyCart: any) {
   const variantId = JSON.stringify(variant.node.id);
-  // const cartId = !shopifyCart?.data?.cartCreate
-  //   ? JSON.stringify(shopifyCart?.data?.cartLinesAdd?.cart.id)
-  //   : JSON.stringify(shopifyCart?.data?.cartCreate?.cart.id);
-
   const cartId = JSON.stringify(shopifyCart?.cart?.id);
-  // console.log(cartId);
+
   const queryForUpdateShopifyCart = `mutation {  
     cartLinesAdd(
       cartId: ${cartId}
@@ -156,11 +152,11 @@ export async function updateShopifyCart(variant: any, shopifyCart: any) {
 
 function ProductDetails({ data, videoStatus, video }: Props) {
   const [price, setPrice] = useState<number>(
-    data?.node?.variants?.edges[0]?.node.price.amount
+    data?.node?.variants?.edges[0]?.node?.price?.amount
   );
   const [title, setTitle] = useState();
   const [variant, setVariant] = useState();
-  const [size, setSize] = useState(data.node.variants.edges[0].node.title);
+  const [size, setSize] = useState(data.node?.variants?.edges[0]?.node?.title);
   const { addToCart, cart, shopifyCart, setShopifyCart }: any =
     useContext(CartContext);
   const [selected, setSelected] = useState({
@@ -264,7 +260,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
         <hr className="bg-gray-300" />
         <p className="text-lg uppercase font-semibold w-full">Size</p>
         <div className="flex space-x-4 flex-wrap">
-          {data.node.variants.edges.map((elem: any, index: number) => (
+          {data?.node?.variants?.edges.map((elem: any, index: number) => (
             <button
               className={`w-[40px] h-[40px] lg:w-[40px] lg:h-[40px] transition duration-300 flex-grow-0 flex-shrink-0
                ${
