@@ -88,10 +88,12 @@ export async function createShopifyCart(variant: any) {
 
 export async function updateShopifyCart(variant: any, shopifyCart: any) {
   const variantId = JSON.stringify(variant.node.id);
-  const cartId = !shopifyCart.data?.cartCreate
-    ? JSON.stringify(shopifyCart?.data?.cartLinesAdd?.cart.id)
-    : JSON.stringify(shopifyCart?.data?.cartCreate?.cart.id);
-  console.log(cartId);
+  // const cartId = !shopifyCart?.data?.cartCreate
+  //   ? JSON.stringify(shopifyCart?.data?.cartLinesAdd?.cart.id)
+  //   : JSON.stringify(shopifyCart?.data?.cartCreate?.cart.id);
+
+  const cartId = JSON.stringify(shopifyCart?.cart?.id);
+  // console.log(cartId);
   const queryForUpdateShopifyCart = `mutation {  
     cartLinesAdd(
       cartId: ${cartId}
@@ -184,6 +186,8 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     }
   }, [size]);
 
+  // async function handleBuyItNow(variant: any, shopifyCart: any) {}
+
   async function handleAddToCart(variant: any, shopifyCart: any) {
     let handleDuplicates = cart.find(
       (cartItem: any) => cartItem.node.id === variant.node.id
@@ -194,11 +198,11 @@ function ProductDetails({ data, videoStatus, video }: Props) {
       if (cart.length === 0 && shopifyCart.length === 0) {
         addToCart({ ...variant, size, title, images });
         const shopifyCartRes = await createShopifyCart(variant);
-        await setShopifyCart(shopifyCartRes);
+        await setShopifyCart(shopifyCartRes.data?.cartCreate);
       } else {
         addToCart({ ...variant, size, title, images });
         const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
-        await setShopifyCart(cartUpdateRes);
+        await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
         console.log("shopifyCartState =====>", shopifyCart);
 
         console.log("from updateshopifycart", cartUpdateRes);

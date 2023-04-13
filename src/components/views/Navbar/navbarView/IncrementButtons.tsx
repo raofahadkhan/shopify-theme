@@ -4,36 +4,25 @@ import { useContext, useState } from "react";
 export async function incrementLineItem(
   item: any,
   shopifyCart: any,
-  numberOfItems: number
+  numberOfItems: number,
+  setBtndisable: any
 ) {
-  const lineItem =
-    !shopifyCart?.data?.cartLinesUpdate && !shopifyCart?.data?.cartLinesAdd
-      ? shopifyCart?.data?.cartCreate?.cart.lines.edges.find(
-          (ele: any) => ele.node.merchandise.id === item.node.id
-        )
-      : !shopifyCart?.data?.cartCreate && !shopifyCart?.data?.cartLinesUpdate
-      ? shopifyCart?.data?.cartLinesAdd?.cart.lines.edges.find(
-          (ele: any) => ele.node.merchandise.id === item.node.id
-        )
-      : // : !shopifyCart?.data?.cartCreate && !shopifyCart?.data?.cartLinesAdd
-        shopifyCart?.data?.cartUpdate?.cart.lines.edges.find(
-          (ele: any) => ele.node.merchandise.id === item.node.id
-        );
-
+  const cartId = shopifyCart?.cart?.id;
+  const lineItem = shopifyCart?.cart?.lines?.edges.find(
+    (ele: any) => ele?.node?.merchandise?.id === item?.node?.id
+  );
+  setBtndisable(true);
   const lineItemId = lineItem?.node.id;
-  console.log("lineItem======= For basiit>", lineItem);
-  console.log("lineItemIDDDD======= For fahad>", lineItemId);
-
-  const cartId = !shopifyCart?.data?.cartCreate
-    ? shopifyCart?.data?.cartLinesAdd?.cart?.id
-    : shopifyCart?.data?.cartCreate?.cart?.id;
-
+  console.log(
+    "this is quantity of line item",
+    Number(lineItem?.node?.quantity) + 1
+  );
   const queryForLineItemsUpdate = `mutation {
     cartLinesUpdate(
       cartId: ${JSON.stringify(cartId)}
       lines: {
         id: ${JSON.stringify(lineItemId)}
-        quantity: 10
+        quantity: ${numberOfItems}
         }
     ) {
       cart {
@@ -84,58 +73,91 @@ export async function incrementLineItem(
     body: JSON.stringify({ query: queryForLineItemsUpdate }),
   });
   let parsedCartData = await res.json();
+  if (!parsedCartData.errors) {
+    setTimeout(() => {
+      setBtndisable(false);
+    }, 500);
+  }
   console.log("Api data", parsedCartData);
   return parsedCartData;
 }
-
 export default function IncrementButtons({ item }: { item: any }) {
   const { updatePrice, removeFromCart, shopifyCart, setShopifyCart }: any =
     useContext(CartContext);
-  console.log("This is shopify cart:", shopifyCart);
+  console.log("incremented quantity of line item", shopifyCart);
   const [numberOfItems, setNumberOfItems] = useState(1);
-
-  const lineItem = !shopifyCart?.data?.cartCreate
-    ? shopifyCart?.data?.cartLinesAdd?.cart.lines.edges.find(
-        (ele: any) => ele.node.merchandise.id === item.node.id
-      )
-    : shopifyCart?.data?.cartCreate?.cart.lines.edges.find(
-        (ele: any) => ele.node.merchandise.id === item.node.id
-      );
-
+  const [btndisable, setBtndisable] = useState(false);
+  const cartId = shopifyCart?.cart?.id;
+  const lineItem = shopifyCart?.cart?.lines.edges.find(
+    (ele: any) => ele?.node?.id === item?.node?.id
+  );
   const lineItemId = lineItem?.node?.id;
 
-  function decrementPerform() {
+  async function decrementPerform(
+    item: any,
+    shopifyCart: any,
+    setBtndisable: any,
+    numberOfItems: number
+  ) {
     if (numberOfItems > 1) {
-      setNumberOfItems(numberOfItems - 1);
+      await setNumberOfItems(--numberOfItems);
+      // updatePrice("addition", item.node.price.amount);
+      const shopifyCartRes = await incrementLineItem(
+        item,
+        shopifyCart,
+        numberOfItems,
+        setBtndisable
+      );
+      await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
     } else {
       removeFromCart(item);
+      const shopifyCartRes = await incrementLineItem(
+        item,
+        shopifyCart,
+        (numberOfItems = 0),
+        setBtndisable
+      );
+      await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
     }
     updatePrice("substraction", item.node.price.amount);
   }
-  async function incrementPerform(item: any, shopifyCart: any) {
-    setNumberOfItems(numberOfItems + 1);
+  async function incrementPerform(
+    item: any,
+    shopifyCart: any,
+    setBtndisable: any,
+    numberOfItems: number
+  ) {
+    await setNumberOfItems(++numberOfItems);
     updatePrice("addition", item.node.price.amount);
     const shopifyCartRes = await incrementLineItem(
       item,
       shopifyCart,
-      numberOfItems
+      numberOfItems,
+      setBtndisable
     );
-    await setShopifyCart(shopifyCartRes);
+    await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
+    console.log("this is cart resss", shopifyCartRes);
   }
   return (
     <div className="border-2 flex justify-center">
       <button
+        disabled={btndisable}
         className="py-1 px-3 hover:bg-gray-200 text-center"
-        onClick={decrementPerform}
+        onClick={() =>
+          decrementPerform(item, shopifyCart, setBtndisable, numberOfItems)
+        }
       >
         -
       </button>
       <div className="py-1 px-3 text-center">{numberOfItems}</div>
       <button
+        disabled={btndisable}
         onClick={() => {
-          incrementPerform(item, shopifyCart);
+          incrementPerform(item, shopifyCart, setBtndisable, numberOfItems);
         }}
-        className="py-1 px-3 hover:bg-gray-200 text-center"
+        className={`py-1 px-3 hover:bg-gray-200 text-center ${
+          btndisable ? "text-gray-300" : "text-gray-800"
+        }`}
       >
         +
       </button>
