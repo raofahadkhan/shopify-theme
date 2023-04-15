@@ -78,13 +78,12 @@ export async function incrementLineItem(
       setBtndisable(false);
     }, 500);
   }
-  console.log("Api data", parsedCartData);
+  // console.log("Api data", parsedCartData);
   return parsedCartData;
 }
 export default function IncrementButtons({ item }: { item: any }) {
   const { updatePrice, removeFromCart, shopifyCart, setShopifyCart }: any =
     useContext(CartContext);
-  console.log("incremented quantity of line item", shopifyCart);
   const [numberOfItems, setNumberOfItems] = useState(1);
   const [btndisable, setBtndisable] = useState(false);
   const cartId = shopifyCart?.cart?.id;
