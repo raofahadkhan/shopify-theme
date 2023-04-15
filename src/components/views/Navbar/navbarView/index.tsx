@@ -66,7 +66,6 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
     const shopifyCheckoutRes = await checkout(shopifyCart);
     const checkoutLink = shopifyCheckoutRes.data.cart.checkoutUrl;
 
-    console.log(shopifyCheckoutRes.data.cart.checkoutUrl);
     window.open(checkoutLink);
   }
 

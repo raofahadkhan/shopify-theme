@@ -13,10 +13,7 @@ export async function incrementLineItem(
   );
   setBtndisable(true);
   const lineItemId = lineItem?.node.id;
-  console.log(
-    "this is quantity of line item",
-    Number(lineItem?.node?.quantity) + 1
-  );
+  
   const queryForLineItemsUpdate = `mutation {
     cartLinesUpdate(
       cartId: ${JSON.stringify(cartId)}
@@ -78,7 +75,6 @@ export async function incrementLineItem(
       setBtndisable(false);
     }, 500);
   }
-  // console.log("Api data", parsedCartData);
   return parsedCartData;
 }
 export default function IncrementButtons({ item }: { item: any }) {
@@ -135,7 +131,6 @@ export default function IncrementButtons({ item }: { item: any }) {
       setBtndisable
     );
     await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
-    console.log("this is cart resss", shopifyCartRes);
   }
   return (
     <div className="border-2 flex justify-center">

@@ -75,7 +75,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setNavbarcolors(item);
   }
   function updatePrice(action: string, updatedPrice: string) {
-    // console.log("safsdfaf", updatedPrice);
     if (action === "addition") {
       setPrice(price + Number(updatedPrice));
     } else if (action == "substraction") {

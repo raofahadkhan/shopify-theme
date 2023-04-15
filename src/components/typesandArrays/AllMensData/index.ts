@@ -37,7 +37,7 @@ export const AllCatogryData: Array<AllCatogryDataType> = [
     {
         homeImageUrl: "https://cdn.shopify.com/s/files/1/2091/0251/collections/mens-Stocksy_txpd2ea9debXoZ100_Medium_222225-edited_1800x.jpg?v=1500224081",
         homeAltText: "Men",
-        catogry: "mens",
+        catogry: "male",
         NavigationData: {
             catogry: "All men",
             catogryToShow: "allmens",
@@ -224,7 +224,7 @@ export const AllCatogryData: Array<AllCatogryDataType> = [
     {
         homeImageUrl: "https://cdn.shopify.com/s/files/1/2091/0251/collections/womens-edited_1800x.jpg?v=1500224178",
         homeAltText: "Women",
-        catogry: "allwomens",
+        catogry: "female",
         NavigationData: {
             catogry: "All women",
             catogryToShow: "allwomans",

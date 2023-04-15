@@ -59,9 +59,8 @@ export default function Home({
   allWomenProducts: AllProductType;
 }) {
   const featuredProduct = allMenProducts.data.collection.products.edges.find(
-    (ele: any) => ele.node.handle === "chambray-button-down"
+    (ele: any) => ele.node.handle === "adventure-mobile-terry-pullover"
   );
-
   useEffect(() => {
     const elements = document.querySelectorAll(".animation_triggering_class");
     // Create an intersection observer
@@ -122,11 +121,8 @@ export default function Home({
         <ProductDetails
           images={images}
           video={video}
-          videoStatus={true}
-          data={
-            // AllCatogryData[0].productData && AllCatogryData[0].productData[0]
-            featuredProduct
-          }
+          videoStatus={false}
+          data={featuredProduct}
         />
         <Svggrid />
         <Parallex />

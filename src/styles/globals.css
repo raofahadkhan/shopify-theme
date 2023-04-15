@@ -4,6 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
+	th{
+		@apply border-2 p-1 text-center
+	}
+	td{
+		@apply border-2 p-1 text-center
+	}
+}
+
 * {
   font-family: "Outfit", sans-serif, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",

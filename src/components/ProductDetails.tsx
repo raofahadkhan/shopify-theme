@@ -204,7 +204,6 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     }
   }, [size]);
   useEffect(() => {
-    console.log("all rounder : ", shopifyCart);
     let myPromise = new Promise((resolve, reject) => {
       let shopifyCheckoutRes = checkout(shopifyCart);
       if (shopifyCheckoutRes) {
@@ -228,7 +227,6 @@ function ProductDetails({ data, videoStatus, video }: Props) {
       addToCart({ ...variant, size, title, images });
       const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
       await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
-      console.log("2nd turn : ", shopifyCart);
     }
   }
 
@@ -247,9 +245,6 @@ function ProductDetails({ data, videoStatus, video }: Props) {
         addToCart({ ...variant, size, title, images });
         const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
         await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
-        console.log("shopifyCartState =====>", shopifyCart);
-
-        console.log("from updateshopifycart", cartUpdateRes);
       }
     }
   }
