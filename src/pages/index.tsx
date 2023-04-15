@@ -105,7 +105,7 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Navbar page="preview" />
+        <Navbar page="index" />
         <HeroSection />
         <SecondaryTextAfterHero />
         <div className="overflow-hidden">

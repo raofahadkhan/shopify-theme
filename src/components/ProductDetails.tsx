@@ -150,6 +150,28 @@ export async function updateShopifyCart(variant: any, shopifyCart: any) {
   return res.json();
 }
 
+export async function checkout(shopifyCart: any) {
+  const cartId = JSON.stringify(shopifyCart?.cart?.id);
+  const queryForCheckout = `query checkoutURL {
+    cart(id: ${cartId}) {
+      checkoutUrl
+    }
+  }
+  
+  `;
+
+  const url = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
+  let res = await fetch(url, {
+    method: "Post",
+    headers: {
+      "Content-type": "application/json",
+      "X-Shopify-Storefront-Access-Token": `${process.env.API_KEY}`,
+    },
+    body: JSON.stringify({ query: queryForCheckout }),
+  });
+  return res.json();
+}
+
 function ProductDetails({ data, videoStatus, video }: Props) {
   const [price, setPrice] = useState<number>(
     data?.node?.variants?.edges[0]?.node?.price?.amount
@@ -182,7 +204,22 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     }
   }, [size]);
 
-  // async function handleBuyItNow(variant: any, shopifyCart: any) {}
+  async function handleBuyItNow(variant: any, shopifyCart: any) {
+    console.log(cart, shopifyCart);
+
+    if (cart.length == 0 && Object.entries(shopifyCart).length === 0) {
+      addToCart({ ...variant, size, title, images });
+      const shopifyCartRes = await createShopifyCart(variant);
+      await setShopifyCart(shopifyCartRes.data?.cartCreate);
+    } else {
+      addToCart({ ...variant, size, title, images });
+      const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
+      await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
+    }
+    const shopifyCheckoutRes = await checkout(shopifyCart);
+    const checkoutLink = shopifyCheckoutRes?.data?.cart?.checkoutUrl;
+    window.open(checkoutLink);
+  }
 
   async function handleAddToCart(variant: any, shopifyCart: any) {
     let handleDuplicates = cart.find(
@@ -191,7 +228,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     if (handleDuplicates) {
       alert("already added");
     } else {
-      if (cart.length === 0 && shopifyCart.length === 0) {
+      if (cart.length === 0 && !shopifyCart) {
         addToCart({ ...variant, size, title, images });
         const shopifyCartRes = await createShopifyCart(variant);
         await setShopifyCart(shopifyCartRes.data?.cartCreate);
@@ -290,7 +327,10 @@ function ProductDetails({ data, videoStatus, video }: Props) {
           </div>
         </button>
 
-        <button className="w-full text-center text-white bg-black py-3 text-lg font-bold">
+        <button
+          className="w-full text-center text-white bg-black py-3 text-lg font-bold"
+          onClick={() => handleBuyItNow(variant, shopifyCart)}
+        >
           Buy it now
         </button>
         <p className="italic tracking-[1px]">
