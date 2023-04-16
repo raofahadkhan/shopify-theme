@@ -157,7 +157,6 @@ export async function checkout(shopifyCart: any) {
       checkoutUrl
     }
   }
-  
   `;
 
   const url = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
@@ -203,22 +202,26 @@ function ProductDetails({ data, videoStatus, video }: Props) {
       setSelected({ type: "image", src: images[0] });
     }
   }, [size]);
-  useEffect(() => {
-    let myPromise = new Promise((resolve, reject) => {
-      let shopifyCheckoutRes = checkout(shopifyCart);
-      if (shopifyCheckoutRes) {
-        resolve(shopifyCheckoutRes);
-      } else if (!shopifyCheckoutRes) {
-        reject("error");
-      }
-    });
-    myPromise.then((item: any) => {
-      const checkoutLink = item?.data?.cart?.checkoutUrl;
-      window.open(checkoutLink);
-    });
-  }, [shopifyCart]);
+  // useEffect(() => {
+  //   console.log("all rounder : ", shopifyCart);
+  //   let myPromise = new Promise((resolve, reject) => {
+  //     let shopifyCheckoutRes = checkout(shopifyCart);
+  //     if (shopifyCheckoutRes) {
+  //       resolve(shopifyCheckoutRes);
+  //     } else if (!shopifyCheckoutRes) {
+  //       reject("error");
+  //     }
+  //   });
+  //   myPromise.then((item: any) => {
+  //     const checkoutLink = item?.data?.cart?.checkoutUrl;
+  //     window.open(checkoutLink);
+  //   });
+  // }, [shopifyCart]);
 
+  console.log("before", shopifyCart);
   async function handleBuyItNow(variant: any, shopifyCart: any) {
+    console.log("after", shopifyCart);
+
     if (cart.length == 0 && Object.entries(shopifyCart).length === 0) {
       addToCart({ ...variant, size, title, images });
       const shopifyCartRes = await createShopifyCart(variant);
@@ -226,8 +229,13 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     } else {
       addToCart({ ...variant, size, title, images });
       const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
+
       await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
     }
+
+    const shopifyCheckoutRes = await checkout(shopifyCart);
+    const checkoutLink = shopifyCheckoutRes?.data?.cart?.checkoutUrl;
+    window.open(checkoutLink);
   }
 
   async function handleAddToCart(variant: any, shopifyCart: any) {
@@ -237,7 +245,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     if (handleDuplicates) {
       alert("already added");
     } else {
-      if (cart.length === 0 && !shopifyCart) {
+      if (cart.length === 0 && Object.entries(shopifyCart).length === 0) {
         addToCart({ ...variant, size, title, images });
         const shopifyCartRes = await createShopifyCart(variant);
         await setShopifyCart(shopifyCartRes.data?.cartCreate);
@@ -245,6 +253,9 @@ function ProductDetails({ data, videoStatus, video }: Props) {
         addToCart({ ...variant, size, title, images });
         const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
         await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
+        console.log("shopifyCartState =====>", shopifyCart);
+
+        console.log("from updateshopifycart", cartUpdateRes);
       }
     }
   }
