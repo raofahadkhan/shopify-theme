@@ -25,7 +25,6 @@ const images = [
 ];
 const video = "video.mp4";
 
-
 export default function Home({
   allMenProducts,
   allWomenProducts,
@@ -34,7 +33,7 @@ export default function Home({
   allWomenProducts: AllProductType;
 }) {
   const featuredProduct = allMenProducts.data.collection.products.edges.find(
-    (ele: any) => ele.node.handle === "adventure-mobile-terry-pullover"
+    (ele: any) => ele.node.handle === "chambray-button-down"
   );
   useEffect(() => {
     const elements = document.querySelectorAll(".animation_triggering_class");
@@ -96,7 +95,7 @@ export default function Home({
         <ProductDetails
           images={images}
           video={video}
-          videoStatus={false}
+          videoStatus={true}
           data={featuredProduct}
         />
         <Svggrid />
@@ -105,8 +104,7 @@ export default function Home({
       </main>
     </>
   );
-};
-
+}
 
 // used GetStatic Props
 export async function getStaticProps() {
