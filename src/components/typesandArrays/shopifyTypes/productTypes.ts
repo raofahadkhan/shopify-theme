@@ -1,4 +1,3 @@
-// import { ProductType } from "@/components/typesandArrays/shopifyTypes/productTypes";
 export interface AllProductType {
   data: {
     collection: {

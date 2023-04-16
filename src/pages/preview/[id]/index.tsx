@@ -1,7 +1,4 @@
 import ProductDetails from "@/components/ProductDetails";
-// import React, { useEffect } from "react";
-// import { useRouter } from "next/router";
-// import { AllCatogryData } from "@/components/typesandArrays/AllMensData";
 import Navbar from "@/components/views/Navbar";
 import { allProductQuery } from "@/components/querys/PreviewAllProductQuery";
 
@@ -16,36 +13,6 @@ const images = [
 ];
 
 const video = "/video.mp4";
-
-// function capitalize(slug: string) {
-//   let arr = slug.split("-");
-
-//   for (let i = 0; i < arr.length; i++) {
-//     const u = arr[i].charAt(0).toUpperCase();
-//     const l = arr[i].slice(1);
-//     arr[i] = u + l;
-//   }
-//   return arr.join(" ");
-// }
-// function findProduct(slug: string) {
-//   const name = capitalize(slug);
-//   const product = AllCatogryData[0].productData?.find(
-//     (product) => product.name === name
-//   );
-//   return product;
-// }
-
-// const [product, setProduct] = React.useState<any | null>(null);
-
-// const router = useRouter();
-// const slug = router.query.id;
-
-// useEffect(() => {
-//   if (typeof slug == "string") {
-//     setProduct(findProduct(slug));
-//   }
-// }, [slug]);
-// {/* <ProductDetails images={images} video={video} data={product} /> */ }
 
 function findProductUsingLastIndexOfId(itemToMap: any, slug: any) {
   let DataToReturn = itemToMap.find((item: any) => slug === item.node.handle);

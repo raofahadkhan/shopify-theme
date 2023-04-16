@@ -15,6 +15,8 @@ import Hero from "../components/Hero";
 import Parallex from "../components/Parallex";
 import Shop from "../components/Shop";
 import Swiper from "../components/Swiper";
+import { QueryForGettingAllMenProducts } from "@/components/querys/QueryForGettingAllMenProducts";
+import { QueryForGettingAllWomenProducts } from "@/components/querys/QueryForGettingAllWomenProducts";
 
 const images = [
   "https://cdn.shopify.com/s/files/1/2091/0251/products/m-wenlock2_1800x1800.jpg?v=1584466287",
@@ -23,33 +25,6 @@ const images = [
 ];
 const video = "video.mp4";
 
-export async function getStaticProps() {
-  const url = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
-
-  let allMenData = await fetch(url, {
-    method: "Post",
-    headers: {
-      "Content-type": "application/json",
-      "X-Shopify-Storefront-Access-Token": `${process.env.API_KEY}`,
-    },
-    body: JSON.stringify({ query: queryForGettingAllMenProducts }),
-  });
-
-  let allWomenData = await fetch(url, {
-    method: "Post",
-    headers: {
-      "Content-type": "application/json",
-      "X-Shopify-Storefront-Access-Token": `${process.env.API_KEY}`,
-    },
-    body: JSON.stringify({ query: queryForGettingAllWomenProducts }),
-  });
-  const allMenProducts: AllProductType = await allMenData.json();
-  const allWomenProducts: AllProductType = await allWomenData.json();
-
-  return {
-    props: { allMenProducts, allWomenProducts },
-  };
-}
 
 export default function Home({
   allMenProducts,
@@ -130,81 +105,34 @@ export default function Home({
       </main>
     </>
   );
+};
+
+
+// used GetStatic Props
+export async function getStaticProps() {
+  const url = "https://ecomshoptheme.myshopify.com/api/2023-01/graphql.json";
+
+  let allMenData = await fetch(url, {
+    method: "Post",
+    headers: {
+      "Content-type": "application/json",
+      "X-Shopify-Storefront-Access-Token": `${process.env.API_KEY}`,
+    },
+    body: JSON.stringify({ query: QueryForGettingAllMenProducts }),
+  });
+
+  let allWomenData = await fetch(url, {
+    method: "Post",
+    headers: {
+      "Content-type": "application/json",
+      "X-Shopify-Storefront-Access-Token": `${process.env.API_KEY}`,
+    },
+    body: JSON.stringify({ query: QueryForGettingAllWomenProducts }),
+  });
+  const allMenProducts: AllProductType = await allMenData.json();
+  const allWomenProducts: AllProductType = await allWomenData.json();
+
+  return {
+    props: { allMenProducts, allWomenProducts },
+  };
 }
-
-const queryForGettingAllMenProducts = `{
-	collection(handle: "male") {
-	  handle
-	  products(first:25) {
-	  edges {
-		node {
-			variants(first:250){
-				edges{
-					node{
-						id,
-						title,
-						price{
-							amount,
-							currencyCode
-						},
-						sku
-  
-  
-					}
-				}
-			}
-			handle
-			images(first:3){
-				edges{
-					node{
-						url
-					}
-				}
-			},
-		  id,
-		  title,
-		  description
-		}
-	  }
-	}
-	}
-  }
-  `;
-
-const queryForGettingAllWomenProducts = `{
-	collection(handle: "female") {
-	  handle
-	  products(first:25) {
-	  edges {
-		node {
-			variants(first:250){
-				edges{
-					node{
-						id,
-						title,
-						price{
-							amount,
-							currencyCode
-						},
-						sku
-  
-  
-					}
-				}
-			}
-			handle
-			images(first:3){
-				edges{
-					node{
-						url
-					}
-				}
-			},
-		  id,
-		  title,
-		  description
-		}
-	  }
-	}
-	}
-  }`;

@@ -96,7 +96,6 @@ export default function IncrementButtons({ item }: { item: any }) {
   ) {
     if (numberOfItems > 1) {
       await setNumberOfItems(--numberOfItems);
-      // updatePrice("addition", item.node.price.amount);
       const shopifyCartRes = await incrementLineItem(
         item,
         shopifyCart,
