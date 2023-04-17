@@ -202,26 +202,9 @@ function ProductDetails({ data, videoStatus, video }: Props) {
       setSelected({ type: "image", src: images[0] });
     }
   }, [size]);
-  // useEffect(() => {
-  //   console.log("all rounder : ", shopifyCart);
-  //   let myPromise = new Promise((resolve, reject) => {
-  //     let shopifyCheckoutRes = checkout(shopifyCart);
-  //     if (shopifyCheckoutRes) {
-  //       resolve(shopifyCheckoutRes);
-  //     } else if (!shopifyCheckoutRes) {
-  //       reject("error");
-  //     }
-  //   });
-  //   myPromise.then((item: any) => {
-  //     const checkoutLink = item?.data?.cart?.checkoutUrl;
-  //     window.open(checkoutLink);
-  //   });
-  // }, [shopifyCart]);
 
   console.log("before", shopifyCart);
   async function handleBuyItNow(variant: any, shopifyCart: any) {
-    console.log("after", shopifyCart);
-
     if (cart.length == 0 && Object.entries(shopifyCart).length === 0) {
       addToCart({ ...variant, size, title, images });
       const shopifyCartRes = await createShopifyCart(variant);
@@ -232,10 +215,10 @@ function ProductDetails({ data, videoStatus, video }: Props) {
 
       await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
     }
-
+    console.log("after", shopifyCart);
     const shopifyCheckoutRes = await checkout(shopifyCart);
     const checkoutLink = shopifyCheckoutRes?.data?.cart?.checkoutUrl;
-    window.open(checkoutLink);
+    checkoutLink && window.open(checkoutLink);
   }
 
   async function handleAddToCart(variant: any, shopifyCart: any) {

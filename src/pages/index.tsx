@@ -78,7 +78,7 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* <Navbar page="index" />
+        <Navbar page="index" />
         <HeroSection />
         <SecondaryTextAfterHero />
         <div className="overflow-hidden">
@@ -91,7 +91,7 @@ export default function Home({
         <ImageHoverEffect />
         <div className="overflow-hidden max-w-7xl mx-auto">
           <Swiper />
-        </div> */}
+        </div>
         <ProductDetails
           images={images}
           video={video}
