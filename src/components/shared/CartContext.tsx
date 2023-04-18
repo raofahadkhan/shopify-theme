@@ -4,7 +4,7 @@ import { contextType } from "../typesandArrays/creatContextType";
 export const CartContext = createContext<contextType | null>(null);
 
 const queryForGettingAllProducts = `{
-  products(first:25) {
+  products(first:250) {
     edges {
       node {
           variants(first:250){
@@ -17,8 +17,7 @@ const queryForGettingAllProducts = `{
                           currencyCode
                       },
                       sku
-
-
+                      quantityAvailable
                   }
               }
           }
@@ -32,7 +31,7 @@ const queryForGettingAllProducts = `{
           },
         id,
         title,
-        description
+        description 
       }
     }
   }

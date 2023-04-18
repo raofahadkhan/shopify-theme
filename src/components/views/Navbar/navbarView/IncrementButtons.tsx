@@ -13,7 +13,7 @@ export async function incrementLineItem(
   );
   setBtndisable(true);
   const lineItemId = lineItem?.node.id;
-  
+
   const queryForLineItemsUpdate = `mutation {
     cartLinesUpdate(
       cartId: ${JSON.stringify(cartId)}
@@ -78,16 +78,21 @@ export async function incrementLineItem(
   return parsedCartData;
 }
 export default function IncrementButtons({ item }: { item: any }) {
-  const { updatePrice, removeFromCart, shopifyCart, setShopifyCart }: any =
-    useContext(CartContext);
+  const {
+    updatePrice,
+    removeFromCart,
+    shopifyCart,
+    setShopifyCart,
+    cart,
+    setCart,
+  }: any = useContext(CartContext);
   const [numberOfItems, setNumberOfItems] = useState(1);
-  const [btndisable, setBtndisable] = useState(false);
-  const cartId = shopifyCart?.cart?.id;
-  const lineItem = shopifyCart?.cart?.lines.edges.find(
-    (ele: any) => ele?.node?.id === item?.node?.id
+  const lineItem = shopifyCart?.cart?.lines?.edges.find(
+    (ele: any) => ele?.node?.merchandise?.id === item?.node?.id
   );
-  const lineItemId = lineItem?.node?.id;
-
+  const cartItem = cart.find((ele: any) => ele.node?.id === item?.node?.id);
+  const cartItemIndex = cart.indexOf(cartItem);
+  const [btndisable, setBtndisable] = useState(false);
   async function decrementPerform(
     item: any,
     shopifyCart: any,
@@ -95,7 +100,7 @@ export default function IncrementButtons({ item }: { item: any }) {
     numberOfItems: number
   ) {
     if (numberOfItems > 1) {
-      await setNumberOfItems(--numberOfItems);
+      setNumberOfItems(--numberOfItems);
       const shopifyCartRes = await incrementLineItem(
         item,
         shopifyCart,
@@ -103,6 +108,7 @@ export default function IncrementButtons({ item }: { item: any }) {
         setBtndisable
       );
       await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
+      cart[cartItemIndex]["count"] = numberOfItems;
     } else {
       removeFromCart(item);
       const shopifyCartRes = await incrementLineItem(
@@ -121,7 +127,8 @@ export default function IncrementButtons({ item }: { item: any }) {
     setBtndisable: any,
     numberOfItems: number
   ) {
-    await setNumberOfItems(++numberOfItems);
+    // if (item.node.quantityAvailable > numberOfItems) {
+    setNumberOfItems(++numberOfItems);
     updatePrice("addition", item.node.price.amount);
     const shopifyCartRes = await incrementLineItem(
       item,
@@ -130,6 +137,10 @@ export default function IncrementButtons({ item }: { item: any }) {
       setBtndisable
     );
     await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
+    cart[cartItemIndex]["count"] = numberOfItems;
+    // } else {
+    //   alert(`Only ${item.node.quantityAvailable} Articles are Instock`);
+    // }
   }
   return (
     <div className="border-2 flex justify-center">
@@ -142,7 +153,9 @@ export default function IncrementButtons({ item }: { item: any }) {
       >
         -
       </button>
-      <div className="py-1 px-3 text-center">{numberOfItems}</div>
+      <div className="py-1 px-3 text-center">
+        {lineItem?.node.quantity ? lineItem?.node?.quantity : 1}
+      </div>
       <button
         disabled={btndisable}
         onClick={() => {

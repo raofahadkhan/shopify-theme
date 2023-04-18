@@ -1,8 +1,8 @@
 import Carousel from "@/components/Carousel";
 import ProductDetails from "@/components/ProductDetails";
-import Svggrid from "@/components/home/Svggrid";
 import Product1 from "@/components/home/journalcard";
-import { Subscribe } from "@/components/home/signupcomponent";
+import { QueryForGettingAllMenProducts } from "@/components/querys/QueryForGettingAllMenProducts";
+import { QueryForGettingAllWomenProducts } from "@/components/querys/QueryForGettingAllWomenProducts";
 import { AllProductType } from "@/components/typesandArrays/shopifyTypes/productTypes";
 import HeroSection from "@/components/views/HeroSection";
 import ImageHoverEffect from "@/components/views/ImageHoverEffect";
@@ -12,11 +12,8 @@ import Head from "next/head";
 import { useEffect } from "react";
 import Gift from "../components/Gift";
 import Hero from "../components/Hero";
-import Parallex from "../components/Parallex";
 import Shop from "../components/Shop";
 import Swiper from "../components/Swiper";
-import { QueryForGettingAllMenProducts } from "@/components/querys/QueryForGettingAllMenProducts";
-import { QueryForGettingAllWomenProducts } from "@/components/querys/QueryForGettingAllWomenProducts";
 
 const images = [
   "https://cdn.shopify.com/s/files/1/2091/0251/products/m-wenlock2_1800x1800.jpg?v=1584466287",
