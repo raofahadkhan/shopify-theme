@@ -12,7 +12,7 @@ export const allProductQuery = `{
                             currencyCode
                         },
                         sku
-  
+                        quantityAvailable
   
                     }
                 }

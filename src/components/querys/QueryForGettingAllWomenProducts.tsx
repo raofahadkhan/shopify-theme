@@ -14,7 +14,7 @@ export const QueryForGettingAllWomenProducts = `{
 							currencyCode
 						},
 						sku
-  
+						quantityAvailable
   
 					}
 				}

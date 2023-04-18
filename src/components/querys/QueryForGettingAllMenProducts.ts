@@ -14,8 +14,7 @@ export const QueryForGettingAllMenProducts = `{
 							currencyCode
 						},
 						sku
-  
-  
+						quantityAvailable
 					}
 				}
 			}

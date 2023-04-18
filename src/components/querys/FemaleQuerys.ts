@@ -22,6 +22,7 @@ export const femaleApiFetchingQuery = `query AllProducts {
                     title,
                     price{ amount, currencyCode },
                   sku
+                  quantityAvailable
                 }
   
               }
@@ -127,7 +128,7 @@ export const femaleShirtsApiFetchingQuery = `query ProductType {
       }
     }
   }`;
-  export const femaleDressesApiFetchingQuery = `query ProductType {
+export const femaleDressesApiFetchingQuery = `query ProductType {
     collection(handle: "female") {
       handle
       products(first: 10, filters: { productType: "dresses" }) {

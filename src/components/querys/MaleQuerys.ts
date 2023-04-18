@@ -22,6 +22,7 @@ export const maleApiFetchingQuery = `query AllProducts {
                     title,
                     price{ amount, currencyCode },
                   sku
+                  quantityAvailable
                 }
               }
             }
@@ -30,7 +31,7 @@ export const maleApiFetchingQuery = `query AllProducts {
       }
     }
   }`;
-export const maleShortsApiFetchingQuery =`query ProductType {
+export const maleShortsApiFetchingQuery = `query ProductType {
     collection(handle: "male") {
       handle
       products(first: 10, filters: { productType: "shorts" }) {
@@ -94,7 +95,7 @@ export const maleShirtsApiFetchingQuery = `query ProductType {
       }
     }
   }`;
-  export const maleBoardshotsApiFetchingQuery = `query ProductType {
+export const maleBoardshotsApiFetchingQuery = `query ProductType {
     collection(handle: "male") {
       handle
       products(first: 10, filters: { productType: "boardshots" }) {
@@ -126,7 +127,7 @@ export const maleShirtsApiFetchingQuery = `query ProductType {
       }
     }
   }`;
-  export const maleJacketsApiFetchingQuery = `query ProductType {
+export const maleJacketsApiFetchingQuery = `query ProductType {
     collection(handle: "male") {
       handle
       products(first: 10, filters: { productType: "jackets" }) {
@@ -158,7 +159,7 @@ export const maleShirtsApiFetchingQuery = `query ProductType {
       }
     }
   }`;
-  export const maleSaleApiFetchingQuery = `query ProductType {
+export const maleSaleApiFetchingQuery = `query ProductType {
     collection(handle: "male") {
       handle
       products(first: 10, filters: { productType: "sales" }) {
