@@ -5,6 +5,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import AskQuestionForm from "./AskQuestionForm";
 import MoreDetails from "./MoreDetails";
 import SizeChart from "./SizeChart";
+import { CartState } from "@/globalState/context/CartContext";
 
 type Props = {
   images: string[];
@@ -257,8 +258,9 @@ function ProductDetails({ data, videoStatus, video }: Props) {
   const [size, setSize] = useState(data.node?.variants?.edges[0]?.node?.title);
   let [count, setCount] = useState(1);
   let [btndisable, setBtndisable] = useState(false);
-  const { addToCart, cart, shopifyCart, setShopifyCart }: any =
-    useContext(CartContext);
+  // const { addToCart, cart, shopifyCart, setShopifyCart }: any =
+  //   useContext(CartContext);
+  const { state, dispatch } = CartState();
   const [selected, setSelected] = useState({
     type: "video",
     src: "video.mp4",
@@ -288,35 +290,53 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     const checkoutLink = shopifyCheckoutRes?.data?.cart?.checkoutUrl;
     checkoutLink && window.open(checkoutLink);
   }
+  console.log("stateteeeeee before", state.shopifyCart);
 
   async function handleAddToCart(variant: any, shopifyCart: any) {
-    let handleDuplicates = cart.find(
+    console.log("stateteeeeee AFTER", state.shopifyCart);
+    let handleDuplicates = state.cart.find(
       (cartItem: any) => cartItem.node.id === variant.node.id
     );
-    // console.log(handleDuplicates)
     if (handleDuplicates) {
-      // if (variant.node.quantityAvailable > handleDuplicates.count) {
-      handleDuplicates.count = ++handleDuplicates.count;
-      setCount(++count);
-      const shopifyCartRes = await incrementLineItem(
-        variant,
-        shopifyCart,
-        count,
-        setBtndisable
-      );
-      await setShopifyCart(shopifyCartRes.data?.cartLinesUpdate);
-      // } else {
-      //   alert(`Only ${variant.node.quantityAvailable} Articles are Instock`);
-      // }
+      alert("already added");
+      //  // if (variant.node.quantityAvailable > handleDuplicates.count) {
+      // handleDuplicates.count = ++handleDuplicates.count;
+      // setCount(++count);
+      // const shopifyCartRes = await incrementLineItem(
+      //   variant,
+      //   shopifyCart,
+      //   count,
+      //   setBtndisable
+      // );
+      // dispatch({
+      //   type: "CHANGE_CART_QTY",
+      //   payload: {
+      //     qty: (qty += 1),
+      //   },
+      // });
+      //  // } else {
+      //  //   alert(`Only ${variant.node.quantityAvailable} Articles are Instock`);
+      //  // }
     } else {
-      if (cart.length === 0 && Object.entries(shopifyCart).length === 0) {
-        addToCart({ ...variant, size, title, images, count });
+      if (state.cart.length === 0 && Object.entries(shopifyCart).length === 0) {
+        // addToCart({ ...variant, size, title, images, count });
         const shopifyCartRes = await createShopifyCart(variant);
-        await setShopifyCart(shopifyCartRes.data?.cartCreate);
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: { ...variant, size, title, images },
+          shopifyCartData: shopifyCartRes.data.cartCreate,
+        });
+        console.log("cart to add ", state.shopifyCart);
+        // await setShopifyCart(shopifyCartRes.data?.cartCreate);
       } else {
-        addToCart({ ...variant, size, title, images });
+        // addToCart({ ...variant, size, title, images });
         const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
-        await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: { ...variant, size, title, images },
+          shopifyCartData: cartUpdateRes.data.cartLinesAdd,
+        });
+        // await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
       }
     }
   }
@@ -397,7 +417,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
           className={`w-full overflow-hidden group text-center ring-1 py-3 text-lg font-bold flex items-center ${
             btndisable ? "ring-gray-200" : "ring-black"
           }`}
-          onClick={() => handleAddToCart(variant, shopifyCart)}
+          onClick={() => handleAddToCart(variant, state.shopifyCart)}
           disabled={btndisable}
         >
           <p className="flex-grow group-hover:-translate-x-8 transition duration-200">
@@ -410,7 +430,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
 
         <button
           className="w-full text-center text-white bg-black py-3 text-lg font-bold"
-          onClick={() => handleBuyItNow(variant, shopifyCart)}
+          onClick={() => handleBuyItNow(variant, state.shopifyCart)}
         >
           Buy it now
         </button>

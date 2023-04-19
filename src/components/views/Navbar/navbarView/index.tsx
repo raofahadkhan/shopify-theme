@@ -18,7 +18,8 @@ import { subMenuType } from "@/components/typesandArrays/NavbarItems";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import CartSectoin from "./CartSectoin";
-import { CartContext } from "@/components/shared/CartContext";
+// import { CartContext } from "@/components/shared/CartContext";
+import { CartState } from "@/globalState/context/CartContext";
 
 const inter = Jost({ subsets: ["latin"] });
 
@@ -52,8 +53,9 @@ export async function checkout(shopifyCart: any) {
 }
 
 export default function NavbarView({ navItem, page }: typeofNavItems) {
-  const { price, navbarcolor, setNavbarcolor, shopifyCart }: any =
-    useContext(CartContext);
+  // const { price, navbarcolor, setNavbarcolor, shopifyCart }: any =
+  //   useContext(CartContext);
+  const { state, dispatch, navbarcolor, setNavbarcolor } = CartState();
   const [SearchBoxView, setSearchBoxView] = useState(false);
   const { reload, query } = useRouter();
   const [sidebar, setSidebar] = useState(false);
@@ -64,7 +66,7 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
   async function handleclick(shopifyCart: any) {
     const cartId = shopifyCart?.cart?.id;
     const shopifyCheckoutRes = await checkout(shopifyCart);
-    const checkoutLink = shopifyCheckoutRes.data.cart.checkoutUrl;
+    const checkoutLink = shopifyCheckoutRes?.data?.cart?.checkoutUrl;
 
     window.open(checkoutLink);
   }
@@ -93,14 +95,26 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
       window.addEventListener("scroll", () => {
         if (window.scrollY > 511) {
           setNavbarcolor(true);
+          // dispatch({
+          //   type: "CHANGE_NAVBAR_COLOR",
+          //   changeNavbarColor: true,
+          // });
         } else {
           setNavbarcolor(false);
+          // dispatch({
+          //   type: "CHANGE_NAVBAR_COLOR",
+          //   changeNavbarColor: false,
+          // });
         }
       });
     }
   }
   if (page === "preview") {
     setNavbarcolor(true);
+    // dispatch({
+    //   type: "CHANGE_NAVBAR_COLOR",
+    //   changeNavbarColor: true,
+    // });
   }
   return (
     <div>
@@ -276,14 +290,14 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
           <div className="space-y-4 w-full py-4 border-t-2 absolute bottom-0 left-0">
             <div className="w-full flex item-center justify-between items-center ">
               <h2 className="text-xl font-bold text-gray-800">SUBTOTAL</h2>
-              <p>${price}</p>
+              <p>${state.shopifyCart.cart?.cost.totalAmount}</p>
             </div>
             <p className="text-xs">
               Shipping, taxes, and discount codes calculated at checkout.
             </p>
             <button
               className="w-full py-3 bg-black font-semibold text-white"
-              onClick={() => handleclick(shopifyCart)}
+              onClick={() => handleclick(state.shopifyCart)}
             >
               Check out
             </button>

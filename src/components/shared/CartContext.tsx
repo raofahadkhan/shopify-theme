@@ -51,7 +51,7 @@ const getAllProductsDataFromAPI = async () => {
   return response.json();
 };
 
-export const CartProvider = ({ children }: { children: ReactNode }) => {
+export const CartProviderAB = ({ children }: { children: ReactNode }) => {
   const [cart, setCart]: any = useState([]);
   const [shopifyCart, setShopifyCart] = useState({});
   const [navbarcolor, setNavbarcolors] = useState(false);
