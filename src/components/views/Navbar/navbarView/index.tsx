@@ -290,7 +290,7 @@ export default function NavbarView({ navItem, page }: typeofNavItems) {
           <div className="space-y-4 w-full py-4 border-t-2 absolute bottom-0 left-0">
             <div className="w-full flex item-center justify-between items-center ">
               <h2 className="text-xl font-bold text-gray-800">SUBTOTAL</h2>
-              <p>${state.shopifyCart.cart?.cost.totalAmount}</p>
+              <p>${state.shopifyCart.cart?.cost.totalAmount.amount}</p>
             </div>
             <p className="text-xs">
               Shipping, taxes, and discount codes calculated at checkout.

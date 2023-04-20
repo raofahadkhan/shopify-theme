@@ -76,7 +76,7 @@ export default function Home({
       </Head>
       <main>
         <Navbar page="index" />
-        <HeroSection />
+        {/* <HeroSection />
         <SecondaryTextAfterHero />
         <div className="overflow-hidden">
           <Carousel dataMen={allMenProducts} dataWomen={allWomenProducts} />
@@ -88,7 +88,7 @@ export default function Home({
         <ImageHoverEffect />
         <div className="overflow-hidden max-w-7xl mx-auto">
           <Swiper />
-        </div>
+        </div> */}
         <ProductDetails
           images={images}
           video={video}

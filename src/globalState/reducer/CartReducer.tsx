@@ -10,7 +10,7 @@ export const CartReducer = (state: any, action: any) => {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter((c: any) => c.id !== action.payload.id),
+        cart: state.cart.filter((c: any) => c.node.id !== action.payload.id),
         shopifyCart: { ...action.shopifyCartData },
       };
 
@@ -18,7 +18,7 @@ export const CartReducer = (state: any, action: any) => {
       return {
         ...state,
         cart: state.cart.filter((c: any) =>
-          c.id === action.payload.id ? (c.qty = action.payload.qty) : c.qty
+          c.node.id === action.payload.id ? (c.qty = action.payload.qty) : c.qty
         ),
         shopifyCart: { ...action.shopifyCartData },
       };

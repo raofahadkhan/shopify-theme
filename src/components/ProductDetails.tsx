@@ -190,7 +190,7 @@ export async function incrementLineItem(
       cartId: ${JSON.stringify(cartId)}
       lines: {
         id: ${JSON.stringify(lineItemId)}
-        quantity: ${numberOfItems}
+        quantity: ${numberOfItems + 1}
         }
     ) {
       cart {
@@ -261,6 +261,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
   // const { addToCart, cart, shopifyCart, setShopifyCart }: any =
   //   useContext(CartContext);
   const { state, dispatch } = CartState();
+  console.log("shopifycart state value", state.shopifyCart);
   const [selected, setSelected] = useState({
     type: "video",
     src: "video.mp4",
@@ -282,44 +283,54 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     if (videoStatus === false) {
       setSelected({ type: "image", src: images[0] });
     }
+    setCount(1);
   }, [size]);
 
   async function handleBuyItNow(variant: any, shopifyCart: any) {
-    handleAddToCart(variant, shopifyCart);
+    console.log("cart from handle buy it now", shopifyCart);
+
+    // const response = await Promise.race([
+    //   handleAddToCart(variant, shopifyCart),
+    //   checkout(shopifyCart),
+    // ]);
+    await handleAddToCart(variant, shopifyCart);
     const shopifyCheckoutRes = await checkout(shopifyCart);
     const checkoutLink = shopifyCheckoutRes?.data?.cart?.checkoutUrl;
-    checkoutLink && window.open(checkoutLink);
+    window.open(checkoutLink);
+    // console.log("Response", response);
+    // console.log("cart from handle buy it now", state.shopifyCart);
   }
   console.log("stateteeeeee before", state.shopifyCart);
 
   async function handleAddToCart(variant: any, shopifyCart: any) {
-    console.log("stateteeeeee AFTER", state.shopifyCart);
+    console.log("stateteeeeee AFTER", shopifyCart);
     let handleDuplicates = state.cart.find(
-      (cartItem: any) => cartItem.node.id === variant.node.id
+      (cartItem: any) => cartItem.node?.id === variant.node?.id
     );
     if (handleDuplicates) {
-      alert("already added");
+      // alert("already added");
       //  // if (variant.node.quantityAvailable > handleDuplicates.count) {
-      // handleDuplicates.count = ++handleDuplicates.count;
-      // setCount(++count);
-      // const shopifyCartRes = await incrementLineItem(
-      //   variant,
-      //   shopifyCart,
-      //   count,
-      //   setBtndisable
-      // );
-      // dispatch({
-      //   type: "CHANGE_CART_QTY",
-      //   payload: {
-      //     qty: (qty += 1),
-      //   },
-      // });
+      // handleDuplicates.qty += 1;
+      // setCount(handleDuplicates.qty);
+      const shopifyCartRes = await incrementLineItem(
+        variant,
+        shopifyCart,
+        handleDuplicates.qty,
+        setBtndisable
+      );
+      dispatch({
+        type: "CHANGE_CART_QTY",
+        payload: {
+          qty: handleDuplicates.qty + 1,
+          id: variant.node.id,
+        },
+        shopifyCartData: shopifyCartRes.data.cartLinesUpdate,
+      });
       //  // } else {
       //  //   alert(`Only ${variant.node.quantityAvailable} Articles are Instock`);
       //  // }
     } else {
       if (state.cart.length === 0 && Object.entries(shopifyCart).length === 0) {
-        // addToCart({ ...variant, size, title, images, count });
         const shopifyCartRes = await createShopifyCart(variant);
         dispatch({
           type: "ADD_TO_CART",
@@ -327,19 +338,18 @@ function ProductDetails({ data, videoStatus, video }: Props) {
           shopifyCartData: shopifyCartRes.data.cartCreate,
         });
         console.log("cart to add ", state.shopifyCart);
-        // await setShopifyCart(shopifyCartRes.data?.cartCreate);
       } else {
-        // addToCart({ ...variant, size, title, images });
         const cartUpdateRes = await updateShopifyCart(variant, shopifyCart);
         dispatch({
           type: "ADD_TO_CART",
           payload: { ...variant, size, title, images },
-          shopifyCartData: cartUpdateRes.data.cartLinesAdd,
+          shopifyCartData: cartUpdateRes.data?.cartLinesAdd,
         });
-        // await setShopifyCart(cartUpdateRes.data?.cartLinesAdd);
       }
     }
   }
+  console.log("state of shopifyCart", state.shopifyCart);
+
   return (
     <section className="flex flex-col lg:flex-row lg:space-x-8 lg:px-12 ">
       <div className="basis-1/2 flex flex-row-reverse lg:flex-row lg:px-2 space-x-4 self-start static lg:sticky top-0 md:w-full ">
@@ -430,7 +440,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
 
         <button
           className="w-full text-center text-white bg-black py-3 text-lg font-bold"
-          onClick={() => handleBuyItNow(variant, state.shopifyCart)}
+          onClick={async () => handleBuyItNow(variant, state.shopifyCart)}
         >
           Buy it now
         </button>

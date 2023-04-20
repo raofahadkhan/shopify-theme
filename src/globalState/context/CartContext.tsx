@@ -8,7 +8,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [navbarcolor, setNavbarcolor] = useState(false);
   const initialState = {
     cart: [],
-    shopifyCart: {},
+    shopifyCart: { test: 123 },
     products: {},
     // navbarcolor: false,
   };
