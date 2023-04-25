@@ -324,7 +324,7 @@ function ProductDetails({ data, videoStatus, video }: Props) {
           qty: handleDuplicates.qty + 1,
           id: variant.node.id,
         },
-        shopifyCartData: shopifyCartRes.data.cartLinesUpdate,
+        shopifyCartData: shopifyCartRes?.data?.cartLinesUpdate,
       });
       //  // } else {
       //  //   alert(`Only ${variant.node.quantityAvailable} Articles are Instock`);
