@@ -297,8 +297,9 @@ function ProductDetails({ data, videoStatus, video }: Props) {
     const shopifyCheckoutRes = await checkout(shopifyCart);
     const checkoutLink = shopifyCheckoutRes?.data?.cart?.checkoutUrl;
     window.open(checkoutLink);
-    // console.log("Response", response);
-    // console.log("cart from handle buy it now", state.shopifyCart);
+    console.log("checkout link", checkoutLink);
+    console.log("checkout Response", shopifyCheckoutRes);
+    console.log("checkout cart from handle buy it now", state.shopifyCart);
   }
   console.log("stateteeeeee before", state.shopifyCart);
 
